@@ -42,6 +42,12 @@ public class NSBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
 				getOrCreateTagBuilder(BlockTags.STAIRS).add(woodSet.getMosaicStairs());
 				getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(woodSet.getMosaic(), woodSet.getMosaicSlab(), woodSet.getMosaicStairs());
 			}
+      if (woodSet.getWoodPreset() == WoodSet.WoodPreset.WILLOW) {
+         getOrCreateTagBuilder(BlockTags.CLIMBABLE).add(
+                 woodSet.getVinesPlant(),
+                 woodSet.getVines()
+         );
+      }
 			getOrCreateTagBuilder(BlockTags.OVERWORLD_NATURAL_LOGS).add(new Block[]{woodSet.getLog()});
 			getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).addTag(woodSet.getBlockLogsTag());
 			getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS).add(new Block[]{woodSet.getTrapDoor()});

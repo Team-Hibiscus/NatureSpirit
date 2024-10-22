@@ -117,6 +117,9 @@ public class NSConfiguredFeatures {
 	public static final RegistryKey<ConfiguredFeature<?, ?>> ASPEN_TREE = registerKey("aspen_tree");
 	public static final RegistryKey<ConfiguredFeature<?, ?>> ASPEN_TREE_BEES = registerKey("aspen_tree_bees");
 	public static final RegistryKey<ConfiguredFeature<?, ?>> ASPEN_TREE_SPAWN = registerKey("aspen_tree_spawn");
+  public static final RegistryKey<ConfiguredFeature<?, ?>> YELLOW_ASPEN_TREE = registerKey("yellow_aspen_tree");
+  public static final RegistryKey<ConfiguredFeature<?, ?>> YELLOW_ASPEN_TREE_BEES = registerKey("yellow_aspen_tree_bees");
+  public static final RegistryKey<ConfiguredFeature<?, ?>> YELLOW_ASPEN_TREE_SPAWN = registerKey("yellow_aspen_tree_spawn");
 	public static final RegistryKey<ConfiguredFeature<?, ?>> RED_MAPLE_TREE = registerKey("red_maple_tree");
 	public static final RegistryKey<ConfiguredFeature<?, ?>> ORANGE_MAPLE_TREE = registerKey("orange_maple_tree");
 	public static final RegistryKey<ConfiguredFeature<?, ?>> YELLOW_MAPLE_TREE = registerKey("yellow_maple_tree");
@@ -251,7 +254,7 @@ public class NSConfiguredFeatures {
 
 		register(context, ASPEN_TREE, Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(NSWoods.ASPEN.getLog()),
 			new StraightTrunkPlacer(14, 2, 5),
-			new NoiseBlockStateProvider(2445, new DoublePerlinNoiseSampler.NoiseParameters(0, 1.0), 0.330833334f, List.of(NSWoods.ASPEN.getLeaves().getDefaultState(), NSWoods.ASPEN.getYellowLeaves().getDefaultState())),
+			BlockStateProvider.of(NSWoods.ASPEN.getLeaves()),
 			new AspenFoliagePlacer(UniformIntProvider.create(2, 2), UniformIntProvider.create(2, 3), UniformIntProvider.create(4, 18)),
 			new TwoLayersFeatureSize(1, 0, 1)
 		).ignoreVines().build());
@@ -261,6 +264,37 @@ public class NSConfiguredFeatures {
 			new AspenFoliagePlacer(UniformIntProvider.create(2, 2), UniformIntProvider.create(2, 3), UniformIntProvider.create(4, 18)),
 			new TwoLayersFeatureSize(1, 0, 1)
 		).ignoreVines().decorators(List.of(new BeehiveTreeDecorator(1.0F))).build());
+
+     register(
+             context,
+             ASPEN_TREE_SPAWN,
+             Feature.RANDOM_SELECTOR,
+             new RandomFeatureConfig(List.of(new RandomFeatureEntry(placedFeatureRegistryEntryLookup.getOrThrow(NSPlacedFeatures.ASPEN_BEES_CHECKED), 0.001f)),
+                     placedFeatureRegistryEntryLookup.getOrThrow(NSPlacedFeatures.ASPEN_CHECKED)
+             )
+     );
+
+     register(context, YELLOW_ASPEN_TREE, Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(NSWoods.ASPEN.getLog()),
+             new StraightTrunkPlacer(14, 2, 5),
+             BlockStateProvider.of(NSWoods.ASPEN.getYellowLeaves()),
+             new AspenFoliagePlacer(UniformIntProvider.create(2, 2), UniformIntProvider.create(2, 3), UniformIntProvider.create(4, 18)),
+             new TwoLayersFeatureSize(1, 0, 1)
+     ).ignoreVines().build());
+     register(context, YELLOW_ASPEN_TREE_BEES, Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(NSWoods.ASPEN.getLog()),
+             new StraightTrunkPlacer(14, 2, 5),
+             BlockStateProvider.of(NSWoods.ASPEN.getYellowLeaves()),
+             new AspenFoliagePlacer(UniformIntProvider.create(2, 2), UniformIntProvider.create(2, 3), UniformIntProvider.create(4, 18)),
+             new TwoLayersFeatureSize(1, 0, 1)
+     ).ignoreVines().decorators(List.of(new BeehiveTreeDecorator(1.0F))).build());
+
+     register(
+             context,
+             YELLOW_ASPEN_TREE_SPAWN,
+             Feature.RANDOM_SELECTOR,
+             new RandomFeatureConfig(List.of(new RandomFeatureEntry(placedFeatureRegistryEntryLookup.getOrThrow(NSPlacedFeatures.YELLOW_ASPEN_BEES_CHECKED), 0.001f)),
+                     placedFeatureRegistryEntryLookup.getOrThrow(NSPlacedFeatures.YELLOW_ASPEN_CHECKED)
+             )
+     );
 
 
 		register(context, RED_MAPLE_TREE, Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(NSWoods.MAPLE.getLog()),

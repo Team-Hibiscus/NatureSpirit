@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "group": "minecraft:blue_dye",
+  "group": "minecraft:light_blue_dye",
   "ingredients": [
     {
       "item": "natures_spirit:blue_iris"
@@ -9,6 +9,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "minecraft:blue_dye"
+    "id": "minecraft:light_blue_dye"
   }
 }

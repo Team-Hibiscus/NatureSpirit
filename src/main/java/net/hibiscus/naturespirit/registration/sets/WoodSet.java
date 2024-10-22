@@ -301,7 +301,7 @@ public class WoodSet {
      if (woodPreset == WoodPreset.ASPEN) {
         leaves = createLeaves();
         yellowLeaves = createLeaves("yellow_");
-        sapling = createSapling(new SaplingGenerator(NatureSpirit.MOD_ID + "_" + this.getName(), Optional.empty(), Optional.of(NSConfiguredFeatures.ASPEN_TREE), Optional.empty()));
+        sapling = createSapling(new SaplingGenerator(NatureSpirit.MOD_ID + "_" + this.getName(), .3f, Optional.empty(), Optional.empty(), Optional.of(NSConfiguredFeatures.ASPEN_TREE), Optional.of(NSConfiguredFeatures.YELLOW_ASPEN_TREE), Optional.empty(), Optional.empty()));
         pottedSapling = createPottedSapling(sapling);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> entries.addAfter(leavesBefore, yellowLeaves.asItem()));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> entries.addAfter(leavesBefore, leaves.asItem()));

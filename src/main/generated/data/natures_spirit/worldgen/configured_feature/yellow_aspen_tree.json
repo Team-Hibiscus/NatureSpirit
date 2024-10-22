@@ -29,7 +29,7 @@
     "foliage_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "natures_spirit:aspen_leaves",
+        "Name": "natures_spirit:yellow_aspen_leaves",
         "Properties": {
           "distance": "7",
           "persistent": "false",

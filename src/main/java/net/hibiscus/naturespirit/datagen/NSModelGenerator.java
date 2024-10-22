@@ -231,6 +231,9 @@ class NSModelGenerator extends FabricModelProvider {
 				createSlab(woodSet.getMosaic(), woodSet.getMosaicSlab(), blockStateModelGenerator);
 				createStairs(woodSet.getMosaic(), woodSet.getMosaicStairs(), blockStateModelGenerator);
 			}
+      if (woodSet.getWoodPreset() == WoodSet.WoodPreset.WILLOW) {
+         generateVineBlockStateModels(woodSet.getVines(), woodSet.getVinesPlant(), blockStateModelGenerator);
+      }
 			blockStateModelGenerator.registerSingleton(woodSet.getPlanks(), TexturedModel.CUBE_ALL);
 			createSlab(woodSet.getPlanks(), woodSet.getSlab(), blockStateModelGenerator);
 			createStairs(woodSet.getPlanks(), woodSet.getStairs(), blockStateModelGenerator);
@@ -591,7 +594,6 @@ class NSModelGenerator extends FabricModelProvider {
 		generateVineBlockStateModels(NSWoods.WISTERIA.getWhiteVines(), NSWoods.WISTERIA.getWhiteVinesPlant(), blockStateModelGenerator);
 		generateVineBlockStateModels(NSWoods.WISTERIA.getPurpleVines(), NSWoods.WISTERIA.getPurpleVinesPlant(), blockStateModelGenerator);
 		generateVineBlockStateModels(NSWoods.WISTERIA.getPinkVines(), NSWoods.WISTERIA.getPinkVinesPlant(), blockStateModelGenerator);
-		generateVineBlockStateModels(NSWoods.WILLOW.getVines(), NSWoods.WILLOW.getVinesPlant(), blockStateModelGenerator);
 		registerAzolla(AZOLLA_ITEM, AZOLLA, blockStateModelGenerator);
 
 		blockStateModelGenerator.registerLog(ALLUAUDIA_BUNDLE).log(ALLUAUDIA_BUNDLE);

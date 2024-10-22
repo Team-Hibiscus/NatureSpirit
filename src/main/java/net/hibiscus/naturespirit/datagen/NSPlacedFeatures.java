@@ -23,18 +23,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.PlacedFeatures;
-import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.BlockFilterPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.CountMultilayerPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.EnvironmentScanPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.NoiseBasedCountPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.PlacementModifier;
-import net.minecraft.world.gen.placementmodifier.RandomOffsetPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
-import net.minecraft.world.gen.placementmodifier.SurfaceWaterDepthFilterPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.*;
 
 public class NSPlacedFeatures {
 
@@ -44,7 +33,9 @@ public class NSPlacedFeatures {
 	public static final RegistryKey<PlacedFeature> LARGE_FROSTY_REDWOOD_CHECKED = registerKey("large_frosty_redwood_checked");
 	public static final RegistryKey<PlacedFeature> FROSTY_REDWOOD_CHECKED = registerKey("frosty_redwood_checked");
 	public static final RegistryKey<PlacedFeature> ASPEN_CHECKED = registerKey("aspen_checked");
+	public static final RegistryKey<PlacedFeature> YELLOW_ASPEN_CHECKED = registerKey("yellow_aspen_checked");
 	public static final RegistryKey<PlacedFeature> ASPEN_BEES_CHECKED = registerKey("aspen_bees_checked");
+	public static final RegistryKey<PlacedFeature> YELLOW_ASPEN_BEES_CHECKED = registerKey("yellow_aspen_bees_checked");
 	public static final RegistryKey<PlacedFeature> RED_MAPLE_CHECKED = registerKey("red_maple_checked");
 	public static final RegistryKey<PlacedFeature> ORANGE_MAPLE_CHECKED = registerKey("orange_maple_checked");
 	public static final RegistryKey<PlacedFeature> YELLOW_MAPLE_CHECKED = registerKey("yellow_maple_checked");
@@ -95,6 +86,7 @@ public class NSPlacedFeatures {
 	public static final RegistryKey<PlacedFeature> LARGE_FROSTY_REDWOOD_PLACED = registerKey("large_frosty_redwood_placed");
 	public static final RegistryKey<PlacedFeature> FROSTY_REDWOOD_PLACED = registerKey("frosty_redwood_placed");
 	public static final RegistryKey<PlacedFeature> ASPEN_PLACED = registerKey("aspen_placed");
+	public static final RegistryKey<PlacedFeature> YELLOW_ASPEN_PLACED = registerKey("yellow_aspen_placed");
 	public static final RegistryKey<PlacedFeature> MAPLE_PLACED = registerKey("maple_placed");
 	public static final RegistryKey<PlacedFeature> MAPLE2_PLACED = registerKey("maple2_placed");
 	public static final RegistryKey<PlacedFeature> FEW_ASPEN_PLACED = registerKey("few_aspen_placed");
@@ -148,6 +140,12 @@ public class NSPlacedFeatures {
 			configuredFeatureRegistryEntryLookup.getOrThrow(NSConfiguredFeatures.ASPEN_TREE_BEES),
 			PlacedFeatures.wouldSurvive(NSWoods.ASPEN.getSapling())
 		);
+    registerKey(context, YELLOW_ASPEN_CHECKED, configuredFeatureRegistryEntryLookup.getOrThrow(NSConfiguredFeatures.YELLOW_ASPEN_TREE), PlacedFeatures.wouldSurvive(NSWoods.ASPEN.getSapling()));
+    registerKey(context,
+            YELLOW_ASPEN_BEES_CHECKED,
+            configuredFeatureRegistryEntryLookup.getOrThrow(NSConfiguredFeatures.YELLOW_ASPEN_TREE_BEES),
+            PlacedFeatures.wouldSurvive(NSWoods.ASPEN.getSapling())
+    );
 		registerKey(context,
 			RED_MAPLE_CHECKED,
 			configuredFeatureRegistryEntryLookup.getOrThrow(NSConfiguredFeatures.RED_MAPLE_TREE),
@@ -359,7 +357,16 @@ public class NSPlacedFeatures {
       registerKey(context,
               ASPEN_PLACED,
               configuredFeatureRegistryEntryLookup.getOrThrow(NSConfiguredFeatures.ASPEN_TREE_SPAWN),
-              CountPlacementModifier.of(4),
+              NoiseThresholdCountPlacementModifier.of(.5D, 0, 5),
+              SquarePlacementModifier.of(),
+              TREE_THRESHOLD,
+              PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP,
+              BiomePlacementModifier.of()
+      );
+      registerKey(context,
+              YELLOW_ASPEN_PLACED,
+              configuredFeatureRegistryEntryLookup.getOrThrow(NSConfiguredFeatures.YELLOW_ASPEN_TREE_SPAWN),
+              NoiseThresholdCountPlacementModifier.of(.5D, 5, 0),
               SquarePlacementModifier.of(),
               TREE_THRESHOLD,
               PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP,
