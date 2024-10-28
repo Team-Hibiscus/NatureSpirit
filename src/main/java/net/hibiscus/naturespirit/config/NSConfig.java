@@ -22,6 +22,7 @@ public class NSConfig {
 	public static boolean cheese_arrow;
 	public static boolean calcite_generator;
 	public static boolean deepslate_generator;
+	public static boolean sugi_and_stratified_pillars;
 	public static boolean vanilla_trees_toggle;
 	public static boolean birch_forest_toggle;
 	public static boolean flower_forest_toggle;
@@ -165,6 +166,7 @@ public class NSConfig {
 
 			calcite_generator = misc_features.get("calcite_generator").getAsBoolean();
 			deepslate_generator = misc_features.get("deepslate_generator").getAsBoolean();
+			sugi_and_stratified_pillars = misc_features.get("sugi_and_stratified_pillars").getAsBoolean();
 			cheese_arrow = misc_features.get("cheese_arrow").getAsBoolean();
 
 			vanilla_trees_toggle = datapack_toggles.get("vanilla_trees_toggle").getAsBoolean();
@@ -202,6 +204,7 @@ public class NSConfig {
 
 		JsonObject miscObject = new JsonObject();
 		miscObject.addProperty("deepslate_generator", true);
+		miscObject.addProperty("sugi_and_stratified_pillars", true);
 		miscObject.addProperty("calcite_generator", true);
 		miscObject.addProperty("cheese_arrow", true);
 		jsonObjects.add("misc_features", miscObject);

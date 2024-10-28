@@ -1,6 +1,7 @@
 package net.hibiscus.naturespirit.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import net.hibiscus.naturespirit.config.NSConfig;
 import net.hibiscus.naturespirit.registration.NSBiomes;
 import net.hibiscus.naturespirit.registration.NSWorldGen;
 import net.minecraft.block.BlockState;
@@ -28,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Debug(export = true) @Mixin(SurfaceBuilder.class)
+@Mixin(SurfaceBuilder.class)
 public class SurfaceBuilderMixin {
    @Final @Shadow
    private BlockState defaultState;
@@ -40,7 +41,7 @@ public class SurfaceBuilderMixin {
    @Unique private DoublePerlinNoiseSampler stratifiedDesertSurfaceNoise;
 
    @Inject(method = "<init>", at = @At(value = "TAIL"))
-   private void injectSugiNoise(NoiseConfig noiseConfig, BlockState defaultState, int seaLevel, RandomSplitter randomDeriver, CallbackInfo ci)  {
+   private void injectNoise(NoiseConfig noiseConfig, BlockState defaultState, int seaLevel, RandomSplitter randomDeriver, CallbackInfo ci)  {
       sugiPillarNoise = noiseConfig.getOrCreateSampler(NSWorldGen.SUGI_PILLAR);
       sugiPillarRoofNoise = noiseConfig.getOrCreateSampler(NSWorldGen.SUGI_PILLAR_ROOF);
       sugiSurfaceNoise = noiseConfig.getOrCreateSampler(NSWorldGen.SUGI_SURFACE);
@@ -50,24 +51,26 @@ public class SurfaceBuilderMixin {
    }
 
    @Inject(method = "buildSurface", at = @At(value = "INVOKE", target = "Lnet/minecraft/registry/entry/RegistryEntry;matchesKey(Lnet/minecraft/registry/RegistryKey;)Z", ordinal = 0))
-   private void injectSugiPillars(NoiseConfig noiseConfig, BiomeAccess biomeAccess, Registry <Biome> biomeRegistry, boolean useLegacyRandom, HeightContext heightContext,
+   private void injectPillars(NoiseConfig noiseConfig, BiomeAccess biomeAccess, Registry <Biome> biomeRegistry, boolean useLegacyRandom, HeightContext heightContext,
            Chunk chunk, ChunkNoiseSampler chunkNoiseSampler, MaterialRules.MaterialRule materialRule,
            CallbackInfo ci,
            @Local RegistryEntry <Biome> registryEntry, @Local(ordinal = 2) int k, @Local(ordinal = 3) int l, @Local(ordinal = 4) int m, @Local(ordinal = 5) int n, @Local BlockColumn blockColumn)  {
-      int o = chunk.sampleHeightmap(Heightmap.Type.OCEAN_FLOOR_WG, k, l) + 1;
-      if (registryEntry.matchesKey(NSBiomes.SUGI_FOREST) || registryEntry.matchesKey(NSBiomes.BLOOMING_SUGI_FOREST)) {
-         this.placeSugiPillar(blockColumn, m, n, o, chunk);
-      }
-      if (registryEntry.matchesKey(NSBiomes.STRATIFIED_DESERT) || registryEntry.matchesKey(NSBiomes.LIVELY_DUNES)  || registryEntry.matchesKey(NSBiomes.BLOOMING_DUNES)) {
-         this.placeStratifiedDesertPillar(blockColumn, m, n, o, chunk);
+      if (NSConfig.sugi_and_stratified_pillars) {
+         int o = chunk.sampleHeightmap(Heightmap.Type.OCEAN_FLOOR_WG, k, l) + 1;
+         if (registryEntry.matchesKey(NSBiomes.SUGI_FOREST) || registryEntry.matchesKey(NSBiomes.BLOOMING_SUGI_FOREST)) {
+            this.placeSugiPillar(blockColumn, m, n, o, chunk);
+         }
+         if (registryEntry.matchesKey(NSBiomes.STRATIFIED_DESERT) || registryEntry.matchesKey(NSBiomes.LIVELY_DUNES)  || registryEntry.matchesKey(NSBiomes.BLOOMING_DUNES)) {
+            this.placeStratifiedDesertPillar(blockColumn, m, n, o, chunk);
+         }
       }
    }
 
    @Unique private void placeSugiPillar(BlockColumn column, int x, int z, int surfaceY, HeightLimitView chunk) {
-      double e = Math.min(Math.abs(stratifiedDesertSurfaceNoise.sample(x, 0.0, z) * 8.5), stratifiedDesertPillarNoise.sample((double)x * 0.2, 0.0, (double)z * 0.2) * 15.0);
-      if (!(e <= 0.0)) {
-         double h = Math.abs(stratifiedDesertPillarRoofNoise.sample((double)x * 0.75, 0.0, (double)z * 0.75) * 2.25);
-         double i = 44.0 + Math.min(e * e * 4.5, Math.ceil(h * 30.0) + 38.0);
+      double e = Math.min(Math.abs(sugiSurfaceNoise.sample(x, 0.0, z) * 8.5), sugiPillarRoofNoise.sample((double)x * 0.2, 0.0, (double)z * 0.2) * 12.0);
+      if (e > -10.0) {
+         double h = Math.abs(sugiPillarNoise.sample((double)x * 0.9, 0.0, (double)z * 0.8) * 2.05);
+         double i = 46.0 + Math.min(e * e * 6.75, Math.ceil(h * 30.0) + 48.0);
          int j = MathHelper.floor(i);
          if (surfaceY <= j) {
             int k;
@@ -86,7 +89,7 @@ public class SurfaceBuilderMixin {
       }
    }
    @Unique private void placeStratifiedDesertPillar(BlockColumn column, int x, int z, int surfaceY, HeightLimitView chunk) {
-      double e = Math.min(Math.abs(stratifiedDesertSurfaceNoise.sample(x, 0.0, z) * 8.5), stratifiedDesertPillarNoise.sample((double)x * 0.2, 0.0, (double)z * 0.2) * 16.0);
+      double e = Math.min(Math.abs(stratifiedDesertSurfaceNoise.sample(x, 0.0, z) * 8.5), stratifiedDesertPillarNoise.sample((double)x * 0.2, 0.0, (double)z * 0.2) * 14.0);
       if (!(e <= 0.0)) {
          double h = Math.abs(stratifiedDesertPillarRoofNoise.sample((double)x * 0.75, 0.0, (double)z * 0.75) * 2.25);
          double i = 54.0 + Math.min(e * e * 3.5, Math.ceil(h * 30.0) + 38.0);
