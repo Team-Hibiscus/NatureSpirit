@@ -15,13 +15,15 @@ import net.hibiscus.naturespirit.registration.NSWorldGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PillarBlock;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.registry.RegistryCodecs;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntryList;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.Mutable;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Direction.Type;
+import net.minecraft.util.math.Direction.Axis;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.TestableWorld;
@@ -31,155 +33,125 @@ import net.minecraft.world.gen.trunk.TrunkPlacer;
 import net.minecraft.world.gen.trunk.TrunkPlacerType;
 
 public class OliveTrunkPlacer extends TrunkPlacer {
-	public static final MapCodec<OliveTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> {
-		return fillTrunkPlacerFields(instance).and(instance.group(IntProvider.POSITIVE_CODEC.fieldOf("extra_branch_steps").forGetter((trunkPlacer) -> {
-			return trunkPlacer.extraBranchSteps;
-		}), Codec.floatRange(0.0F, 1.0F).fieldOf("place_branch_per_log_probability").forGetter((trunkPlacer) -> {
-			return trunkPlacer.placeBranchPerLogProbability;
-		}), IntProvider.NON_NEGATIVE_CODEC.fieldOf("extra_branch_length").forGetter((trunkPlacer) -> {
-			return trunkPlacer.extraBranchLength;
-		}), RegistryCodecs.entryList(RegistryKeys.BLOCK).fieldOf("can_grow_through").forGetter((trunkPlacer) -> {
-			return trunkPlacer.canGrowThrough;
-		}))).apply(instance, OliveTrunkPlacer::new);
-	});
-	private final IntProvider extraBranchSteps;
-	private final float placeBranchPerLogProbability;
-	private final IntProvider extraBranchLength;
-	private final RegistryEntryList<Block> canGrowThrough;
 
-	public OliveTrunkPlacer(int baseHeight, int firstRandomHeight, int secondRandomHeight, IntProvider extraBranchSteps, float placeBranchPerLogProbability, IntProvider extraBranchLength, RegistryEntryList<Block> canGrowThrough) {
-		super(baseHeight, firstRandomHeight, secondRandomHeight);
-		this.extraBranchSteps = extraBranchSteps;
-		this.placeBranchPerLogProbability = placeBranchPerLogProbability;
-		this.extraBranchLength = extraBranchLength;
-		this.canGrowThrough = canGrowThrough;
-	}
+  public static final MapCodec<OliveTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> {
+    return fillTrunkPlacerFields(instance).and(instance.group(IntProvider.POSITIVE_CODEC.fieldOf("extra_branch_steps").forGetter((trunkPlacer) -> {
+      return trunkPlacer.extraBranchSteps;
+    }), Codec.floatRange(0.0F, 1.0F).fieldOf("place_branch_per_log_probability").forGetter((trunkPlacer) -> {
+      return trunkPlacer.placeBranchPerLogProbability;
+    }), IntProvider.NON_NEGATIVE_CODEC.fieldOf("extra_branch_length").forGetter((trunkPlacer) -> {
+      return trunkPlacer.extraBranchLength;
+    }), RegistryCodecs.entryList(RegistryKeys.BLOCK).fieldOf("can_grow_through").forGetter((trunkPlacer) -> {
+      return trunkPlacer.canGrowThrough;
+    }))).apply(instance, OliveTrunkPlacer::new);
+  });
+  private final IntProvider extraBranchSteps;
+  private final float placeBranchPerLogProbability;
+  private final IntProvider extraBranchLength;
+  private final RegistryEntryList<Block> canGrowThrough;
 
-	protected TrunkPlacerType<?> getType() {
-		return NSWorldGen.OLIVE_TRUNK_PLACER;
-	}
+  public OliveTrunkPlacer(int baseHeight, int firstRandomHeight, int secondRandomHeight, IntProvider extraBranchSteps, float placeBranchPerLogProbability,
+      IntProvider extraBranchLength, RegistryEntryList<Block> canGrowThrough) {
+    super(baseHeight, firstRandomHeight, secondRandomHeight);
+    this.extraBranchSteps = extraBranchSteps;
+    this.placeBranchPerLogProbability = placeBranchPerLogProbability;
+    this.extraBranchLength = extraBranchLength;
+    this.canGrowThrough = canGrowThrough;
+  }
 
-	public List<TreeNode> generate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config) {
-		List<TreeNode> list = Lists.newArrayList();
-		Mutable mutable = new Mutable();
-		Mutable mutable2 = new Mutable();
-		boolean bl = random.nextBoolean();
-		boolean bl2 = random.nextBoolean();
-		boolean bl3 = random.nextBoolean();
-		Direction trunkOffset = Type.HORIZONTAL.random(random);
-		Direction trunkOffset2 = Type.HORIZONTAL.random(random);
-		int randomInt = random.nextBetween(0, 1);
-		int randomInt2 = random.nextBetween(-1, 1);
+  protected TrunkPlacerType<?> getType() {
+    return NSWorldGen.OLIVE_TRUNK_PLACER;
+  }
 
-		for (int i = 0; i < height; ++i) {
-			int j = startPos.getY() + i;
-			Direction direction = Type.HORIZONTAL.random(random);
-			Direction direction2 = Type.HORIZONTAL.random(random);
-			Direction direction3 = Type.HORIZONTAL.random(random);
+  public List<TreeNode> generate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config) {
+    List<TreeNode> list = Lists.newArrayList();
+    BlockPos blockPos = startPos.down();
+    setToDirt(world, replacer, random, blockPos, config);
+    setToDirt(world, replacer, random, blockPos.east(), config);
+    setToDirt(world, replacer, random, blockPos.south(), config);
+    setToDirt(world, replacer, random, blockPos.south().east(), config);
+    Mutable mutable = new Mutable();
+    for (int i = 0; i < height; ++i) {
+      int j = startPos.getY() + i;
+      Mutable mutablePos1 = mutable.set(startPos.getX(), j, startPos.getZ());
+      this.getAndSetState(world, replacer, random, mutablePos1, config);
+      this.getAndSetState(world, replacer, random, mutablePos1.east(), config);
+      this.getAndSetState(world, replacer, random, mutablePos1.south(), config);
+      this.getAndSetState(world, replacer, random, mutablePos1.south().east(), config);
 
-			Mutable mutablePos1 = mutable.set(startPos.getX(), j, startPos.getZ());
-			BlockPos pos2 = mutablePos1.offset(trunkOffset);
-			BlockPos pos3 = pos2.offset(trunkOffset2);
-			BlockPos blockPos = bl && i >= 2 ? (bl2 && trunkOffset != trunkOffset2 ? pos3 : pos2) : mutablePos1;
+      if (i == 0) {
+        this.getAndSetState(world, replacer, random, getRoot(random, mutablePos1), config);
+        this.getAndSetState(world, replacer, random, getRoot(random, mutablePos1), config);
+      }
 
-			if (bl && i == 2 && !bl3) {
-				this.getAndSetState(world, replacer, random, mutablePos1, config);
-			}
-			if (this.getAndSetState(world, replacer, random, blockPos, config) && i < height - 1 && random.nextFloat() < this.placeBranchPerLogProbability) {
-				int k = this.extraBranchLength.get(random);
-				int l = Math.max(0, k - this.extraBranchLength.get(random) - 1);
-				int m = height + i - 7;
-				if (i > 2) {
-					this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction, l, m, i);
+      if (i == height - 1) {
+        this.generateExtraBranch(world, replacer, random, config, list, mutablePos1.north(1), j, Direction.NORTH, this.extraBranchSteps.get(random));
+        if (random.nextFloat() < this.placeBranchPerLogProbability - .65) {
+          this.generateExtraBranch(world, replacer, random, config, list, mutablePos1.west(1), j, Direction.WEST, this.extraBranchSteps.get(random));
+        }
 
-					if (random.nextFloat() < this.placeBranchPerLogProbability - 0.65) {
-						this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction2, l, Math.round(m / 2), i);
-					}
-					if (random.nextFloat() < this.placeBranchPerLogProbability - 0.85) {
-						this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction3, l, Math.round(m / 2), i);
-					}
-				}
-			}
-			if (i == height - 1) {
-				list.add(new TreeNode(blockPos.up(1), 0, false));
-			}
-		}
-		if (bl3 && bl) {
-			for (int i = 0; i < height - randomInt; ++i) {
-				int j = startPos.getY() + i;
-				Direction direction = Type.HORIZONTAL.random(random);
-				Direction direction2 = Type.HORIZONTAL.random(random);
-				Direction direction3 = Type.HORIZONTAL.random(random);
+        this.generateExtraBranch(world, replacer, random, config, list, mutablePos1.south(2), j, Direction.SOUTH, this.extraBranchSteps.get(random));
+        if (random.nextFloat() <  this.placeBranchPerLogProbability - .65) {
+          this.generateExtraBranch(world, replacer, random, config, list, mutablePos1.south(2), j, Direction.WEST, this.extraBranchSteps.get(random));
+        }
 
-				Mutable mutablePos1 = mutable2.set(startPos.getX(), j, startPos.getZ());
-				BlockPos pos2 = mutablePos1.offset(trunkOffset.getOpposite()).offset(randomInt2 < 0 ? Direction.UP : Direction.DOWN, randomInt2);
-				BlockPos pos3 = pos2.offset(trunkOffset2.getOpposite());
-				BlockPos blockPos = i >= 2 ? bl2 && trunkOffset.getOpposite() != trunkOffset2.getOpposite() ? pos3 : pos2 : mutablePos1.offset(randomInt2 < 0 ? Direction.UP : Direction.DOWN, randomInt2);
+        this.generateExtraBranch(world, replacer, random, config, list, mutablePos1.east(2), j, Direction.EAST, this.extraBranchSteps.get(random));
+        if (random.nextFloat() < this.placeBranchPerLogProbability - .65) {
+          this.generateExtraBranch(world, replacer, random, config, list, mutablePos1.east(2), j, Direction.NORTH, this.extraBranchSteps.get(random));
+        }
 
-				if (i == 2) {
-					this.getAndSetState(world, replacer, random, mutablePos1.offset(randomInt2 < 0 ? Direction.UP : Direction.DOWN, randomInt2), config);
-				}
-				if (this.getAndSetState(world, replacer, random, blockPos, config) && i < height - 1 && random.nextFloat() < this.placeBranchPerLogProbability) {
-					int k = this.extraBranchLength.get(random);
-					int l = Math.max(0, k - this.extraBranchLength.get(random) - 1);
-					int m = height + i - 7;
-					if (i > 2) {
-						this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction, l, m, i);
+        this.generateExtraBranch(world, replacer, random, config, list, mutablePos1.south(2).east(), j, Direction.WEST, this.extraBranchSteps.get(random));
+        if (random.nextFloat() < this.placeBranchPerLogProbability - .65) {
+          this.generateExtraBranch(world, replacer, random, config, list, mutablePos1.south().east(2), j, Direction.SOUTH, this.extraBranchSteps.get(random));
+        }
+      }
+    }
 
-						if (random.nextFloat() < this.placeBranchPerLogProbability - 0.65) {
-							this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction2, l, Math.round(m / 2), i);
-						}
-						if (random.nextFloat() < this.placeBranchPerLogProbability - 0.85) {
-							this.generateExtraBranch(world, replacer, random, height, config, list, blockPos, j, direction3, l, Math.round(m / 2), i);
-						}
-					}
-				}
-				if (i == ((height - 1) - randomInt2) - randomInt) {
-					list.add(new TreeNode(blockPos.up(1), 0, false));
-				}
-			}
-		}
+    return list;
+  }
 
-		return list;
-	}
+  private void generateExtraBranch(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, TreeFeatureConfig config, List<TreeNode> nodes,
+      BlockPos pos, int yOffset, Direction direction, int steps) {
+    int m = yOffset;
+    int j = pos.getX();
+    int k = pos.getZ();
+    Mutable mutable = new Mutable();
+    boolean bl = random.nextBoolean();
 
-	private void generateExtraBranch(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, TreeFeatureConfig config, List<TreeNode> nodes, BlockPos pos, int yOffset, Direction direction, int length, int steps, int b) {
-		int i = yOffset + length;
-		int j = pos.getX();
-		int k = pos.getZ();
-		Mutable mutable = new Mutable();
-		boolean bl = random.nextFloat() < .5F;
-		Direction direction2 = random.nextFloat() < .5F ? direction.rotateYClockwise() : direction.rotateYCounterclockwise();
+    Direction direction2 = random.nextBoolean() ? direction.rotateYClockwise() : direction.rotateYCounterclockwise();
 
-		for (int l = length; l < height && steps > 0 && (steps < (bl ? 7 : 10)); --steps) {
-			if (l >= 1) {
-				int m = Math.round(yOffset + l / 5);
-				j += direction.getOffsetX();
-				if (bl) {
-					k += Math.max(0, direction2.getOffsetZ() - random.nextInt(2));
-				} else {
-					k += direction.getOffsetZ();
-				}
-				i = m;
-				if (this.getAndSetState(world, replacer, random, mutable.set(j, m, k), config, blockState -> {
-					return blockState.withIfExists(PillarBlock.AXIS, direction.getAxis());
-				})) {
-					i = m + 1;
-				}
-			}
-			++l;
-		}
+    for (int l = 0; steps > 0; --steps, ++l) {
+      boolean bl2 = random.nextBoolean();
+      m = yOffset + l;
+      if (bl2 && l != 0) {
+        j += direction.getOffsetX();
+        if (bl) {
+          k += Math.max(0, direction2.getOffsetZ() - random.nextInt(2));
+        } else {
+          k += direction.getOffsetZ();
+        }
+      }
+      int finalL = l;
+      this.getAndSetState(world, replacer, random, mutable.set(j, m, k), config, blockState -> blockState.withIfExists(PillarBlock.AXIS, bl2 || finalL == 0 ? direction.getAxis() : Axis.Y));
+    }
+    if (m - yOffset >= 1) {
+      nodes.add(new TreeNode(new BlockPos(j, m, k), 0, false));
+    }
+  }
 
-		if (i - yOffset >= 1) {
-			BlockPos blockPos = new BlockPos(j, i, k);
-			nodes.add(new TreeNode(blockPos, 0, false));
-		}
-
-	}
-
-	protected boolean canReplace(TestableWorld world, BlockPos pos) {
-		return super.canReplace(world, pos) || world.testBlockState(pos, (state) -> {
-			return state.isIn(this.canGrowThrough);
-		});
-	}
+  protected boolean canReplace(TestableWorld world, BlockPos pos) {
+    return super.canReplace(world, pos) || world.testBlockState(pos, (state) -> state.isIn(this.canGrowThrough));
+  }
+  protected BlockPos getRoot(Random random, Mutable mutablePos1) {
+    return switch (random.nextInt( 7)) {
+      case 1 -> mutablePos1.east(2);
+      case 2 -> mutablePos1.south(2);
+      case 3 -> mutablePos1.south(2).east();
+      case 4 -> mutablePos1.west();
+      case 5 -> mutablePos1.east().north();
+      case 6 -> mutablePos1.south().east(2);
+      case 7 -> mutablePos1.south().west();
+      default -> mutablePos1.north();
+    };
+  }
 }

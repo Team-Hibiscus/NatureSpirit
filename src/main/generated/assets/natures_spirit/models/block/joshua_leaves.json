@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/leaves",
-  "textures": {
-    "all": "natures_spirit:block/joshua_leaves"
-  }
-}

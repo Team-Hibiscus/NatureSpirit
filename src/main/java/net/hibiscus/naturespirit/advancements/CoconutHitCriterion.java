@@ -16,48 +16,49 @@ import org.jetbrains.annotations.NotNull;
 
 public class CoconutHitCriterion extends AbstractCriterion<CoconutHitCriterion.Conditions> {
 
-	public CoconutHitCriterion() {
-	}
+  public CoconutHitCriterion() {
+  }
 
-	@Override
-	public Codec<CoconutHitCriterion.Conditions> getConditionsCodec() {
-		return CoconutHitCriterion.Conditions.CODEC;
-	}
+  @Override
+  public Codec<CoconutHitCriterion.Conditions> getConditionsCodec() {
+    return CoconutHitCriterion.Conditions.CODEC;
+  }
 
-	public void trigger(ServerPlayerEntity player, Entity projectile) {
-		LootContext lootContext = EntityPredicate.createAdvancementEntityLootContext(player, projectile);
-		this.trigger(player, (conditions) -> conditions.test(lootContext));
-	}
+  public void trigger(ServerPlayerEntity player, Entity projectile) {
+    LootContext lootContext = EntityPredicate.createAdvancementEntityLootContext(player, projectile);
+    this.trigger(player, (conditions) -> conditions.test(lootContext));
+  }
 
-	public record Conditions(
-		Optional<LootContextPredicate> player, Optional<LootContextPredicate> projectile
-	) implements AbstractCriterion.Conditions {
-		public static final Codec<CoconutHitCriterion.Conditions> CODEC = RecordCodecBuilder.create((instance) ->
-			instance.group(
-				EntityPredicate.LOOT_CONTEXT_PREDICATE_CODEC.optionalFieldOf("player").forGetter(Conditions::player),
-				EntityPredicate.LOOT_CONTEXT_PREDICATE_CODEC.optionalFieldOf("projectile").forGetter(Conditions::projectile)
-			).apply(instance, Conditions::new));
+  public record Conditions(
+      Optional<LootContextPredicate> player, Optional<LootContextPredicate> projectile
+  ) implements AbstractCriterion.Conditions {
 
-		public static AdvancementCriterion<CoconutHitCriterion.Conditions> create(Optional<LootContextPredicate> projectile) {
-			return NSCriteria.COCONUT_HIT_CRITERION.create(new CoconutHitCriterion.Conditions(Optional.empty(), projectile));
-		}
+    public static final Codec<CoconutHitCriterion.Conditions> CODEC = RecordCodecBuilder.create((instance) ->
+        instance.group(
+            EntityPredicate.LOOT_CONTEXT_PREDICATE_CODEC.optionalFieldOf("player").forGetter(Conditions::player),
+            EntityPredicate.LOOT_CONTEXT_PREDICATE_CODEC.optionalFieldOf("projectile").forGetter(Conditions::projectile)
+        ).apply(instance, Conditions::new));
 
-		public boolean test(LootContext projectileContext) {
-			return this.projectile.isEmpty() || this.projectile.get().test(projectileContext);
-		}
+    public static AdvancementCriterion<CoconutHitCriterion.Conditions> create(Optional<LootContextPredicate> projectile) {
+      return NSCriteria.COCONUT_HIT_CRITERION.create(new CoconutHitCriterion.Conditions(Optional.empty(), projectile));
+    }
 
-		@Override
-		public void validate(@NotNull LootContextPredicateValidator validator) {
-			validator.validateEntityPredicate(this.projectile, ".projectile");
-		}
+    public boolean test(LootContext projectileContext) {
+      return this.projectile.isEmpty() || this.projectile.get().test(projectileContext);
+    }
 
-		@Override
-		public Optional<LootContextPredicate> player() {
-			return this.player;
-		}
+    @Override
+    public void validate(@NotNull LootContextPredicateValidator validator) {
+      validator.validateEntityPredicate(this.projectile, ".projectile");
+    }
 
-		public Optional<LootContextPredicate> projectile() {
-			return this.projectile;
-		}
-	}
+    @Override
+    public Optional<LootContextPredicate> player() {
+      return this.player;
+    }
+
+    public Optional<LootContextPredicate> projectile() {
+      return this.projectile;
+    }
+  }
 }

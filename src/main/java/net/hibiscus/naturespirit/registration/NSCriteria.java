@@ -8,12 +8,13 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class NSCriteria {
-	public static final CoconutHitCriterion COCONUT_HIT_CRITERION = register("coconut_hit", new CoconutHitCriterion());
 
-	public static void registerCriteria() {
-	}
+  public static final CoconutHitCriterion COCONUT_HIT_CRITERION = register("coconut_hit", new CoconutHitCriterion());
 
-	public static <T extends Criterion<?>> T register(String id, T criterion) {
-		return (T) Registry.register(Registries.CRITERION, Identifier.of(NatureSpirit.MOD_ID, id), criterion);
-	}
+  public static void registerCriteria() {
+  }
+
+  public static <T extends Criterion<?>> T register(String id, T criterion) {
+    return Registry.register(Registries.CRITERION, Identifier.of(NatureSpirit.MOD_ID, id), criterion);
+  }
 }

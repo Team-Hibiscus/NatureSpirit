@@ -11,12 +11,13 @@ import terrablender.api.Region;
 import terrablender.api.RegionType;
 
 public class TerraSolarisRegion extends Region {
-	public TerraSolarisRegion(Identifier name, int weight) {
-		super(name, RegionType.OVERWORLD, weight);
-	}
 
-	@Override
-	public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
-		(new TerraSolarisParameters()).writeOverworldBiomeParameters(mapper);
-	}
+  public TerraSolarisRegion(Identifier name, int weight) {
+    super(name, RegionType.OVERWORLD, weight);
+  }
+
+  @Override
+  public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
+    (new TerraSolarisParameters()).writeOverworldBiomeParameters(mapper);
+  }
 }

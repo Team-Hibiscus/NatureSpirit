@@ -13,11 +13,12 @@ import net.minecraft.client.world.ClientWorld;
 
 @Environment(EnvType.CLIENT)
 public class MapleLeavesParticle extends CherryLeavesParticle {
-	protected MapleLeavesParticle(ClientWorld world, double x, double y, double z, SpriteProvider spriteProvider) {
-		super(world, x, y, z, spriteProvider);
-		float f = this.random.nextBoolean() ? 0.133333F : 0.19999999995F;
-		this.scale = f;
-		this.setBoundingBoxSpacing(f, f);
-		this.velocityMultiplier = 0.78F;
-	}
+
+  protected MapleLeavesParticle(ClientWorld world, double x, double y, double z, SpriteProvider spriteProvider) {
+    super(world, x, y, z, spriteProvider);
+    float f = this.random.nextBoolean() ? 0.133333F : 0.19999999995F;
+    this.scale = f;
+    this.setBoundingBoxSpacing(f, f);
+    this.velocityMultiplier = 0.78F;
+  }
 }

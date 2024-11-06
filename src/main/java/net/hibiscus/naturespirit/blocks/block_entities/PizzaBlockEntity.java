@@ -22,57 +22,61 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class PizzaBlockEntity extends BlockEntity {
-	public ArrayList<PizzaToppingVariant> toppings = new ArrayList<>();
-	public int toppingCount = 0;
 
-	public PizzaBlockEntity(BlockPos pos, BlockState state) {
-		super(NSMiscBlocks.PIZZA_BLOCK_ENTITY_TYPE, pos, state);
-	}
+  public ArrayList<PizzaToppingVariant> toppings = new ArrayList<>();
+  public int toppingCount = 0;
 
-	@Override
-	protected void readComponents(BlockEntity.ComponentsAccess components) {
-		super.readComponents(components);
-		if (components.get(NSDataComponents.TOPPINGS) != null) {
-			toppings = new ArrayList<>(components.get(NSDataComponents.TOPPINGS));
-		}
-		this.toppingCount = toppings != null ? toppings.size() : 0;
-		this.markDirty();
-	}
+  public PizzaBlockEntity(BlockPos pos, BlockState state) {
+    super(NSMiscBlocks.PIZZA_BLOCK_ENTITY_TYPE, pos, state);
+  }
 
-	@Override
-	protected void addComponents(ComponentMap.Builder componentMapBuilder) {
-		super.addComponents(componentMapBuilder);
-		componentMapBuilder.add(NSDataComponents.TOPPINGS, toppings);
-		this.markDirty();
-	}
+  @Override
+  protected void readComponents(BlockEntity.ComponentsAccess components) {
+    super.readComponents(components);
+    if (components.get(NSDataComponents.TOPPINGS) != null) {
+      toppings = new ArrayList<>(components.get(NSDataComponents.TOPPINGS));
+    }
+    this.toppingCount = toppings != null ? toppings.size() : 0;
+    this.markDirty();
+  }
 
-	public boolean canPlaceTopping(ItemStack itemStack, World world, PizzaBlockEntity pizzaBlockEntity) {
-		Identifier itemId = Registries.ITEM.getId(itemStack.getItem());
-		PizzaToppingVariant toppingVariant = getVariantFromItem(itemId, world);
-		boolean bl = pizzaBlockEntity.getCachedState().get(PizzaBlock.BITES) == 0 && pizzaBlockEntity.toppingCount < 4 && !(itemStack.isIn(NSTags.Items.DISABLED_PIZZA_TOPPINGS)) && toppingVariant != null && !toppings.contains(toppingVariant);
-		if (bl) {
-			toppings.add(toppingVariant);
-		}
-		this.markDirty();
-		return bl;
-	}
+  @Override
+  protected void addComponents(ComponentMap.Builder componentMapBuilder) {
+    super.addComponents(componentMapBuilder);
+    componentMapBuilder.add(NSDataComponents.TOPPINGS, toppings);
+    this.markDirty();
+  }
 
-	@Nullable
-	public static PizzaToppingVariant getVariantFromItem(Identifier itemId, World world) {
-		for (PizzaToppingVariant pizzaToppingVariant : world.getRegistryManager().get(NatureSpirit.PIZZA_TOPPING_VARIANT)) {
-			if (pizzaToppingVariant.itemId().equals(itemId)) return pizzaToppingVariant;
-		}
-		return null;
-	}
+  public boolean canPlaceTopping(ItemStack itemStack, World world, PizzaBlockEntity pizzaBlockEntity) {
+    Identifier itemId = Registries.ITEM.getId(itemStack.getItem());
+    PizzaToppingVariant toppingVariant = getVariantFromItem(itemId, world);
+    boolean bl = pizzaBlockEntity.getCachedState().get(PizzaBlock.BITES) == 0 && pizzaBlockEntity.toppingCount < 4 && !(itemStack.isIn(NSTags.Items.DISABLED_PIZZA_TOPPINGS))
+        && toppingVariant != null && !toppings.contains(toppingVariant);
+    if (bl) {
+      toppings.add(toppingVariant);
+    }
+    this.markDirty();
+    return bl;
+  }
 
-	@Nullable
-	@Override
-	public Packet<ClientPlayPacketListener> toUpdatePacket() {
-		return BlockEntityUpdateS2CPacket.create(this);
-	}
+  @Nullable
+  public static PizzaToppingVariant getVariantFromItem(Identifier itemId, World world) {
+    for (PizzaToppingVariant pizzaToppingVariant : world.getRegistryManager().get(NatureSpirit.PIZZA_TOPPING_VARIANT)) {
+      if (pizzaToppingVariant.itemId().equals(itemId)) {
+        return pizzaToppingVariant;
+      }
+    }
+    return null;
+  }
 
-	@Override
-	public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-		return createNbt(registryLookup);
-	}
+  @Nullable
+  @Override
+  public Packet<ClientPlayPacketListener> toUpdatePacket() {
+    return BlockEntityUpdateS2CPacket.create(this);
+  }
+
+  @Override
+  public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+    return createNbt(registryLookup);
+  }
 }

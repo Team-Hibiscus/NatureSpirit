@@ -13,24 +13,25 @@ import net.minecraft.world.WorldView;
 
 public class RedMossBlock extends Block implements Fertilizable {
 
-	public RedMossBlock(Settings settings) {
-		super(settings);
-	}
+  public RedMossBlock(Settings settings) {
+    super(settings);
+  }
 
-	@Override
-	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
-		return world.getBlockState(pos.up()).isAir();
-	}
+  @Override
+  public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+    return world.getBlockState(pos.up()).isAir();
+  }
 
-	@Override
-	public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
-		return true;
-	}
+  @Override
+  public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+    return true;
+  }
 
-	@Override
-	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		world.getRegistryManager().getOptional(RegistryKeys.CONFIGURED_FEATURE).flatMap((registry) -> registry.getEntry(NSConfiguredFeatures.RED_MOSS_PATCH_BONEMEAL)).ifPresent((reference) -> {
-			reference.value().generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
-		});
-	}
+  @Override
+  public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+    world.getRegistryManager().getOptional(RegistryKeys.CONFIGURED_FEATURE).flatMap((registry) -> registry.getEntry(NSConfiguredFeatures.RED_MOSS_PATCH_BONEMEAL))
+        .ifPresent((reference) -> {
+          reference.value().generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
+        });
+  }
 }

@@ -23,59 +23,60 @@ import net.minecraft.world.WorldEvents;
 import net.minecraft.world.event.GameEvent;
 
 public class CheeseBlock extends CakeBlock implements FluidDrainable {
-	public CheeseBlock(Settings settings) {
-		super(settings);
-	}
 
-	@Override
-	public ItemStack tryDrainFluid(PlayerEntity player, WorldAccess world, BlockPos pos, BlockState state) {
-		if (world.getBlockState(pos).get(BITES) == 0) {
-			world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL_AND_REDRAW);
-			if (!world.isClient()) {
-				world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
-			}
+  public CheeseBlock(Settings settings) {
+    super(settings);
+  }
 
-			return new ItemStack(NSMiscBlocks.CHEESE_BUCKET);
-		}
-		return new ItemStack(Items.BUCKET);
-	}
+  @Override
+  public ItemStack tryDrainFluid(PlayerEntity player, WorldAccess world, BlockPos pos, BlockState state) {
+    if (world.getBlockState(pos).get(BITES) == 0) {
+      world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL_AND_REDRAW);
+      if (!world.isClient()) {
+        world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
+      }
 
-	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-		if (world.isClient) {
-			if (tryEat(world, pos, state, player).isAccepted()) {
-				return ActionResult.SUCCESS;
-			}
+      return new ItemStack(NSMiscBlocks.CHEESE_BUCKET);
+    }
+    return new ItemStack(Items.BUCKET);
+  }
 
-			if (player.getStackInHand(Hand.MAIN_HAND).isEmpty()) {
-				return ActionResult.CONSUME;
-			}
-		}
+  @Override
+  public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+    if (world.isClient) {
+      if (tryEat(world, pos, state, player).isAccepted()) {
+        return ActionResult.SUCCESS;
+      }
 
-		return tryEat(world, pos, state, player);
-	}
+      if (player.getStackInHand(Hand.MAIN_HAND).isEmpty()) {
+        return ActionResult.CONSUME;
+      }
+    }
 
-	protected static ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
-		if (!player.canConsume(false)) {
-			return ActionResult.PASS;
-		} else {
-			player.incrementStat(NatureSpirit.EAT_CHEESE);
-			player.getHungerManager().add(2, 0.1F);
-			int i = state.get(BITES);
-			world.emitGameEvent(player, GameEvent.EAT, pos);
-			if (i < 6) {
-				world.setBlockState(pos, state.with(BITES, i + 1), Block.NOTIFY_ALL);
-			} else {
-				world.removeBlock(pos, false);
-				world.emitGameEvent(player, GameEvent.BLOCK_DESTROY, pos);
-			}
+    return tryEat(world, pos, state, player);
+  }
 
-			return ActionResult.SUCCESS;
-		}
-	}
+  protected static ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
+    if (!player.canConsume(false)) {
+      return ActionResult.PASS;
+    } else {
+      player.incrementStat(NatureSpirit.EAT_CHEESE);
+      player.getHungerManager().add(2, 0.1F);
+      int i = state.get(BITES);
+      world.emitGameEvent(player, GameEvent.EAT, pos);
+      if (i < 6) {
+        world.setBlockState(pos, state.with(BITES, i + 1), Block.NOTIFY_ALL);
+      } else {
+        world.removeBlock(pos, false);
+        world.emitGameEvent(player, GameEvent.BLOCK_DESTROY, pos);
+      }
 
-	@Override
-	public Optional<SoundEvent> getBucketFillSound() {
-		return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
-	}
+      return ActionResult.SUCCESS;
+    }
+  }
+
+  @Override
+  public Optional<SoundEvent> getBucketFillSound() {
+    return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
+  }
 }
