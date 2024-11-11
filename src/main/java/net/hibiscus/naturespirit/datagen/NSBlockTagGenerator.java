@@ -15,6 +15,7 @@ import net.hibiscus.naturespirit.registration.NSWoods;
 import net.hibiscus.naturespirit.registration.sets.FlowerSet;
 import net.hibiscus.naturespirit.registration.sets.StoneSet;
 import net.hibiscus.naturespirit.registration.sets.WoodSet;
+import net.hibiscus.naturespirit.registration.sets.WoodSet.WoodPreset;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -36,6 +37,14 @@ public class NSBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
       getOrCreateTagBuilder(BlockTags.WOODEN_FENCES).add(new Block[]{woodSet.getFence()});
       getOrCreateTagBuilder(woodSet.getBlockLogsTag()).add(woodSet.getStrippedLog(), woodSet.getLog());
       getOrCreateTagBuilder(NSTags.Blocks.STRIPPED_LOGS).add(woodSet.getStrippedLog());
+      if (woodSet.getWoodPreset() == WoodPreset.JOSHUA) {
+        getOrCreateTagBuilder(woodSet.getBlockLogsTag()).add(woodSet.getStrippedBundle(), woodSet.getBundle());
+        getOrCreateTagBuilder(NSTags.Blocks.STRIPPED_LOGS).add(woodSet.getStrippedBundle());
+        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).addTag(woodSet.getBlockLogsTag());
+      } else {
+        getOrCreateTagBuilder(BlockTags.OVERWORLD_NATURAL_LOGS).add(new Block[]{woodSet.getLog()});
+        getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).addTag(woodSet.getBlockLogsTag());
+      }
       if (woodSet.hasBark()) {
         getOrCreateTagBuilder(woodSet.getBlockLogsTag()).add(woodSet.getStrippedWood(), woodSet.getWood());
         getOrCreateTagBuilder(NSTags.Blocks.STRIPPED_LOGS).add(woodSet.getStrippedWood());
@@ -51,8 +60,6 @@ public class NSBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
             woodSet.getVines()
         );
       }
-      getOrCreateTagBuilder(BlockTags.OVERWORLD_NATURAL_LOGS).add(new Block[]{woodSet.getLog()});
-      getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).addTag(woodSet.getBlockLogsTag());
       getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS).add(new Block[]{woodSet.getTrapDoor()});
       getOrCreateTagBuilder(BlockTags.STANDING_SIGNS).add(new Block[]{woodSet.getSign()});
       getOrCreateTagBuilder(BlockTags.WALL_SIGNS).add(new Block[]{woodSet.getWallSign()});
@@ -144,8 +151,8 @@ public class NSBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         NSWoods.WISTERIA.getPinkLeaves(),
         NSWoods.WISTERIA.getPurpleLeaves()
     );
-    getOrCreateTagBuilder(NSTags.Blocks.ALLUAUDIA_BUNDLES).add(STRIPPED_ALLUAUDIA_BUNDLE, ALLUAUDIA_BUNDLE);
-    getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).addTag(NSTags.Blocks.ALLUAUDIA_BUNDLES);
+    getOrCreateTagBuilder(Blocks.ALLUAUDIA_BLOCKS).add(STRIPPED_ALLUAUDIA_BUNDLE, ALLUAUDIA_BUNDLE, ALLUAUDIA, STRIPPED_ALLUAUDIA);
+    getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).addTag(Blocks.ALLUAUDIA_BLOCKS);
     getOrCreateTagBuilder(BlockTags.WOODEN_DOORS).add(PAPER_DOOR, FRAMED_PAPER_DOOR, BLOOMING_PAPER_DOOR);
     getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS).add(PAPER_TRAPDOOR, FRAMED_PAPER_TRAPDOOR, BLOOMING_PAPER_TRAPDOOR);
     getOrCreateTagBuilder(BlockTags.CLIMBABLE).add(

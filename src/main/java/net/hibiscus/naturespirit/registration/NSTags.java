@@ -20,7 +20,7 @@ public class NSTags {
     public static final TagKey<Item> COCONUT_ITEMS = createTag("coconut_items");
     public static final TagKey<Item> SUCCULENTS = createTag("succulents");
     public static final TagKey<Item> STRIPPED_LOGS = createTag("stripped_logs");
-    public static final TagKey<Item> ALLUAUDIA_BUNDLES = createTag("alluaudia_bundles");
+    public static final TagKey<Item> ALLUAUDIA_BLOCKS = createTag("alluaudia_blocks");
     public static final TagKey<Item> KAOLIN = createTag("kaolin");
     public static final TagKey<Item> KAOLIN_STAIRS = createTag("kaolin_stairs");
     public static final TagKey<Item> KAOLIN_SLABS = createTag("kaolin_slabs");
@@ -63,7 +63,7 @@ public class NSTags {
     public static final TagKey<Block> CHALK_STAIRS = createTag("chalk_stairs");
     public static final TagKey<Block> CHALK_SLABS = createTag("chalk_slabs");
     public static final TagKey<Block> STRIPPED_LOGS = createTag("stripped_logs");
-    public static final TagKey<Block> ALLUAUDIA_BUNDLES = createTag("alluaudia_bundles");
+    public static final TagKey<Block> ALLUAUDIA_BLOCKS = createTag("alluaudia_blocks");
     public static final TagKey<Block> SUCCULENTS = createTag("succulents");
     public static final TagKey<Block> SUCCULENT_VERTICAL_PLACEMENT_OVERRIDE = createTag("succulent_vertical_placement_override");
     public static final TagKey<Block> SUCCULENT_HORIZONTAL_PLACEMENT_OVERRIDE = createTag("succulent_horizontal_placement_override");

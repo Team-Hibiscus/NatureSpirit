@@ -8,6 +8,7 @@ import static net.hibiscus.naturespirit.registration.NSMiscBlocks.*;
 
 import net.hibiscus.naturespirit.registration.NSRegistryHelper;
 import net.hibiscus.naturespirit.registration.NSTags;
+import net.hibiscus.naturespirit.registration.NSTags.Blocks;
 import net.hibiscus.naturespirit.registration.NSWoods;
 import net.hibiscus.naturespirit.registration.sets.StoneSet;
 import net.hibiscus.naturespirit.registration.sets.WoodSet;
@@ -47,7 +48,7 @@ public class NSItemTagGenerator extends FabricTagProvider.ItemTagProvider {
     copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
     copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
     copy(NSTags.Blocks.STRIPPED_LOGS, NSTags.Items.STRIPPED_LOGS);
-    copy(NSTags.Blocks.ALLUAUDIA_BUNDLES, NSTags.Items.ALLUAUDIA_BUNDLES);
+    copy(Blocks.ALLUAUDIA_BLOCKS, NSTags.Items.ALLUAUDIA_BLOCKS);
     copy(BlockTags.PLANKS, ItemTags.PLANKS);
     copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
     copy(BlockTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);

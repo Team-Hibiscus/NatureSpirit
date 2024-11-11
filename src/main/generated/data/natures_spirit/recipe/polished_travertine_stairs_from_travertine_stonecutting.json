@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "natures_spirit:travertine"
+  },
+  "result": {
+    "count": 1,
+    "id": "natures_spirit:polished_travertine_stairs"
+  }
+}

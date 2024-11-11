@@ -297,7 +297,7 @@ class NSLangGenerator extends FabricLanguageProvider {
     generateItemTagTranslations(NSTags.Items.COCONUT_ITEMS, translationBuilder);
     generateItemTagTranslations(NSTags.Items.SUCCULENTS, translationBuilder);
     generateItemTagTranslations(NSTags.Items.STRIPPED_LOGS, translationBuilder);
-    generateItemTagTranslations(NSTags.Items.ALLUAUDIA_BUNDLES, translationBuilder);
+    generateItemTagTranslations(NSTags.Items.ALLUAUDIA_BLOCKS, translationBuilder);
     generateItemTagTranslations(NSTags.Items.KAOLIN, translationBuilder);
     generateItemTagTranslations(NSTags.Items.KAOLIN_STAIRS, translationBuilder);
     generateItemTagTranslations(NSTags.Items.KAOLIN_SLABS, translationBuilder);

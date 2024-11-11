@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_sugi_mosaic": {
+      "conditions": {
+        "items": [
+          {
+            "items": "natures_spirit:sugi_mosaic"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "natures_spirit:sugi_mosaic_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_sugi_mosaic"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "natures_spirit:sugi_mosaic_stairs"
+    ]
+  }
+}
