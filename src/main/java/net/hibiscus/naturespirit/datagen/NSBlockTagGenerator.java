@@ -10,6 +10,7 @@ import static net.hibiscus.naturespirit.registration.NSMiscBlocks.*;
 
 import net.hibiscus.naturespirit.registration.NSRegistryHelper;
 import net.hibiscus.naturespirit.registration.NSTags;
+import net.hibiscus.naturespirit.registration.NSTags.Blocks;
 import net.hibiscus.naturespirit.registration.NSWoods;
 import net.hibiscus.naturespirit.registration.sets.FlowerSet;
 import net.hibiscus.naturespirit.registration.sets.StoneSet;
@@ -170,6 +171,9 @@ public class NSBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
         NSWoods.WISTERIA.getPurpleVinesPlant(),
         LOTUS_FLOWER
     );
+    getOrCreateTagBuilder(BlockTags.DEAD_BUSH_MAY_PLACE_ON).forceAddTag(Blocks.KAOLIN);
+    getOrCreateTagBuilder(BlockTags.DIRT).add(SANDY_SOIL, CHERT.getBase(), RED_MOSS_BLOCK);
+    getOrCreateTagBuilder(BlockTags.OVERWORLD_CARVER_REPLACEABLES).add(PINK_SANDSTONE, RED_MOSS_BLOCK).forceAddTag(Blocks.KAOLIN).forceAddTag(Blocks.KAOLIN);
     getOrCreateTagBuilder(BlockTags.CROPS).add(DESERT_TURNIP_STEM);
     getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(DESERT_TURNIP_STEM);
     getOrCreateTagBuilder(BlockTags.HOE_MINEABLE).add(

@@ -1,4 +1,4 @@
-// 1.21.1	2024-11-03T20:39:14.740444	Nature's Spirit/Block Loot Tables
+// 1.21.1	2024-11-10T20:01:55.0165786	Nature's Spirit/Block Loot Tables
 e911ae8735d1a702e27e873549f6a74ebbffb648 data\natures_spirit\loot_table\blocks\white_kaolin_stairs.json
 fa7b8a58b31ef186e16991cbeca9b8894569b018 data\natures_spirit\loot_table\blocks\mossy_cobbled_travertine.json
 8f36a7915d62793e4f6c9dd4efbfdc7c1a1ed24f data\natures_spirit\loot_table\blocks\aspen_log.json
@@ -607,7 +607,7 @@ b9583bf410a7b889cac99957cbf8789bc05e1b5d data\natures_spirit\loot_table\blocks\c
 7a0b3cdb81f9687a0b948d60c68b02f60f0c8c6f data\natures_spirit\loot_table\blocks\blue_chalk.json
 333795b80a69b742f83e111d24caaf722431d4a3 data\natures_spirit\loot_table\blocks\potted_mahogany_sapling.json
 f89be58ac7d90d861b45f1c8e2fb586937ef1a23 data\natures_spirit\loot_table\blocks\fir_pressure_plate.json
-a86e01a6039989375628a6c13bdc4dc40aa8dc0c data\natures_spirit\loot_table\blocks\olive_leaves.json
+824ab5b60bddf2f93c1ef9287bf7d1832e323eb0 data\natures_spirit\loot_table\blocks\olive_leaves.json
 25a4ffa124a39be1f63d8eed2c1ed07636b697ec data\natures_spirit\loot_table\blocks\chert_tile_wall.json
 231c76ac9f96c63d818e8a89c5e9e8b2569039e4 data\natures_spirit\loot_table\blocks\larch_fence.json
 77508dbe19314be110091acd814ed863f0e0e4ae data\natures_spirit\loot_table\blocks\pink_sandstone_wall.json

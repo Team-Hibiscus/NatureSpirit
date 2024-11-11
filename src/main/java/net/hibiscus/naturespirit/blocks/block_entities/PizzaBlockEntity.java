@@ -7,10 +7,13 @@ import net.hibiscus.naturespirit.registration.NSDataComponents;
 import net.hibiscus.naturespirit.registration.NSMiscBlocks;
 import net.hibiscus.naturespirit.registration.NSTags;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BeehiveBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
@@ -37,14 +40,27 @@ public class PizzaBlockEntity extends BlockEntity {
       toppings = new ArrayList<>(components.get(NSDataComponents.TOPPINGS));
     }
     this.toppingCount = toppings != null ? toppings.size() : 0;
-    this.markDirty();
   }
 
   @Override
   protected void addComponents(ComponentMap.Builder componentMapBuilder) {
     super.addComponents(componentMapBuilder);
     componentMapBuilder.add(NSDataComponents.TOPPINGS, toppings);
-    this.markDirty();
+  }
+
+  @Override
+  public void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+    super.writeNbt(nbt, registryLookup);
+    nbt.put("toppings", (NbtElement)NSDataComponents.TOPPINGS.getCodec().encodeStart(NbtOps.INSTANCE, this.toppings).getOrThrow());
+  }
+
+  @Override
+  public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+    super.readNbt(nbt, registryLookup);
+    this.toppings.clear();
+    if (nbt.contains("toppings")) {
+      NSDataComponents.TOPPINGS.getCodec().parse(NbtOps.INSTANCE, nbt.get("toppings")).resultOrPartial().ifPresent((list) -> toppings.addAll(list));
+    }
   }
 
   public boolean canPlaceTopping(ItemStack itemStack, World world, PizzaBlockEntity pizzaBlockEntity) {
@@ -55,7 +71,6 @@ public class PizzaBlockEntity extends BlockEntity {
     if (bl) {
       toppings.add(toppingVariant);
     }
-    this.markDirty();
     return bl;
   }
 

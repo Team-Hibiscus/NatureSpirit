@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 
 import static net.hibiscus.naturespirit.NatureSpirit.MOD_ID;
 
+import net.hibiscus.naturespirit.NatureSpirit;
 import net.hibiscus.naturespirit.config.NSConfig;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -23,7 +24,7 @@ public class NSItemGroups {
     if (NSConfig.creative_tab) {
       build(
           NS_ITEM_GROUP,
-          FabricItemGroup.builder().displayName(Text.translatable("itemGroup" + ".natures_spirit" + ".item_group")).icon(() -> new ItemStack(NSWoods.REDWOOD.getSapling())).build()
+          FabricItemGroup.builder().displayName(Text.translatable("itemGroup." + MOD_ID + ".item_group")).icon(() -> new ItemStack(NSWoods.REDWOOD.getSapling())).build()
       );
     }
   }

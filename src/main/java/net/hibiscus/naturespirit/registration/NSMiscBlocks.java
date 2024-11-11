@@ -485,13 +485,9 @@ public class NSMiscBlocks {
   public static final Block STRIPPED_ALLUAUDIA_BUNDLE = registerPlantBlock("stripped_alluaudia_bundle",
       new PillarBlock(AbstractBlock.Settings.create().mapColor(MapColor.OAK_TAN).nonOpaque().sounds(BlockSoundGroup.VINE).hardness(.6f).strength(.6f)), ALLUAUDIA_BUNDLE, .2f);
 
-  public static final FoodComponent GREEN_OLIVE_COMPONENT = (new FoodComponent.Builder()).nutrition(2).saturationModifier(0.4F).build();
+  public static final FoodComponent OLIVE_COMPONENT = (new FoodComponent.Builder()).nutrition(2).saturationModifier(0.4F).build();
 
-  public static final FoodComponent BLACK_OLIVE_COMPONENT = (new FoodComponent.Builder()).nutrition(3).saturationModifier(0.5F).build();
-
-  public static final Item GREEN_OLIVES = registerPlantItem("green_olives", new Item(new Item.Settings().food(GREEN_OLIVE_COMPONENT)), Items.BEETROOT, ItemGroups.FOOD_AND_DRINK, 0.3F);
-
-  public static final Item BLACK_OLIVES = registerPlantItem("black_olives", new Item(new Item.Settings().food(BLACK_OLIVE_COMPONENT)), GREEN_OLIVES, ItemGroups.FOOD_AND_DRINK, 0.3F);
+  public static final Item OLIVES = registerPlantItem("olives", new Item(new Item.Settings().food(OLIVE_COMPONENT)), Items.BEETROOT, ItemGroups.FOOD_AND_DRINK, 0.3F);
 
   public static final Block DESERT_TURNIP_ROOT_BLOCK = registerBlock("desert_turnip_root_block",
       new PillarBlock(AbstractBlock.Settings.create().burnable().instrument(NoteBlockInstrument.BASS).mapColor(MapColor.SPRUCE_BROWN).strength(1.0F).sounds(BlockSoundGroup.ROOTS)),

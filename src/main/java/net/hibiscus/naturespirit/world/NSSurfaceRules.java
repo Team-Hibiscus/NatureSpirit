@@ -287,7 +287,7 @@ public class NSSurfaceRules {
             )
         )
     );
-    MaterialRules.MaterialRule xericRule = MaterialRules.condition(MaterialRules.biome(NSBiomes.XERIC_PLAINS),
+    MaterialRules.MaterialRule xericRule = MaterialRules.condition(MaterialRules.biome(NSBiomes.XERIC_PLAINS, NSBiomes.CEDAR_THICKET),
         MaterialRules.condition(belowWater,
             MaterialRules.condition(STONE_DEPTH_FLOOR_WITH_SURFACE_DEPTH, MaterialRules.condition(noiseCondition4, travertineOrSoil))
         )

@@ -29,6 +29,7 @@ import net.hibiscus.naturespirit.registration.NSParticleTypes;
 import static net.hibiscus.naturespirit.registration.NSRegistryHelper.*;
 
 import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.AbstractBlock.Settings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSetType;
 import net.minecraft.block.Blocks;
@@ -850,25 +851,20 @@ public class WoodSet {
     return listItem;
   }
 
-  private PillarBlock createLogBlock(MapColor topMapColor, MapColor sideMapColor) {
-    return new PillarBlock(AbstractBlock.Settings.create().mapColor(state -> state.get(PillarBlock.AXIS) == Direction.Axis.Y ? topMapColor : sideMapColor).strength(2.0F)
-        .sounds(this.getBlockSetType().soundType()));
-  }
-
   private Block createLog() {
-    return createBlockWithItem(getLogName(), createLogBlock(sideColor, topColor));
+    return createBlockWithItem(getLogName(), Blocks.createLogBlock(topColor, sideColor));
   }
 
   private Block createStrippedLog() {
-    return createBlockWithItem("stripped_" + getLogName(), createLogBlock(sideColor, topColor));
+    return createBlockWithItem("stripped_" + getLogName(), Blocks.createLogBlock(topColor, sideColor));
   }
 
   private Block createBundle() {
-    return createBlockWithItem(getName() + "_bundle", createLogBlock(sideColor, topColor));
+    return createBlockWithItem(getName() + "_bundle", Blocks.createLogBlock(topColor, sideColor));
   }
 
   private Block createStrippedBundle() {
-    return createBlockWithItem("stripped_" + getName() + "_bundle", createLogBlock(sideColor, topColor));
+    return createBlockWithItem("stripped_" + getName() + "_bundle", Blocks.createLogBlock(topColor, sideColor));
   }
 
   private Block createJoshuaLog() {
@@ -882,11 +878,12 @@ public class WoodSet {
   }
 
   private Block createWood() {
-    return createBlockWithItem(getWoodName(), createLogBlock(sideColor, sideColor));
+    return createBlockWithItem(getWoodName(), new PillarBlock(
+        Settings.create().mapColor(sideColor).instrument(NoteBlockInstrument.BASS).strength(2.0F).sounds(BlockSoundGroup.WOOD).burnable()));
   }
 
   private Block createStrippedWood() {
-    return createBlockWithItem("stripped_" + getWoodName(), createLogBlock(topColor, topColor));
+    return createBlockWithItem("stripped_" + getWoodName(), new PillarBlock(Settings.create().mapColor(topColor).instrument(NoteBlockInstrument.BASS).strength(2.0F).sounds(BlockSoundGroup.WOOD).burnable()));
   }
 
   private Block createLeaves() {

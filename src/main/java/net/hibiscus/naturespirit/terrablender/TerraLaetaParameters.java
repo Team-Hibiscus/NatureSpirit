@@ -55,7 +55,6 @@ public class TerraLaetaParameters {
   RegistryKey<Biome> commonBiomeDesertHot2 = NSConfig.has_xeric_plains ? NSBiomes.XERIC_PLAINS : BiomeKeys.DESERT;
   RegistryKey<Biome> nearBiomeBadlandsHot = NSConfig.has_xeric_plains && NSConfig.has_drylands ? NSBiomes.DRYLANDS : BiomeKeys.BADLANDS;
   RegistryKey<Biome> nearBiomeWoodedBadlandsHot = NSConfig.has_xeric_plains && NSConfig.has_drylands ? NSBiomes.DRYLANDS : BiomeKeys.WOODED_BADLANDS;
-  RegistryKey<Biome> nearBiomeBadlandsHot2 = NSConfig.has_xeric_plains ? NSBiomes.XERIC_PLAINS : BiomeKeys.BADLANDS;
   RegistryKey<Biome> specialBiomeErodedBadlandsHot = NSConfig.has_xeric_plains ? null : BiomeKeys.ERODED_BADLANDS;
   RegistryKey<Biome> commonBiomeSavannaWarm = NSConfig.has_xeric_plains ? NSBiomes.XERIC_PLAINS : BiomeKeys.SAVANNA;
   RegistryKey<Biome> uncommonBiomePlainsWarm = NSConfig.has_cypress_fields ? null : BiomeKeys.PLAINS;
@@ -69,6 +68,7 @@ public class TerraLaetaParameters {
   RegistryKey<Biome> uncommonSparseJungleWarm = NSConfig.has_cypress_fields ? null : BiomeKeys.SPARSE_JUNGLE;
   RegistryKey<Biome> uncommonBambooJungleWarm =
       NSConfig.has_carnation_fields ? NSBiomes.CARNATION_FIELDS : (NSConfig.has_cypress_fields ? NSBiomes.CYPRESS_FIELDS : BiomeKeys.BAMBOO_JUNGLE);
+  RegistryKey<Biome> specialBiomeCedar = NSConfig.has_cedar_thicket ? NSBiomes.CEDAR_THICKET : null;
   RegistryKey<Biome> specialBiomeNull = NSConfig.has_cypress_fields ? NSBiomes.CARNATION_FIELDS : null;
   RegistryKey<Biome> commonBiomePlainsCold = NSConfig.has_alpine_clearings ? NSBiomes.ALPINE_CLEARINGS : BiomeKeys.PLAINS;
   RegistryKey<Biome> uncommonBiomePlainsCold = NSConfig.has_heather_fields ? NSBiomes.HEATHER_FIELDS : null;
@@ -130,7 +130,7 @@ public class TerraLaetaParameters {
         {BiomeKeys.ICE_SPIKES, null, uncommonBiomeSnowyTaigaFrozen, null, null},
         {uncommonBiomePlainsCold, null, null, uncommonBiomeTaiga, uncommonBiomeOldTaiga},
         {null, null, null, null, null},
-        {null, null, uncommonBiomePlainsWarm, uncommonSparseJungleWarm, uncommonBambooJungleWarm},
+        {specialBiomeCedar, null, uncommonBiomePlainsWarm, uncommonSparseJungleWarm, uncommonBambooJungleWarm},
         {null, null, null, null, null}
     };
     this.nearMountainBiomes = new RegistryKey[][]{
@@ -152,7 +152,7 @@ public class TerraLaetaParameters {
     }, {
         BiomeKeys.CHERRY_GROVE, BiomeKeys.CHERRY_GROVE, BiomeKeys.FOREST, BiomeKeys.BIRCH_FOREST, null
     }, {
-        null, null, null, null, specialBiomeNull
+        specialBiomeCedar, null, null, null, specialBiomeNull
     }, {
         specialBiomeErodedBadlandsHot, specialBiomeErodedBadlandsHot, null, null, null
     }

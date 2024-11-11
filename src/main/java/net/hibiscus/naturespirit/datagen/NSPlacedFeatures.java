@@ -106,6 +106,7 @@ public class NSPlacedFeatures {
   public static final RegistryKey<PlacedFeature> ALLUAUDIA_PLACED = registerKey("alluaudia_placed");
   public static final RegistryKey<PlacedFeature> COCONUT_PLACED = registerKey("coconut_placed");
   public static final RegistryKey<PlacedFeature> CEDAR_PLACED = registerKey("cedar_placed");
+  public static final RegistryKey<PlacedFeature> DENSE_CEDAR_PLACED = registerKey("dense_cedar_placed");
   public static final RegistryKey<PlacedFeature> MAHOGANY_PLACED = registerKey("mahogany_placed");
   public static final RegistryKey<PlacedFeature> SPARSE_OLIVE_PLACED = registerKey("sparse_olive_placed");
 
@@ -400,8 +401,16 @@ public class NSPlacedFeatures {
     registerKey(context,
         CEDAR_PLACED,
         configuredFeatureRegistryEntryLookup.getOrThrow(NSConfiguredFeatures.CEDAR_TREE_SPAWN),
-        CountPlacementModifier.of(3),
-        RarityFilterPlacementModifier.of(50),
+        NoiseBasedCountPlacementModifier.of(3, 60, .25F),
+        SquarePlacementModifier.of(),
+        TREE_THRESHOLD,
+        PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP,
+        BiomePlacementModifier.of()
+    );
+    registerKey(context,
+        DENSE_CEDAR_PLACED,
+        configuredFeatureRegistryEntryLookup.getOrThrow(NSConfiguredFeatures.CEDAR_TREE_SPAWN),
+        CountPlacementModifier.of(30),
         SquarePlacementModifier.of(),
         TREE_THRESHOLD,
         PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP,

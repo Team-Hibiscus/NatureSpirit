@@ -1,6 +1,7 @@
 package net.hibiscus.naturespirit.datagen;
 
 import com.google.common.collect.ImmutableList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
 import net.hibiscus.naturespirit.NatureSpirit;
@@ -26,6 +27,7 @@ import net.hibiscus.naturespirit.world.foliage_placer.SugiFoliagePlacer;
 import net.hibiscus.naturespirit.world.foliage_placer.WisteriaFoliagePlacer;
 import net.hibiscus.naturespirit.world.tree_decorator.CoconutTreeDecorator;
 import net.hibiscus.naturespirit.world.tree_decorator.MapleGroundTreeDecorator;
+import net.hibiscus.naturespirit.world.tree_decorator.OliveBranchTreeDecorator;
 import net.hibiscus.naturespirit.world.tree_decorator.PolyporeTreeDecorator;
 import net.hibiscus.naturespirit.world.tree_decorator.RedwoodBranchTreeDecorator;
 import net.hibiscus.naturespirit.world.tree_decorator.SnowTreeDecorator;
@@ -570,12 +572,12 @@ public class NSConfiguredFeatures {
     );
 
     register(context, OLIVE_TREE, Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(NSWoods.OLIVE.getLog()),
-        new OliveTrunkPlacer(4, 1, 2, UniformIntProvider.create(4, 6), .85F, UniformIntProvider.create(4, 5),
+        new OliveTrunkPlacer(3, 0, 2, UniformIntProvider.create(3, 4), .95F, UniformIntProvider.create(2, 3),
             Registries.BLOCK.getOrCreateEntryList(BlockTags.MANGROVE_LOGS_CAN_GROW_THROUGH)),
         BlockStateProvider.of(NSWoods.OLIVE.getLeaves()),
-        new RandomSpreadFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), ConstantIntProvider.create(2), 60),
+        new RandomSpreadFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), ConstantIntProvider.create(3), 55),
         new TwoLayersFeatureSize(1, 0, 1, OptionalInt.of(5))
-    ).ignoreVines().build());
+    ).ignoreVines().decorators(List.of(new OliveBranchTreeDecorator(.45F))).build());
 
     register(context,
         OLIVE_TREE_SPAWN,

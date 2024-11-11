@@ -34,6 +34,7 @@ public class NSBiomes {
   public static final RegistryKey<Biome> DRYLANDS = register("drylands");
   public static final RegistryKey<Biome> WOODED_DRYLANDS = register("wooded_drylands");
   public static final RegistryKey<Biome> XERIC_PLAINS = register("xeric_plains");
+  public static final RegistryKey<Biome> CEDAR_THICKET = register("cedar_thicket");
   public static final RegistryKey<Biome> WHITE_CLIFFS = register("white_cliffs");
   public static final RegistryKey<Biome> PRAIRIE = register("prairie");
   public static final RegistryKey<Biome> OAK_SAVANNA = register("oak_savanna");

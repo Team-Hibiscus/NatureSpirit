@@ -115,7 +115,7 @@ class NSLangGenerator extends FabricLanguageProvider {
     generateWoodTranslations(NSRegistryHelper.WoodHashMap, translationBuilder);
     generateStoneTranslations(NSRegistryHelper.StoneHashMap, translationBuilder);
     generateFlowerTranslations(NSRegistryHelper.FlowerHashMap, translationBuilder);
-    translationBuilder.add(NSItemGroups.NS_ITEM_GROUP, "Nature's Spirit");
+    translationBuilder.add("itemGroup.natures_spirit.item_group", "Nature's Spirit");
     translationBuilder.add("stat.minecraft.eat_pizza_slice", "Pizza Slices Eaten");
 
     translationBuilder.add("advancements.adventure.kaolin_kill.description", "Kill a Zombie with a Kaolin block");
@@ -131,8 +131,7 @@ class NSLangGenerator extends FabricLanguageProvider {
     translationBuilder.add("advancements.adventure.sandy_forage.title", "Sandy Forage");
 
     generateItemTranslations(CHALK_POWDER, translationBuilder);
-    generateItemTranslations(NSMiscBlocks.GREEN_OLIVES, translationBuilder);
-    generateItemTranslations(NSMiscBlocks.BLACK_OLIVES, translationBuilder);
+    generateItemTranslations(NSMiscBlocks.OLIVES, translationBuilder);
     generateItemTranslations(NSMiscBlocks.DESERT_TURNIP, translationBuilder);
     generateItemTranslations(CALCITE_SHARD, translationBuilder);
     generateBlockTranslations(SMALL_CALCITE_BUD,  translationBuilder);
@@ -258,8 +257,7 @@ class NSLangGenerator extends FabricLanguageProvider {
     translationBuilder.add(CHEESE_BUCKET, "Cheese Bucket");
     translationBuilder.add(CHEESE_ARROW, "Cheese Arrow");
     translationBuilder.add("block.natures_spirit.pizza.cooked_chicken", "With Cooked Chicken");
-    translationBuilder.add("block.natures_spirit.pizza.green_olives", "With Green Olives");
-    translationBuilder.add("block.natures_spirit.pizza.black_olives", "With Black Olives");
+    translationBuilder.add("block.natures_spirit.pizza.olives", "With Olives");
     translationBuilder.add("block.natures_spirit.pizza.brown_mushroom", "With Mushrooms");
     translationBuilder.add("block.natures_spirit.pizza.beetroot", "With Beetroots");
     translationBuilder.add("block.natures_spirit.pizza.carrot", "With Carrots");

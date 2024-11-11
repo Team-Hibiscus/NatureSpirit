@@ -115,7 +115,7 @@ public class CoconutBlock extends FallingBlock implements Fertilizable, Waterlog
         player.dropItem(new ItemStack(Items.MILK_BUCKET), false);
       }
 
-      state.with(FILLED, false);
+      world.setBlockState(pos, state.with(FILLED, false));
       world.emitGameEvent(player, GameEvent.FLUID_PICKUP, pos);
     }
     if (!world.isClient() && bl) {

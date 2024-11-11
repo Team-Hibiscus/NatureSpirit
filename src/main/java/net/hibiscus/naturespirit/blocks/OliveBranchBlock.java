@@ -25,6 +25,8 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -32,6 +34,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
+import net.minecraft.world.event.GameEvent.Emitter;
 
 public class OliveBranchBlock extends RodBlock implements Fertilizable {
 
@@ -65,13 +68,18 @@ public class OliveBranchBlock extends RodBlock implements Fertilizable {
     return type == NavigationType.AIR;
   }
 
+  protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    return stack.isOf(Items.BONE_MEAL) ? ItemActionResult.SKIP_DEFAULT_BLOCK_INTERACTION : super.onUseWithItem(stack, state, world, pos, player, hand, hit);
+  }
+
   @Override
   public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-    if (state.get(AGE) == 3 && !player.getStackInHand(player.getActiveHand()).isOf(Items.BONE_MEAL)) {
-      ItemStack itemStack = new ItemStack(NSMiscBlocks.GREEN_OLIVES, world.getRandom().nextBetween(1, 3));
-      if (!player.giveItemStack(itemStack)) {
-        player.dropItem(itemStack, false);
-      }
+    int i = state.get(AGE);
+    boolean bl = i == 3;
+    if (i > 1) {
+      int j = 1 + world.random.nextInt(2);
+      dropStack(world, pos, new ItemStack(NSMiscBlocks.OLIVES, j + (bl ? 1 : 0)));
+      world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
       world.setBlockState(pos, state.with(AGE, 0));
       world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
       return ActionResult.success(world.isClient());
@@ -82,15 +90,13 @@ public class OliveBranchBlock extends RodBlock implements Fertilizable {
 
   @Override
   public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-    if (world.getBaseLightLevel(pos, 0) >= 9) {
-      if (random.nextInt(4) == 0) {
-        int i = state.get(AGE);
-        if (i < 3) {
+    int i = state.get(AGE);
+    if (world.getBaseLightLevel(pos, 0) >= 9 && i < 3) {
+      if (random.nextInt(5) == 0) {
           state = state.with(AGE, i + 1);
           world.setBlockState(pos, state, Block.NOTIFY_LISTENERS);
-        }
+          world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, Emitter.of(state));
       }
-
     }
   }
 

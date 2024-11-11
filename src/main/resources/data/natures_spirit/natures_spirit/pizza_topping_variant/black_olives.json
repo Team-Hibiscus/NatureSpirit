@@ -1,7 +1,0 @@
-{
-  "texture_path": "natures_spirit:block/pizza/black_olives",
-  "hunger": 1,
-  "saturation": 0.15,
-  "translation_key": "black_olives",
-  "item": "natures_spirit:black_olives"
-}

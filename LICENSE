@@ -2,8 +2,15 @@ All Rights Reserved
 
 This license applies to any file in the following directories:
 - ./src/main/resources/assets/
+except for
+- ./src/main/resources/assets/natures_spirit/textures/atlas/
 
 This license also applies to any file in a `model` package.
+
+CC BY-NC-SA
+
+This license applies to any file in the following directories:
+- ./src/main/resources/assets/natures_spirit/textures/atlas/
 
 All other files are under the following license
 

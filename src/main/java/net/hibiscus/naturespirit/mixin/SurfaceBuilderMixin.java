@@ -81,7 +81,7 @@ public class SurfaceBuilderMixin {
     double e = Math.min(Math.abs(sugiSurfaceNoise.sample(x, 0.0, z) * 8.5), sugiPillarRoofNoise.sample((double) x * 0.2, 0.0, (double) z * 0.2) * 12.0);
     if (e > -10.0) {
       double h = Math.abs(sugiPillarNoise.sample((double) x * 0.9, 0.0, (double) z * 0.8) * 2.05);
-      double i = 46.0 + Math.min(e * e * 6.75, Math.ceil(h * 30.0) + 48.0);
+      double i = 32.0 + Math.min(e * e * 6.75, Math.ceil(h * 30.0) + 48.0);
       int j = MathHelper.floor(i);
       if (surfaceY <= j) {
         int k;

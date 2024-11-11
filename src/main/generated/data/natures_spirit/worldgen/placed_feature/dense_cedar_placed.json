@@ -2,10 +2,8 @@
   "feature": "natures_spirit:cedar_tree_spawn",
   "placement": [
     {
-      "type": "minecraft:noise_based_count",
-      "noise_factor": 60.0,
-      "noise_offset": 0.25,
-      "noise_to_count_ratio": 3
+      "type": "minecraft:count",
+      "count": 30
     },
     {
       "type": "minecraft:in_square"

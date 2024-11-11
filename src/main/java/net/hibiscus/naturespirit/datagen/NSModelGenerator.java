@@ -355,6 +355,8 @@ class NSModelGenerator extends FabricModelProvider {
         } else if (!Objects.equals(i, "wisteria") && !Objects.equals(i, "yellow_aspen") && !i.startsWith("part") && !i.startsWith("frosty")) {
           blockStateModelGenerator.registerFlowerPotPlant(saplingType[0], saplingType[1], TintType.NOT_TINTED);
         }
+      } else if (Objects.equals(i, "joshua")) {
+        blockStateModelGenerator.registerFlowerPotPlant(saplingType[0], saplingType[1], TintType.NOT_TINTED);
       }
     }
   }
@@ -888,8 +890,7 @@ class NSModelGenerator extends FabricModelProvider {
 
   @Override
   public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-    itemModelGenerator.register(NSMiscBlocks.GREEN_OLIVES, Models.GENERATED);
-    itemModelGenerator.register(NSMiscBlocks.BLACK_OLIVES, Models.GENERATED);
+    itemModelGenerator.register(NSMiscBlocks.OLIVES, Models.GENERATED);
     itemModelGenerator.register(NSMiscBlocks.DESERT_TURNIP, Models.GENERATED);
     itemModelGenerator.register(NSWoods.COCONUT_SHELL, Models.GENERATED);
     itemModelGenerator.register(NSWoods.COCONUT_HALF, Models.GENERATED);

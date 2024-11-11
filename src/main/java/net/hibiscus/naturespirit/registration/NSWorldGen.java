@@ -34,6 +34,7 @@ import net.hibiscus.naturespirit.world.foliage_placer.SugiFoliagePlacer;
 import net.hibiscus.naturespirit.world.foliage_placer.WisteriaFoliagePlacer;
 import net.hibiscus.naturespirit.world.tree_decorator.CoconutTreeDecorator;
 import net.hibiscus.naturespirit.world.tree_decorator.MapleGroundTreeDecorator;
+import net.hibiscus.naturespirit.world.tree_decorator.OliveBranchTreeDecorator;
 import net.hibiscus.naturespirit.world.tree_decorator.PolyporeTreeDecorator;
 import net.hibiscus.naturespirit.world.tree_decorator.RedwoodBranchTreeDecorator;
 import net.hibiscus.naturespirit.world.tree_decorator.SnowTreeDecorator;
@@ -96,6 +97,7 @@ public class NSWorldGen {
       MapleGroundTreeDecorator.CODEC);
   public static final TreeDecoratorType<CoconutTreeDecorator> COCONUT_TREE_DECORATOR = registerTreeDecorator("coconut_tree_decorator", CoconutTreeDecorator.CODEC);
   public static final TreeDecoratorType<RedwoodBranchTreeDecorator> REDWOOD_BRANCH_DECORATOR = registerTreeDecorator("redwood_branch_decorator", RedwoodBranchTreeDecorator.CODEC);
+  public static final TreeDecoratorType<OliveBranchTreeDecorator> OLIVE_BRANCH_DECORATOR = registerTreeDecorator("olive_branch_decorator", OliveBranchTreeDecorator.CODEC);
   public static final TreeDecoratorType<SnowTreeDecorator> SNOW_DECORATOR = registerTreeDecorator("snow_decorator", SnowTreeDecorator.CODEC);
   public static final TreeDecoratorType<PolyporeTreeDecorator> POLYPORE_DECORATOR = registerTreeDecorator("polypore_decorator", PolyporeTreeDecorator.CODEC);
 

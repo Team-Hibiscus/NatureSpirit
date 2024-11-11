@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "natures_spirit:pink_dye_from_begonia"
+        "recipe": "natures_spirit:orange_dye_from_begonia"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "natures_spirit:pink_dye_from_begonia"
+      "natures_spirit:orange_dye_from_begonia"
     ]
   }
 }

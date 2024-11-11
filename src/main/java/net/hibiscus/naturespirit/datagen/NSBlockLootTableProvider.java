@@ -142,40 +142,6 @@ class NSBlockLootTableProvider extends FabricBlockLootTableProvider {
     }
   }
 
-  public net.minecraft.loot.LootTable.Builder blackOlivesDrop(Block leaves, Block drop, float... chance) {
-    RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
-    return this.leavesDrops(leaves, drop, chance).pool(LootPool
-        .builder()
-        .rolls(ConstantLootNumberProvider.create(1F))
-        .conditionally(createWithoutShearsOrSilkTouchCondition())
-        .with(((net.minecraft.loot.entry.LeafEntry.Builder<?>) this.addSurvivesExplosionCondition(leaves, ItemEntry.builder(BLACK_OLIVES))).conditionally(
-            TableBonusLootCondition.builder(
-                impl.getOrThrow(Enchantments.FORTUNE),
-                0.01F,
-                0.0111111114F,
-                0.0125F,
-                0.016666668F,
-                0.05F
-            ))));
-  }
-
-  public net.minecraft.loot.LootTable.Builder greenOlivesDrop(Block leaves, Block drop, float... chance) {
-    RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
-    return this.blackOlivesDrop(leaves, drop, chance).pool(LootPool
-        .builder()
-        .rolls(ConstantLootNumberProvider.create(1F))
-        .conditionally(createWithoutShearsOrSilkTouchCondition())
-        .with(((net.minecraft.loot.entry.LeafEntry.Builder<?>) this.addSurvivesExplosionCondition(leaves, ItemEntry.builder(GREEN_OLIVES))).conditionally(
-            TableBonusLootCondition.builder(
-                impl.getOrThrow(Enchantments.FORTUNE),
-                0.01F,
-                0.0111111114F,
-                0.0125F,
-                0.016666668F,
-                0.05F
-            ))));
-  }
-
   public final LootTable.Builder dropsWithSilkTouchOrShears2(ItemConvertible drop) {
     return LootTable.builder()
         .pool(LootPool.builder().conditionally(this.createWithShearsOrSilkTouchCondition()).rolls(ConstantLootNumberProvider.create(1F)).with(ItemEntry.builder(drop)));
@@ -205,10 +171,10 @@ class NSBlockLootTableProvider extends FabricBlockLootTableProvider {
         Block[] saplingType = saplings.get(i);
         addDrop(saplingType[0]);
         addPottedPlantDrops(saplingType[1]);
-        switch (i) {
-          case "olive" -> this.addDrop(leavesType, (block) -> this.greenOlivesDrop(block, saplingType[0], SAPLING_DROP_CHANCE));
-          case "joshua" -> this.addDrop(leavesType, (block) -> this.leavesDrops(block, saplingType[0], SAPLING_DROP_CHANCE_2));
-          default -> this.addDrop(leavesType, (block) -> this.leavesDrops(block, saplingType[0], SAPLING_DROP_CHANCE));
+        if (i.equals("joshua")) {
+          this.addDrop(leavesType, (block) -> this.leavesDrops(block, saplingType[0], SAPLING_DROP_CHANCE_2));
+        } else {
+          this.addDrop(leavesType, (block) -> this.leavesDrops(block, saplingType[0], SAPLING_DROP_CHANCE));
         }
       } else if (i.equals("yellow_aspen")) {
         this.addDrop(leavesType, (block) -> this.leavesDrops(block, NSWoods.ASPEN.getSapling(), SAPLING_DROP_CHANCE));

@@ -51,6 +51,7 @@ public class NSConfig {
   public static boolean has_fir_forest;
   public static boolean has_snowy_fir_forest;
   public static boolean has_cypress_fields;
+  public static boolean has_cedar_thicket;
   public static boolean has_carnation_fields;
   public static boolean has_stratified_desert;
   public static boolean has_blooming_dunes;
@@ -90,7 +91,7 @@ public class NSConfig {
   public NSConfig() {}
 
   public static void main() throws IOException {
-    Path configPath = Path.of(FabricLoader.getInstance().getConfigDir().toString(), "natures_spirit_2.0.0.2-1.21.1.json");
+    Path configPath = Path.of(FabricLoader.getInstance().getConfigDir().toString(), "natures_spirit_2.0.0.4-1.21.1.json");
     try {
       if (configPath.toFile().createNewFile()) {
         JsonObject jsonObjects = getJsonObject();
@@ -122,6 +123,7 @@ public class NSConfig {
       has_fir_forest = biomes.get("has_fir_forest").getAsBoolean();
       has_snowy_fir_forest = biomes.get("has_snowy_fir_forest").getAsBoolean();
       has_cypress_fields = biomes.get("has_cypress_fields").getAsBoolean();
+      has_cedar_thicket = biomes.get("has_cedar_thicket").getAsBoolean();
       has_carnation_fields = biomes.get("has_carnation_fields").getAsBoolean();
       has_stratified_desert = biomes.get("has_stratified_desert").getAsBoolean();
       has_blooming_dunes = biomes.get("has_blooming_dunes").getAsBoolean();
@@ -252,6 +254,7 @@ public class NSConfig {
     biomesObject.addProperty("has_lively_dunes", true);
     biomesObject.addProperty("has_drylands", true);
     biomesObject.addProperty("has_wooded_drylands", true);
+    biomesObject.addProperty("has_cedar_thicket", true);
     biomesObject.addProperty("has_xeric_plains", true);
     biomesObject.addProperty("has_white_cliffs", true);
     biomesObject.addProperty("has_prairie", true);
