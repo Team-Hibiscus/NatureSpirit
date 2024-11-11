@@ -6,7 +6,7 @@
       "minecraft:canyon"
     ]
   },
-  "downfall": 0.16,
+  "downfall": 0.26,
   "effects": {
     "fog_color": 12638463,
     "mood_sound": {
@@ -24,7 +24,7 @@
     "sky_color": 7254527,
     "water_color": 4159204,
     "water_fog_color": 329011,
-    "grass_color": 14863456
+    "grass_color": 14080095
   },
   "features": [
     [
@@ -85,11 +85,13 @@
       "natures_spirit:patch_tall_grass_wooded_drylands",
       "natures_spirit:flower_xeric",
       "natures_spirit:patch_grass_field",
+      "minecraft:forest_flowers",
       "natures_spirit:rooted_desert_turnip_placed",
       "natures_spirit:patch_xeric_grass",
-      "natures_spirit:sparse_olive_placed",
+      "natures_spirit:olive_placed",
       "natures_spirit:dense_cedar_placed",
       "natures_spirit:cedar_bush_placed",
+      "natures_spirit:travertine_block_feature",
       "minecraft:patch_dead_bush_2",
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",

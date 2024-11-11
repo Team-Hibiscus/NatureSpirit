@@ -3,6 +3,7 @@ package net.hibiscus.naturespirit.registration;
 import com.google.common.collect.ImmutableList;
 import java.util.List;
 import java.util.Optional;
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.hibiscus.naturespirit.NatureSpirit;
 
 import static net.hibiscus.naturespirit.NatureSpirit.MOD_ID;
@@ -416,6 +417,7 @@ public class NSWoods {
   }
 
   public static void registerWoods() {
+    FlammableBlockRegistry.getDefaultInstance().add(OLIVE_BRANCH, 6, 20);
     NSMiscBlocks.registerMiscBlocks();
   }
 }

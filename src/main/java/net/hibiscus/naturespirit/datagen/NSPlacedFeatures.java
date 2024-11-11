@@ -401,7 +401,7 @@ public class NSPlacedFeatures {
     registerKey(context,
         CEDAR_PLACED,
         configuredFeatureRegistryEntryLookup.getOrThrow(NSConfiguredFeatures.CEDAR_TREE_SPAWN),
-        NoiseBasedCountPlacementModifier.of(3, 60, .25F),
+        NoiseBasedCountPlacementModifier.of(1, 60, -.25F),
         SquarePlacementModifier.of(),
         TREE_THRESHOLD,
         PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP,
