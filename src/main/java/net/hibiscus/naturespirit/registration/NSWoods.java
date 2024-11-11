@@ -16,6 +16,7 @@ import net.hibiscus.naturespirit.items.CoconutHalfItem;
 import static net.hibiscus.naturespirit.registration.NSRegistryHelper.*;
 
 import net.hibiscus.naturespirit.registration.sets.WoodSet;
+import net.hibiscus.naturespirit.registration.sets.WoodSet.WoodPreset;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -321,7 +322,7 @@ public class NSWoods {
       CEDAR.getButton(),
       CEDAR.getSapling(),
       () -> NSBoatTypes.LARCH,
-      WoodSet.WoodPreset.FROSTABLE,
+      WoodPreset.DEFAULT,
       false,
       NSConfiguredFeatures.LARCH_TREE
   );

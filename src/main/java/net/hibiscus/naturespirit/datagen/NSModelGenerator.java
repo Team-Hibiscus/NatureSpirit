@@ -558,7 +558,7 @@ class NSModelGenerator extends FabricModelProvider {
             .register(6, BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(CHEESE_BLOCK, "_slice6")))));
     blockStateModelGenerator.excludeFromSimpleItemModelGeneration(CHEESE_BLOCK);
     blockStateModelGenerator.blockStateCollector.accept(createSingletonBlockState(CHEESE_CAULDRON,
-        Models.TEMPLATE_CAULDRON_FULL.upload(CHEESE_CAULDRON, TextureMap.cauldron(TextureMap.getId(CHEESE_BLOCK)), blockStateModelGenerator.modelCollector)));
+        Models.TEMPLATE_CAULDRON_FULL.upload(CHEESE_CAULDRON, TextureMap.cauldron(TextureMap.getId(CHEESE_BLOCK).withSuffixedPath("_top")), blockStateModelGenerator.modelCollector)));
     blockStateModelGenerator.excludeFromSimpleItemModelGeneration(CHEESE_CAULDRON);
   }
 

@@ -61,9 +61,7 @@ public interface NSCauldronBehavior {
             hand,
             stack,
             new ItemStack(NSMiscBlocks.CHEESE_BUCKET),
-            (statex) -> {
-              return true;
-            },
+            (statex) -> true,
             SoundEvents.ITEM_BUCKET_FILL
         )
     );

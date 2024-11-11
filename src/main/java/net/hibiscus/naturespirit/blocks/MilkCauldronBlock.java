@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class MilkCauldronBlock extends AbstractCauldronBlock {
 
-  public static BooleanProperty AGE_INTO_CHEESE = BooleanProperty.of("age_into_cheese");
+  public final BooleanProperty AGE_INTO_CHEESE = BooleanProperty.of("age_into_cheese");
 
   public MilkCauldronBlock(Settings settings) {
     super(settings, NSCauldronBehavior.MILK_CAULDRON_BEHAVIOR);
