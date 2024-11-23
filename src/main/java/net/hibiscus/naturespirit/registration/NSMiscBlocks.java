@@ -408,7 +408,7 @@ public class NSMiscBlocks {
            0.4f
    );
 
-   public static final Block AZOLLA = registerTransparentBlock("azolla",
+   public static final Block AZOLLA = registerTransparentBlockWithoutTab("azolla",
            new AzollaBlock(FabricBlockSettings
                    .create()
                    .mapColor(MapColor.GREEN)
@@ -561,7 +561,7 @@ public class NSMiscBlocks {
            ItemGroups.NATURAL
    );
 
-   public static final Block LOTUS_FLOWER = NSRegistryHelper.registerTransparentBlock("lotus_flower",
+   public static final Block LOTUS_FLOWER = NSRegistryHelper.registerTransparentBlockWithoutTab("lotus_flower",
            new LotusFlowerBlock(FabricBlockSettings
                    .create()
                    .mapColor(MapColor.PINK)

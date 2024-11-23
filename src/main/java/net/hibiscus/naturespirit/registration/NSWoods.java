@@ -189,14 +189,14 @@ public class NSWoods {
    );
 
    public static final Block XERIC_THATCH = registerBlock("xeric_thatch",
-           new Block(FabricBlockSettings.create().mapColor(MapColor.YELLOW).strength(0.4F).sounds(BlockSoundGroup.GRASS)), NSItemGroups.NS_ITEM_GROUP, GHAF.getChestBoatItem());
+           new Block(FabricBlockSettings.create().mapColor(MapColor.YELLOW).strength(0.4F).sounds(BlockSoundGroup.GRASS)), GHAF.getChestBoatItem());
    public static final Block XERIC_THATCH_STAIRS = registerBlock(
            "xeric_thatch_stairs",
-           new StairsBlock(XERIC_THATCH.getDefaultState(), FabricBlockSettings.copy(XERIC_THATCH)), NSItemGroups.NS_ITEM_GROUP
+           new StairsBlock(XERIC_THATCH.getDefaultState(), FabricBlockSettings.copy(XERIC_THATCH))
    );
-   public static final Block XERIC_THATCH_SLAB = registerBlock("xeric_thatch_slab", new SlabBlock(FabricBlockSettings.create().mapColor(MapColor.YELLOW).sounds(BlockSoundGroup.GRASS).strength(0.4f)), NSItemGroups.NS_ITEM_GROUP);
+   public static final Block XERIC_THATCH_SLAB = registerBlock("xeric_thatch_slab", new SlabBlock(FabricBlockSettings.create().mapColor(MapColor.YELLOW).sounds(BlockSoundGroup.GRASS).strength(0.4f)));
    public static final Block XERIC_THATCH_CARPET = registerBlock("xeric_thatch_carpet",
-           new CarpetBlock(FabricBlockSettings.create().mapColor(MapColor.YELLOW).strength(0F).pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.GRASS)), NSItemGroups.NS_ITEM_GROUP
+           new CarpetBlock(FabricBlockSettings.create().mapColor(MapColor.YELLOW).strength(0F).pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.GRASS))
    );
    public static final WoodSet PALO_VERDE = new WoodSet(
            new Identifier(MOD_ID, "palo_verde"),
@@ -230,34 +230,34 @@ public class NSWoods {
    );
 
    public static final Block COCONUT_THATCH = registerBlock("coconut_thatch",
-           new Block(FabricBlockSettings.create().mapColor(MapColor.LIGHT_GRAY).strength(0.4F).sounds(BlockSoundGroup.GRASS)), NSItemGroups.NS_ITEM_GROUP, COCONUT.getChestBoatItem());
+           new Block(FabricBlockSettings.create().mapColor(MapColor.LIGHT_GRAY).strength(0.4F).sounds(BlockSoundGroup.GRASS)), COCONUT.getChestBoatItem());
    public static final Block COCONUT_THATCH_STAIRS = registerBlock(
            "coconut_thatch_stairs",
-           new StairsBlock(COCONUT_THATCH.getDefaultState(), FabricBlockSettings.copy(COCONUT_THATCH)), NSItemGroups.NS_ITEM_GROUP
+           new StairsBlock(COCONUT_THATCH.getDefaultState(), FabricBlockSettings.copy(COCONUT_THATCH))
    );
-   public static final Block COCONUT_THATCH_SLAB = registerBlock("coconut_thatch_slab", new SlabBlock(FabricBlockSettings.create().mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.GRASS).strength(0.4f)), NSItemGroups.NS_ITEM_GROUP);
+   public static final Block COCONUT_THATCH_SLAB = registerBlock("coconut_thatch_slab", new SlabBlock(FabricBlockSettings.create().mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.GRASS).strength(0.4f)));
    public static final Block COCONUT_THATCH_CARPET = registerBlock("coconut_thatch_carpet",
-           new CarpetBlock(FabricBlockSettings.create().mapColor(MapColor.LIGHT_GRAY).strength(0F).pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.GRASS)), NSItemGroups.NS_ITEM_GROUP
+           new CarpetBlock(FabricBlockSettings.create().mapColor(MapColor.LIGHT_GRAY).strength(0F).pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.GRASS))
    );
    public static final Block COCONUT_BLOCK = registerPlantBlock("coconut", new CoconutBlock(
            FabricBlockSettings.create().strength(1.0F).sounds(BlockSoundGroup.GRASS).nonOpaque().pistonBehavior(PistonBehavior.DESTROY)
-   ), NSItemGroups.NS_ITEM_GROUP, Items.SWEET_BERRIES, 0.2F);
+   ), Items.SWEET_BERRIES, 0.2F);
    public static final Block COCONUT_SPROUT = registerPlantBlock("coconut_sprout", new SproutingCoconutBlock(
            new CoconutSaplingGenerator(),
            FabricBlockSettings.create().strength(1.0F).sounds(BlockSoundGroup.GRASS).nonOpaque().pistonBehavior(PistonBehavior.DESTROY)
-   ), NSItemGroups.NS_ITEM_GROUP, PALO_VERDE.getSapling(), 0.2F);
+   ), PALO_VERDE.getSapling(), 0.2F);
    public static final FoodComponent COCONUT_COMPONENT = (new FoodComponent.Builder()).hunger(6).saturationModifier(0.6F).build();
 
    public static final Item COCONUT_SHELL = registerPlantItem("coconut_shell",
            new Item(new FabricItemSettings()),
-           NSItemGroups.NS_ITEM_GROUP,
+           
            Items.BOWL,
            ItemGroups.INGREDIENTS,
            0.1F
    );
    public static final Item COCONUT_HALF = registerPlantItem("coconut_half",
            new CoconutHalfItem(new FabricItemSettings().food(COCONUT_COMPONENT), COCONUT_SHELL),
-           NSItemGroups.NS_ITEM_GROUP,
+           
            Items.BEETROOT,
            ItemGroups.FOOD_AND_DRINK,
            0.1F
@@ -294,14 +294,14 @@ public class NSWoods {
            false
    );
    public static final Block EVERGREEN_THATCH = registerBlock("evergreen_thatch",
-           new Block(FabricBlockSettings.create().mapColor(MapColor.LIGHT_GRAY).strength(0.4F).sounds(BlockSoundGroup.GRASS)), NSItemGroups.NS_ITEM_GROUP, LARCH.getChestBoatItem());
+           new Block(FabricBlockSettings.create().mapColor(MapColor.LIGHT_GRAY).strength(0.4F).sounds(BlockSoundGroup.GRASS)), LARCH.getChestBoatItem());
    public static final Block EVERGREEN_THATCH_STAIRS = registerBlock(
            "evergreen_thatch_stairs",
-           new StairsBlock(EVERGREEN_THATCH.getDefaultState(), FabricBlockSettings.copy(EVERGREEN_THATCH)), NSItemGroups.NS_ITEM_GROUP
+           new StairsBlock(EVERGREEN_THATCH.getDefaultState(), FabricBlockSettings.copy(EVERGREEN_THATCH))
    );
-   public static final Block EVERGREEN_THATCH_SLAB = registerBlock("evergreen_thatch_slab", new SlabBlock(FabricBlockSettings.create().mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.GRASS).strength(0.4f)), NSItemGroups.NS_ITEM_GROUP);
+   public static final Block EVERGREEN_THATCH_SLAB = registerBlock("evergreen_thatch_slab", new SlabBlock(FabricBlockSettings.create().mapColor(MapColor.LIGHT_GRAY).sounds(BlockSoundGroup.GRASS).strength(0.4f)));
    public static final Block EVERGREEN_THATCH_CARPET = registerBlock("evergreen_thatch_carpet",
-           new CarpetBlock(FabricBlockSettings.create().mapColor(MapColor.LIGHT_GRAY).strength(0F).pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.GRASS)), NSItemGroups.NS_ITEM_GROUP
+           new CarpetBlock(FabricBlockSettings.create().mapColor(MapColor.LIGHT_GRAY).strength(0F).pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.GRASS))
    );
 
       public static final WoodSet MAHOGANY = new WoodSet(

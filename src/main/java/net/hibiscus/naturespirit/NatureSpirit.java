@@ -155,7 +155,6 @@ public class NatureSpirit implements ModInitializer {
       NSBiomes.registerBiomes();
       NSItemGroups.registerItemGroup();
       NSWoods.registerWoods();
-      NSMiscBlocks.registerMiscBlocks();
       NSColoredBlocks.registerColoredBlocks();
       NSVillagers.registerVillagers();
       if (FabricLoader.getInstance().isModLoaded("dye_depot")) {
