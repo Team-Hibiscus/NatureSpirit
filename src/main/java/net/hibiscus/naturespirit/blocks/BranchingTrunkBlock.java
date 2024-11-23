@@ -29,10 +29,11 @@ public class BranchingTrunkBlock extends ConnectingBlock implements Waterloggabl
 
   public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
 
+  public static final BooleanProperty SHEARED = BooleanProperty.of("sheared");
   public BranchingTrunkBlock(Settings settings) {
     super(0.3125F, settings);
     this.setDefaultState(
-        this.stateManager.getDefaultState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(UP, false).with(DOWN, false).with(WATERLOGGED, false));
+        this.stateManager.getDefaultState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(UP, false).with(DOWN, false).with(WATERLOGGED, false).with(SHEARED, false));
   }
 
   @Override
@@ -48,31 +49,23 @@ public class BranchingTrunkBlock extends ConnectingBlock implements Waterloggabl
     BlockState blockState4 = world.getBlockState(pos.east());
     BlockState blockState5 = world.getBlockState(pos.south());
     BlockState blockState6 = world.getBlockState(pos.west());
-    return this.getDefaultState().with(DOWN,
-        blockState.isIn(BlockTags.LEAVES) || (blockState.getBlock() instanceof BranchingTrunkBlock && !(blockState.getBlock() instanceof GrowingBranchingTrunkBlock)) || (
-            blockState.getBlock() instanceof GrowingBranchingTrunkBlock && !blockState.get(GrowingBranchingTrunkBlock.SHEARED)) || blockState.isSideSolid(world, pos, Direction.UP,
-            SideShapeType.CENTER)
-    ).with(
+    return this.getDefaultState().with(
+        DOWN,
+        blockState.isIn(BlockTags.LEAVES) || (blockState.getBlock() instanceof BranchingTrunkBlock && !blockState.get(SHEARED)) || blockState.isSideSolid(world, pos,
+            Direction.UP, SideShapeType.CENTER)).with(
         UP,
-        blockState2.isIn(BlockTags.LEAVES) || (blockState2.getBlock() instanceof BranchingTrunkBlock && !(blockState2.getBlock() instanceof GrowingBranchingTrunkBlock)) || (
-            blockState2.getBlock() instanceof GrowingBranchingTrunkBlock && !blockState2.get(GrowingBranchingTrunkBlock.SHEARED)) || blockState2.isSideSolid(world, pos,
+        blockState2.isIn(BlockTags.LEAVES) || (blockState2.getBlock() instanceof BranchingTrunkBlock && !blockState2.get(SHEARED)) || blockState2.isSideSolid(world, pos,
             Direction.DOWN, SideShapeType.CENTER) || blockState2.isIn(
-            NSTags.Blocks.SUCCULENTS)
-    ).with(NORTH,
-        blockState3.isIn(BlockTags.LEAVES) || (blockState3.getBlock() instanceof BranchingTrunkBlock && !(blockState3.getBlock() instanceof GrowingBranchingTrunkBlock)) || (
-            blockState3.getBlock() instanceof GrowingBranchingTrunkBlock && !blockState3.get(GrowingBranchingTrunkBlock.SHEARED)) || blockState3.isSideSolid(world, pos,
+            NSTags.Blocks.SUCCULENTS)).with(
+        NORTH, blockState3.isIn(BlockTags.LEAVES) || (blockState3.getBlock() instanceof BranchingTrunkBlock && !blockState3.get(SHEARED)) || blockState3.isSideSolid(world, pos,
             Direction.SOUTH, SideShapeType.CENTER)).with(
         EAST,
-        blockState4.isIn(BlockTags.LEAVES) || (blockState4.getBlock() instanceof BranchingTrunkBlock && !(blockState4.getBlock() instanceof GrowingBranchingTrunkBlock)) || (
-            blockState4.getBlock() instanceof GrowingBranchingTrunkBlock && !blockState4.get(GrowingBranchingTrunkBlock.SHEARED)) || blockState4.isSideSolid(world, pos,
-            Direction.WEST, SideShapeType.CENTER)
-    ).with(SOUTH,
-        blockState5.isIn(BlockTags.LEAVES) || (blockState5.getBlock() instanceof BranchingTrunkBlock && !(blockState5.getBlock() instanceof GrowingBranchingTrunkBlock)) || (
-            blockState5.getBlock() instanceof GrowingBranchingTrunkBlock && !blockState5.get(GrowingBranchingTrunkBlock.SHEARED)) || blockState5.isSideSolid(world, pos,
+        blockState4.isIn(BlockTags.LEAVES) || (blockState4.getBlock() instanceof BranchingTrunkBlock && !blockState4.get(SHEARED)) || blockState4.isSideSolid(world, pos,
+            Direction.WEST, SideShapeType.CENTER)).with(
+        SOUTH, blockState5.isIn(BlockTags.LEAVES) || (blockState5.getBlock() instanceof BranchingTrunkBlock && !blockState5.get(SHEARED)) || blockState5.isSideSolid(world, pos,
             Direction.NORTH, SideShapeType.CENTER)).with(
         WEST,
-        blockState6.isIn(BlockTags.LEAVES) || (blockState6.getBlock() instanceof BranchingTrunkBlock && !(blockState6.getBlock() instanceof GrowingBranchingTrunkBlock)) || (
-            blockState6.getBlock() instanceof GrowingBranchingTrunkBlock && !blockState6.get(GrowingBranchingTrunkBlock.SHEARED)) || blockState6.isSideSolid(world, pos,
+        blockState6.isIn(BlockTags.LEAVES) || (blockState6.getBlock() instanceof BranchingTrunkBlock && !blockState6.get(SHEARED)) || blockState6.isSideSolid(world, pos,
             Direction.EAST, SideShapeType.CENTER)
     );
   }
@@ -131,7 +124,7 @@ public class BranchingTrunkBlock extends ConnectingBlock implements Waterloggabl
 
   @Override
   protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-    builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN, WATERLOGGED);
+    builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN, WATERLOGGED, SHEARED);
   }
 
   @Override

@@ -33,7 +33,6 @@ import net.minecraft.world.event.GameEvent;
 
 public class GrowingBranchingTrunkBlock extends BranchingTrunkBlock implements Fertilizable {
 
-  public static final BooleanProperty SHEARED = BooleanProperty.of("sheared");
 
   public GrowingBranchingTrunkBlock(Settings settings) {
     super(settings);

@@ -45,9 +45,7 @@ public interface NSCauldronBehavior {
             hand,
             stack,
             new ItemStack(Items.MILK_BUCKET),
-            (statex) -> {
-              return true;
-            },
+            (statex) -> true,
             SoundEvents.ENTITY_COW_MILK
         )
     );

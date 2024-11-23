@@ -1,4 +1,4 @@
-// 1.21.1	2024-11-11T14:06:29.2339538	Nature's Spirit/Tags for minecraft:item
+// 1.21.1	2024-11-18T23:19:17.8846471	Nature's Spirit/Tags for minecraft:item
 eab68402a4e7fcd50981c02001ffd83dae4d4c49 data\natures_spirit\tags\item\joshua_logs.json
 fbc07fa9c51cb29a52ffc0583255355312f150f9 data\minecraft\tags\item\coal_ores.json
 2c0b3c4857b2a26ca3a4af87751fd5322d0313f7 data\minecraft\tags\item\hanging_signs.json
@@ -26,8 +26,8 @@ d616feff1271651b20152b3ada8919315bc8dc8b data\minecraft\tags\item\walls.json
 c9b5d6d6d21ae1bd7d96d75c26425ce7d55d4f0e data\minecraft\tags\item\smelts_to_glass.json
 2a0c22c12a9dcb347437431bb28d897e8a9843e1 data\minecraft\tags\item\tall_flowers.json
 529a843612d829b8f4e50962d486bea26ece7fb9 data\minecraft\tags\item\stone_crafting_materials.json
-9c7dd269774e126d910b10a80b2cdccdf4f33e6a data\minecraft\tags\item\small_flowers.json
 42566dd7e2f6290e8bbbee1348ebb62602f7d3dc data\natures_spirit\tags\item\mahogany_logs.json
+9c7dd269774e126d910b10a80b2cdccdf4f33e6a data\minecraft\tags\item\small_flowers.json
 6fcfda6cbf95727f7fc26f48fb200136516349ba data\minecraft\tags\item\wooden_fences.json
 3454f45223c112a6a3e047fa111c252ffc2f4198 data\natures_spirit\tags\item\aspen_logs.json
 09dbbda287df77e8ed3198133d4ca017c9748add data\natures_spirit\tags\item\palo_verde_logs.json
@@ -40,9 +40,9 @@ e1b8d30e6b91a446df439d7ef8817272d5b489ea data\minecraft\tags\item\iron_ores.json
 4755fd13184cebf44214700b58073927b09bd104 data\natures_spirit\tags\item\evergreen_leaves.json
 6bc417506b14e04e51569ac52612cb62eaf5bb79 data\minecraft\tags\item\stairs.json
 80bddc8f98a3a355142fb2d207787f3c4ad6de4d data\natures_spirit\tags\item\alluaudia_blocks.json
-271e20f3e4d15ea04df20ea7d2c16600beeee5d8 data\minecraft\tags\item\leaves.json
-3bf892437850cb0f4f20797255a4baddfd0ee95f data\natures_spirit\tags\item\olive_logs.json
+f165010a0c3dc548d0de081238a1e4f2e39f6787 data\minecraft\tags\item\leaves.json
 a7764c1f24484fb156c7ca33315210aa3ba9a4d7 data\natures_spirit\tags\item\cypress_logs.json
+3bf892437850cb0f4f20797255a4baddfd0ee95f data\natures_spirit\tags\item\olive_logs.json
 db4314b9140e8bf51ee0581afab727742852b4c8 data\natures_spirit\tags\item\willow_logs.json
 530e46c6f22e13aabf30abab551f7d3130cac7bf data\minecraft\tags\item\diamond_ores.json
 0c79637aa00eb227f04b461170cade15b2029b2b data\minecraft\tags\item\wooden_slabs.json

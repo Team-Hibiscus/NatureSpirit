@@ -91,7 +91,7 @@ public class NSConfig {
   public NSConfig() {}
 
   public static void main() throws IOException {
-    Path configPath = Path.of(FabricLoader.getInstance().getConfigDir().toString(), "natures_spirit_2.0.0.4-1.21.1.json");
+    Path configPath = Path.of(FabricLoader.getInstance().getConfigDir().toString(), "natures_spirit_2.0.0.5-1.21.1.json");
     try {
       if (configPath.toFile().createNewFile()) {
         JsonObject jsonObjects = getJsonObject();

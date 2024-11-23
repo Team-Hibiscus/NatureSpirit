@@ -283,9 +283,9 @@ public class WoodSet {
       });
     }
     if (woodPreset == WoodPreset.MAPLE) {
-      redLeaves = createParticleLeaves("red_", NSParticleTypes.RED_MAPLE_LEAVES_PARTICLE, 150);
-      orangeLeaves = createParticleLeaves("orange_", NSParticleTypes.ORANGE_MAPLE_LEAVES_PARTICLE, 150);
-      yellowLeaves = createParticleLeaves("yellow_", NSParticleTypes.YELLOW_MAPLE_LEAVES_PARTICLE, 150);
+      redLeaves = createParticleLeaves("red_", NSParticleTypes.RED_MAPLE_LEAVES_PARTICLE, 100);
+      orangeLeaves = createParticleLeaves("orange_", NSParticleTypes.ORANGE_MAPLE_LEAVES_PARTICLE, 100);
+      yellowLeaves = createParticleLeaves("yellow_", NSParticleTypes.YELLOW_MAPLE_LEAVES_PARTICLE, 100);
       redSapling = createSapling("red_",
           new SaplingGenerator(NatureSpirit.MOD_ID + "_" + this.getName(), Optional.empty(), Optional.of(NSConfiguredFeatures.RED_MAPLE_TREE), Optional.empty()));
       orangeSapling = createSapling("orange_",
@@ -455,7 +455,7 @@ public class WoodSet {
     this.configuredFeature2 = configuredFeature2;
     this.hasLargeTree = true;
     registerWood();
-    WoodHashMap.put(getName(), this);
+    WoodHashMap.put(this.getName(), this);
   }
 
   public Identifier getNameID() {

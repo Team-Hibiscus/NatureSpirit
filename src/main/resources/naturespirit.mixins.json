@@ -7,7 +7,6 @@
     "AnvilBlockMixin",
     "AxeItemMixin",
     "BrushItemMixin",
-    "CauldronBehaviorMixin",
     "CoralBlockBlockMixin",
     "StatsTypeAccessor",
     "SurfaceBuilderMixin",

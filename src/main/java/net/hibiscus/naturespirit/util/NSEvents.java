@@ -36,7 +36,7 @@ public class NSEvents {
         ).with(BranchingTrunkBlock.EAST, blockState.get(BranchingTrunkBlock.EAST)).with(BranchingTrunkBlock.WEST, blockState.get(BranchingTrunkBlock.WEST)).with(
             BranchingTrunkBlock.WATERLOGGED,
             blockState.get(BranchingTrunkBlock.WATERLOGGED)
-        );
+        ).with(BranchingTrunkBlock.SHEARED, blockState.get(BranchingTrunkBlock.SHEARED));
         world.playSound(player, blockPos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
         if (player instanceof ServerPlayerEntity) {
