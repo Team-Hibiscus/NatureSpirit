@@ -114,15 +114,13 @@ public class NSSurfaceRules {
         MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR,  MaterialRules.condition(MaterialRules.biome(NSBiomes.ARID_HIGHLANDS, NSBiomes.SHRUBBY_HIGHLANDS, NSBiomes.WOODY_HIGHLANDS, NSBiomes.BLOOMING_HIGHLANDS), MaterialRules.sequence(
                 MaterialRules.condition(above256, CHERT),
                 MaterialRules.condition(above70, MaterialRules.sequence(
-                    MaterialRules.condition(noiseCondition3, MaterialRules.sequence(
-                        MaterialRules.condition(MaterialRules.biome(NSBiomes.SHRUBBY_HIGHLANDS, NSBiomes.ARID_HIGHLANDS), SANDY_SOIL),
-                        MaterialRules.condition(MaterialRules.biome(NSBiomes.WOODY_HIGHLANDS, NSBiomes.BLOOMING_HIGHLANDS), GRASS)
-                    )),
+                    MaterialRules.condition(MaterialRules.biome(NSBiomes.SHRUBBY_HIGHLANDS, NSBiomes.ARID_HIGHLANDS), MaterialRules.condition(noiseCondition3, SANDY_SOIL)),
+                    MaterialRules.condition(MaterialRules.biome(NSBiomes.WOODY_HIGHLANDS, NSBiomes.BLOOMING_HIGHLANDS), MaterialRules.condition(noiseCondition3, GRASS)),
                     MaterialRules.terracottaBands(),
-                    MaterialRules.condition(MaterialRules.not(above80), MaterialRules.condition(noiseCondition6, MaterialRules.sequence(
-                        MaterialRules.condition(MaterialRules.biome(NSBiomes.SHRUBBY_HIGHLANDS), GRASS),
-                        MaterialRules.condition(MaterialRules.biome(NSBiomes.WOODY_HIGHLANDS, NSBiomes.BLOOMING_HIGHLANDS), SANDY_SOIL)
-                    )))
+                    MaterialRules.condition(MaterialRules.not(above80), MaterialRules.sequence(
+                        MaterialRules.condition(MaterialRules.biome(NSBiomes.SHRUBBY_HIGHLANDS), MaterialRules.condition(noiseCondition6, GRASS)),
+                        MaterialRules.condition(MaterialRules.biome(NSBiomes.WOODY_HIGHLANDS, NSBiomes.BLOOMING_HIGHLANDS), MaterialRules.condition(noiseCondition6, SANDY_SOIL))
+                    ))
                 )),
                 MaterialRules.condition(materialCondition5, MaterialRules.sequence(MaterialRules.condition(MaterialRules.STONE_DEPTH_CEILING, CHERT), MaterialRules.sequence(
                     MaterialRules.condition(MaterialRules.biome(NSBiomes.SHRUBBY_HIGHLANDS), SANDY_SOIL),
@@ -168,17 +166,13 @@ public class NSSurfaceRules {
             MaterialRules.sequence(
                 MaterialRules.condition(STONE_DEPTH_FLOOR_WITH_SURFACE_DEPTH,
                     MaterialRules.sequence(
-                        MaterialRules.condition(noiseCondition4,
-                            MaterialRules.sequence(
-                                MaterialRules.condition(MaterialRules.biome(NSBiomes.XERIC_PLAINS, NSBiomes.CEDAR_THICKET), travertineOrSoil),
-                                MaterialRules.condition(MaterialRules.biome(NSBiomes.ARID_SAVANNA), chertOrSoil),
-                                MaterialRules.condition(MaterialRules.biome(NSBiomes.WOODED_DRYLANDS), pinkSandstoneOrSoil),
-                                MaterialRules.condition(MaterialRules.biome(NSBiomes.SCORCHED_DUNES), redSandstoneOrRedSand),
-                                MaterialRules.condition(MaterialRules.biome(NSBiomes.TUNDRA, NSBiomes.BOREAL_TAIGA), stoneOrMoss)
-                            )),
-                        MaterialRules.condition(MaterialRules.biome(NSBiomes.SCORCHED_DUNES), chertOrSoil),
+                        MaterialRules.condition(MaterialRules.biome(NSBiomes.XERIC_PLAINS, NSBiomes.CEDAR_THICKET), MaterialRules.condition(noiseCondition4, travertineOrSoil)),
+                        MaterialRules.condition(MaterialRules.biome(NSBiomes.ARID_SAVANNA), MaterialRules.condition(noiseCondition4, chertOrSoil)),
+                        MaterialRules.condition(MaterialRules.biome(NSBiomes.WOODED_DRYLANDS), MaterialRules.condition(noiseCondition4, pinkSandstoneOrSoil)),
+                        MaterialRules.condition(MaterialRules.biome(NSBiomes.TUNDRA, NSBiomes.BOREAL_TAIGA), MaterialRules.condition(noiseCondition4, stoneOrMoss)),
+                        MaterialRules.condition(MaterialRules.biome(NSBiomes.SCORCHED_DUNES), MaterialRules.sequence(MaterialRules.condition(noiseCondition4, redSandstoneOrRedSand), chertOrSoil)),
                         MaterialRules.condition(MaterialRules.biome(NSBiomes.TROPICAL_SHORES, NSBiomes.DRYLANDS), pinkSandstoneOrPinkSand),
-                        MaterialRules.condition(noiseCondition5, MaterialRules.condition(MaterialRules.biome(NSBiomes.SNOWY_FIR_FOREST, NSBiomes.TUNDRA), stoneOrSnow)),
+                        MaterialRules.condition(MaterialRules.biome(NSBiomes.SNOWY_FIR_FOREST, NSBiomes.TUNDRA), MaterialRules.condition(noiseCondition5, stoneOrSnow)),
                         MaterialRules.condition(MaterialRules.stoneDepth(8, true, VerticalSurfaceType.FLOOR),
                             MaterialRules.condition(MaterialRules.biome(NSBiomes.LIVELY_DUNES, NSBiomes.BLOOMING_DUNES, NSBiomes.CHAPARRAL), MaterialRules.terracottaBands())),
                         MaterialRules.condition(MaterialRules.biome(NSBiomes.CHAPARRAL), SANDY_SOIL)
@@ -193,13 +187,10 @@ public class NSSurfaceRules {
                 ))
             )
         );
-    MaterialRules.MaterialRule chaparralRule = MaterialRules.condition(belowWater, MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.PATCH, 0.0),
-                MaterialRules.sequence(
-                    MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, MaterialRules.condition(MaterialRules.biome(NSBiomes.CHAPARRAL), GRASS)),
-                    MaterialRules.condition(STONE_DEPTH_FLOOR_DOWN_1, MaterialRules.condition(MaterialRules.biome(NSBiomes.CHAPARRAL), DIRT))
-                )
-            )
-    );
+    MaterialRules.MaterialRule chaparralRule = MaterialRules.condition(belowWater, MaterialRules.sequence(
+        MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, MaterialRules.condition(MaterialRules.biome(NSBiomes.CHAPARRAL), MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.PATCH, 0.0), GRASS))),
+        MaterialRules.condition(STONE_DEPTH_FLOOR_DOWN_1, MaterialRules.condition(MaterialRules.biome(NSBiomes.CHAPARRAL), MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.PATCH, 0.0), DIRT)))
+    ));
 
     MaterialRules.MaterialRule tropicalBasinRule = MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, 
         MaterialRules.condition(above60, MaterialRules.condition(MaterialRules.not(above63),
@@ -219,21 +210,21 @@ public class NSSurfaceRules {
         );
     MaterialRules.MaterialRule redwoodForestRule =
         MaterialRules.sequence(
-            MaterialRules.condition(STONE_DEPTH_FLOOR_DOWN_1_WITH_DEPTH, 
-                MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE, 1.75 / 8.25, Double.MAX_VALUE),
-                    MaterialRules.condition(MaterialRules.biome(NSBiomes.REDWOOD_FOREST, NSBiomes.MAPLE_WOODLANDS), COARSE_DIRT))),
+            MaterialRules.condition(STONE_DEPTH_FLOOR_DOWN_1_WITH_DEPTH,
+                MaterialRules.condition(MaterialRules.biome(NSBiomes.REDWOOD_FOREST, NSBiomes.MAPLE_WOODLANDS),
+                    MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE, 1.75 / 8.25, Double.MAX_VALUE), COARSE_DIRT))),
             MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR,
                 MaterialRules.condition(materialCondition7,
-                    MaterialRules.condition(MaterialRules.biome(NSBiomes.REDWOOD_FOREST, NSBiomes.MAPLE_WOODLANDS), MaterialRules.sequence(
-                      MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE, -.95 / 8.25, Double.MAX_VALUE), PODZOL),
+                    MaterialRules.condition(MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE, -.95 / 8.25, Double.MAX_VALUE), MaterialRules.sequence(
+                      MaterialRules.condition(MaterialRules.biome(NSBiomes.REDWOOD_FOREST, NSBiomes.MAPLE_WOODLANDS), PODZOL),
                       GRASS
                 )))),
             MaterialRules.condition(STONE_DEPTH_FLOOR_DOWN_1_WITH_DEPTH, MaterialRules.condition(MaterialRules.biome(NSBiomes.REDWOOD_FOREST, NSBiomes.MAPLE_WOODLANDS), DIRT))
         );
 
     MaterialRules.MaterialRule alpineRule = MaterialRules.sequence(
-            MaterialRules.condition(STONE_DEPTH_FLOOR_DOWN_1_WITH_DEPTH, MaterialRules.condition(noiseCondition2,
-                MaterialRules.condition(MaterialRules.biome(NSBiomes.ALPINE_CLEARINGS, NSBiomes.ALPINE_HIGHLANDS, NSBiomes.CONIFEROUS_COVERT, NSBiomes.HEATHER_FIELDS, NSBiomes.GOLDEN_WILDS, NSBiomes.SUGI_FOREST), COARSE_DIRT))),
+            MaterialRules.condition(STONE_DEPTH_FLOOR_DOWN_1_WITH_DEPTH, MaterialRules.condition(MaterialRules.biome(NSBiomes.ALPINE_CLEARINGS, NSBiomes.ALPINE_HIGHLANDS, NSBiomes.CONIFEROUS_COVERT, NSBiomes.HEATHER_FIELDS, NSBiomes.GOLDEN_WILDS, NSBiomes.SUGI_FOREST),
+                MaterialRules.condition(noiseCondition2, COARSE_DIRT))),
             MaterialRules.condition(MaterialRules.STONE_DEPTH_FLOOR, MaterialRules.condition(materialCondition7,
                 MaterialRules.condition(MaterialRules.biome(NSBiomes.ALPINE_CLEARINGS, NSBiomes.ALPINE_HIGHLANDS, NSBiomes.CONIFEROUS_COVERT, NSBiomes.HEATHER_FIELDS, NSBiomes.GOLDEN_WILDS, NSBiomes.SUGI_FOREST), GRASS))));
 
