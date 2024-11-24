@@ -1,4 +1,4 @@
-// 1.21.1	2024-11-18T23:19:17.8846471	Nature's Spirit/Tags for minecraft:item
+// 1.21.1	2024-11-23T18:50:53.2020118	Nature's Spirit/Tags for minecraft:item
 eab68402a4e7fcd50981c02001ffd83dae4d4c49 data\natures_spirit\tags\item\joshua_logs.json
 fbc07fa9c51cb29a52ffc0583255355312f150f9 data\minecraft\tags\item\coal_ores.json
 2c0b3c4857b2a26ca3a4af87751fd5322d0313f7 data\minecraft\tags\item\hanging_signs.json
@@ -41,8 +41,8 @@ e1b8d30e6b91a446df439d7ef8817272d5b489ea data\minecraft\tags\item\iron_ores.json
 6bc417506b14e04e51569ac52612cb62eaf5bb79 data\minecraft\tags\item\stairs.json
 80bddc8f98a3a355142fb2d207787f3c4ad6de4d data\natures_spirit\tags\item\alluaudia_blocks.json
 f165010a0c3dc548d0de081238a1e4f2e39f6787 data\minecraft\tags\item\leaves.json
-a7764c1f24484fb156c7ca33315210aa3ba9a4d7 data\natures_spirit\tags\item\cypress_logs.json
 3bf892437850cb0f4f20797255a4baddfd0ee95f data\natures_spirit\tags\item\olive_logs.json
+a7764c1f24484fb156c7ca33315210aa3ba9a4d7 data\natures_spirit\tags\item\cypress_logs.json
 db4314b9140e8bf51ee0581afab727742852b4c8 data\natures_spirit\tags\item\willow_logs.json
 530e46c6f22e13aabf30abab551f7d3130cac7bf data\minecraft\tags\item\diamond_ores.json
 0c79637aa00eb227f04b461170cade15b2029b2b data\minecraft\tags\item\wooden_slabs.json

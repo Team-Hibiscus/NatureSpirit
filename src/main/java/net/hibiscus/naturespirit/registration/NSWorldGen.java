@@ -40,6 +40,7 @@ import net.hibiscus.naturespirit.world.tree_decorator.RedwoodBranchTreeDecorator
 import net.hibiscus.naturespirit.world.tree_decorator.SnowTreeDecorator;
 import net.hibiscus.naturespirit.world.tree_decorator.WisteriaVinesTreeDecorator;
 import net.hibiscus.naturespirit.world.trunk.BanyanTrunkPlacer;
+import net.hibiscus.naturespirit.world.trunk.BushTrunkPlacer;
 import net.hibiscus.naturespirit.world.trunk.CoconutTrunkPlacer;
 import net.hibiscus.naturespirit.world.trunk.GhafTrunkPlacer;
 import net.hibiscus.naturespirit.world.trunk.MahoganyTrunkPlacer;
@@ -77,6 +78,7 @@ import net.minecraft.world.gen.trunk.TrunkPlacerType;
 public class NSWorldGen {
 
   public static final TrunkPlacerType<WisteriaTrunkPlacer> WISTERIA_TRUNK_PLACER = registerTrunkPlacer("wisteria_trunk_placer", WisteriaTrunkPlacer.CODEC);
+  public static final TrunkPlacerType<BushTrunkPlacer> BUSH_TRUNK_PLACER = registerTrunkPlacer("bush_trunk_placer", BushTrunkPlacer.CODEC);
   public static final TrunkPlacerType<SugiTrunkPlacer> SUGI_TRUNK_PLACER = registerTrunkPlacer("sugi_trunk_placer", SugiTrunkPlacer.CODEC);
   public static final TrunkPlacerType<OliveTrunkPlacer> OLIVE_TRUNK_PLACER = registerTrunkPlacer("olive_trunk_placer", OliveTrunkPlacer.CODEC);
   public static final TrunkPlacerType<PaloVerdeTrunkPlacer> PALO_VERDE_TRUNK_PLACER = registerTrunkPlacer("palo_verde_trunk_placer", PaloVerdeTrunkPlacer.CODEC);

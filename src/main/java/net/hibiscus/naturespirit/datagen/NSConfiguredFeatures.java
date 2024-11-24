@@ -32,6 +32,7 @@ import net.hibiscus.naturespirit.world.tree_decorator.PolyporeTreeDecorator;
 import net.hibiscus.naturespirit.world.tree_decorator.RedwoodBranchTreeDecorator;
 import net.hibiscus.naturespirit.world.tree_decorator.SnowTreeDecorator;
 import net.hibiscus.naturespirit.world.tree_decorator.WisteriaVinesTreeDecorator;
+import net.hibiscus.naturespirit.world.trunk.BushTrunkPlacer;
 import net.hibiscus.naturespirit.world.trunk.CoconutTrunkPlacer;
 import net.hibiscus.naturespirit.world.trunk.GhafTrunkPlacer;
 import net.hibiscus.naturespirit.world.trunk.MahoganyTrunkPlacer;
@@ -721,7 +722,7 @@ public class NSConfiguredFeatures {
     );
 
     register(context, OAK_BUSH, Feature.TREE, new TreeFeatureConfig.Builder(BlockStateProvider.of(Blocks.OAK_LOG),
-        new StraightTrunkPlacer(1, 0, 0),
+        new BushTrunkPlacer(1, 0, 0),
         BlockStateProvider.of(Blocks.OAK_LEAVES),
         new BushFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(1), 2),
         new TwoLayersFeatureSize(0, 0, 0)
