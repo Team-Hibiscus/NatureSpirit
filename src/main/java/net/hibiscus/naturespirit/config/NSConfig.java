@@ -169,7 +169,7 @@ public class NSConfig {
       deepslate_generator = misc_features.get("deepslate_generator").getAsBoolean();
       sugi_and_stratified_pillars = misc_features.get("sugi_and_stratified_pillars").getAsBoolean();
       cheese_arrow = misc_features.get("cheese_arrow").getAsBoolean();
-      cheese_arrow = misc_features.get("creative_tab").getAsBoolean();
+      creative_tab = misc_features.get("creative_tab").getAsBoolean();
 
       vanilla_trees_toggle = datapack_toggles.get("vanilla_trees_toggle").getAsBoolean();
       birch_forest_toggle = datapack_toggles.get("birch_forest_toggle").getAsBoolean();

@@ -225,6 +225,7 @@ public class WoodSet {
       sapling = createSapling(saplingGenerator);
       pottedSapling = createPottedSapling(sapling);
       ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> entries.addAfter(saplingBefore, sapling.asItem()));
+      ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> entries.addAfter(Blocks.VINE, vines.asItem()));
       SaplingHashMap.put(getName(), new Block[]{sapling, pottedSapling});
       TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add(new TradeOffers.SellItemFactory(sapling, 5, 1, 8, 1)));
     }
