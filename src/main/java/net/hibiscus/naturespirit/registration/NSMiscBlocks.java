@@ -11,6 +11,7 @@ import static net.hibiscus.naturespirit.registration.NSRegistryHelper.registerTa
 import static net.hibiscus.naturespirit.registration.NSRegistryHelper.registerTransparentBlock;
 import static net.hibiscus.naturespirit.registration.NSRegistryHelper.registerTransparentBlockWithoutTab;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityType;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
@@ -582,7 +583,7 @@ public class NSMiscBlocks {
 
   public static final Block PAPER_BLOCK = registerBlock("paper_block", new Block(AbstractBlock.Settings.copy(NSWoods.SUGI.getPlanks())), Items.WARPED_BUTTON, ItemGroups.BUILDING_BLOCKS);
 
-  public static final Block PAPER_PANEL = registerBlock("paper_panel", new PaneBlock(AbstractBlock.Settings.copy(NSWoods.SUGI.getPlanks())), PAPER_BLOCK, ItemGroups.BUILDING_BLOCKS);
+  public static final Block PAPER_PANEL = registerBlock("paper_panel", new PaneBlock(AbstractBlock.Settings.copy(NSWoods.SUGI.getPlanks()).nonOpaque()), PAPER_BLOCK, ItemGroups.BUILDING_BLOCKS);
 
   public static final Block PAPER_DOOR = registerTransparentBlock("paper_door", new DoorBlock(PAPER_BLOCK_SET, AbstractBlock.Settings.copy(NSWoods.SUGI.getDoor())), PAPER_PANEL, ItemGroups.BUILDING_BLOCKS);
 
@@ -592,7 +593,7 @@ public class NSMiscBlocks {
 
   public static final Block FRAMED_PAPER_BLOCK = registerBlock("framed_paper_block", new Block(AbstractBlock.Settings.copy(NSWoods.SUGI.getPlanks())), PAPER_TRAPDOOR, ItemGroups.BUILDING_BLOCKS);
 
-  public static final Block FRAMED_PAPER_PANEL = registerBlock("framed_paper_panel", new PaneBlock(AbstractBlock.Settings.copy(NSWoods.SUGI.getPlanks())), FRAMED_PAPER_BLOCK, ItemGroups.BUILDING_BLOCKS);
+  public static final Block FRAMED_PAPER_PANEL = registerBlock("framed_paper_panel", new PaneBlock(AbstractBlock.Settings.copy(NSWoods.SUGI.getPlanks()).nonOpaque()), FRAMED_PAPER_BLOCK, ItemGroups.BUILDING_BLOCKS);
 
   public static final Block FRAMED_PAPER_DOOR = registerTransparentBlock("framed_paper_door", new DoorBlock(PAPER_BLOCK_SET, AbstractBlock.Settings.copy(NSWoods.SUGI.getDoor())), FRAMED_PAPER_PANEL, ItemGroups.BUILDING_BLOCKS);
 
@@ -602,7 +603,7 @@ public class NSMiscBlocks {
 
   public static final Block BLOOMING_PAPER_BLOCK = registerBlock("blooming_paper_block", new GlazedTerracottaBlock(AbstractBlock.Settings.copy(NSWoods.SUGI.getPlanks())), FRAMED_PAPER_TRAPDOOR, ItemGroups.BUILDING_BLOCKS);
 
-  public static final Block BLOOMING_PAPER_PANEL = registerBlock("blooming_paper_panel", new PaneBlock(AbstractBlock.Settings.copy(NSWoods.SUGI.getPlanks())), BLOOMING_PAPER_BLOCK, ItemGroups.BUILDING_BLOCKS);
+  public static final Block BLOOMING_PAPER_PANEL = registerBlock("blooming_paper_panel", new PaneBlock(AbstractBlock.Settings.copy(NSWoods.SUGI.getPlanks()).nonOpaque()), BLOOMING_PAPER_BLOCK, ItemGroups.BUILDING_BLOCKS);
 
   public static final Block BLOOMING_PAPER_DOOR = registerTransparentBlock("blooming_paper_door",
       new DoorBlock(PAPER_BLOCK_SET, AbstractBlock.Settings.copy(NSWoods.SUGI.getDoor())), BLOOMING_PAPER_PANEL, ItemGroups.BUILDING_BLOCKS);
@@ -676,5 +677,13 @@ public class NSMiscBlocks {
     CompostingChanceRegistry.INSTANCE.add(ORNATE_SUCCULENT_ITEM, .65F);
     CompostingChanceRegistry.INSTANCE.add(REGAL_SUCCULENT_ITEM, .65F);
     StrippableBlockRegistry.register(ALLUAUDIA_BUNDLE, STRIPPED_ALLUAUDIA_BUNDLE);
+
+    FabricBlockEntityType signEntity = BlockEntityType.SIGN;
+    signEntity.addSupportedBlock(PAPER_SIGN);
+    signEntity.addSupportedBlock(PAPER_WALL_SIGN);
+
+    FabricBlockEntityType hangingSignEntity = BlockEntityType.HANGING_SIGN;
+    hangingSignEntity.addSupportedBlock(PAPER_HANGING_SIGN);
+    hangingSignEntity.addSupportedBlock(PAPER_WALL_HANGING_SIGN);
   }
 }

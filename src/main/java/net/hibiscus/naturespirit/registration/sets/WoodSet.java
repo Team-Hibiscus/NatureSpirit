@@ -353,11 +353,11 @@ public class WoodSet {
     signItem = createSignItem();
     hangingSignItem = createHangingSignItem();
 
-    var signEntity = (FabricBlockEntityType) BlockEntityType.SIGN;
+    FabricBlockEntityType signEntity = BlockEntityType.SIGN;
     signEntity.addSupportedBlock(sign);
     signEntity.addSupportedBlock(wallSign);
 
-    var hangingSignEntity = (FabricBlockEntityType) BlockEntityType.HANGING_SIGN;
+    FabricBlockEntityType hangingSignEntity = BlockEntityType.HANGING_SIGN;
     hangingSignEntity.addSupportedBlock(hangingSign);
     hangingSignEntity.addSupportedBlock(hangingWallSign);
 

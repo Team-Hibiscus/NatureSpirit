@@ -1,4 +1,4 @@
-// 1.21.1	2024-11-23T18:50:53.1843105	Nature's Spirit/Tags for minecraft:block
+// 1.21.1	2024-11-24T16:40:22.3211015	Nature's Spirit/Tags for minecraft:block
 0c79637aa00eb227f04b461170cade15b2029b2b data\minecraft\tags\block\wooden_slabs.json
 3454f45223c112a6a3e047fa111c252ffc2f4198 data\natures_spirit\tags\block\aspen_logs.json
 09dbbda287df77e8ed3198133d4ca017c9748add data\natures_spirit\tags\block\palo_verde_logs.json
@@ -25,8 +25,8 @@ cfc37cbfffeab6061e558ae14341b336401ffa76 data\minecraft\tags\block\mineable\pick
 14fdfc0d3bb5d891b79ddf45516fa529af68975a data\minecraft\tags\block\enderman_holdable.json
 7901dd3508efa973586d2df083ae4f80250fe96b data\minecraft\tags\block\needs_stone_tool.json
 086cb4cd8db9cada6560cc5b49f865c622352f33 data\minecraft\tags\block\flowers.json
-516761b0e81b159e9459378f3983767c7a74208a data\minecraft\tags\block\wall_hanging_signs.json
 2be46ccfdadc747e3c50207dffb1312513b655d2 data\natures_spirit\tags\block\coconut_logs.json
+516761b0e81b159e9459378f3983767c7a74208a data\minecraft\tags\block\wall_hanging_signs.json
 7f685115a15f4ef8ba0f071f21d2fcebc3db0082 data\minecraft\tags\block\mineable\hoe.json
 d7e6f5e140fead93b449e85cb15308e4e2a639ec data\natures_spirit\tags\block\redwood_logs.json
 0344b5f344e6dfb5e920f72fa1a0d2b8092dd971 data\natures_spirit\tags\block\maple_logs.json
