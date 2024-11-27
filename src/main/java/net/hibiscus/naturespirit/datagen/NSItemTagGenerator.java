@@ -79,6 +79,7 @@ public class NSItemTagGenerator extends FabricTagProvider.ItemTagProvider {
         NSWoods.REDWOOD.getLeaves().asItem(),
         NSWoods.LARCH.getLeaves().asItem(),
         NSWoods.CEDAR.getLeaves().asItem(),
+        NSWoods.SUGI.getLeaves().asItem(),
         Items.SPRUCE_LEAVES
     );
     getOrCreateTagBuilder(NSTags.Items.XERIC_LEAVES).add(

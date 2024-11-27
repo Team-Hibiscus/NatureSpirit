@@ -122,10 +122,11 @@ public class NSSurfaceRules {
                         MaterialRules.condition(MaterialRules.biome(NSBiomes.WOODY_HIGHLANDS, NSBiomes.BLOOMING_HIGHLANDS), MaterialRules.condition(noiseCondition6, SANDY_SOIL))
                     ))
                 )),
-                MaterialRules.condition(materialCondition5, MaterialRules.sequence(MaterialRules.condition(MaterialRules.STONE_DEPTH_CEILING, CHERT), MaterialRules.sequence(
+                MaterialRules.condition(materialCondition5, MaterialRules.sequence(
+                    MaterialRules.condition(MaterialRules.STONE_DEPTH_CEILING, CHERT),
                     MaterialRules.condition(MaterialRules.biome(NSBiomes.SHRUBBY_HIGHLANDS), SANDY_SOIL),
                     MaterialRules.condition(MaterialRules.biome(NSBiomes.ARID_HIGHLANDS), PINK_SAND)
-                ))),
+                )),
                 MaterialRules.condition(MaterialRules.not(holeCondition), CHERT)
             ))),
         MaterialRules.condition(STONE_DEPTH_FLOOR_WITH_SURFACE_DEPTH, MaterialRules.condition(MaterialRules.biome(NSBiomes.ARID_HIGHLANDS, NSBiomes.SHRUBBY_HIGHLANDS, NSBiomes.WOODY_HIGHLANDS, NSBiomes.BLOOMING_HIGHLANDS), MaterialRules.condition(belowWater, CHERT)))

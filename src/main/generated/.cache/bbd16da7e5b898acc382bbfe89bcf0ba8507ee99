@@ -1,4 +1,4 @@
-// 1.21.1	2024-11-24T16:40:22.3376256	Nature's Spirit/Tags for minecraft:item
+// 1.21.1	2024-11-25T20:14:04.3137627	Nature's Spirit/Tags for minecraft:item
 eab68402a4e7fcd50981c02001ffd83dae4d4c49 data\natures_spirit\tags\item\joshua_logs.json
 fbc07fa9c51cb29a52ffc0583255355312f150f9 data\minecraft\tags\item\coal_ores.json
 2c0b3c4857b2a26ca3a4af87751fd5322d0313f7 data\minecraft\tags\item\hanging_signs.json
@@ -37,7 +37,7 @@ e1b8d30e6b91a446df439d7ef8817272d5b489ea data\minecraft\tags\item\iron_ores.json
 0c38c44b15d9764e6d071c4b8a51f5685ec2562a data\minecraft\tags\item\sand.json
 3d834551a2b71758b3a31f4380bc0b40b0f6ca3d data\minecraft\tags\item\wooden_doors.json
 05d734b14f0a5313b568c92ccec7eea3fc8185c6 data\minecraft\tags\item\saplings.json
-4755fd13184cebf44214700b58073927b09bd104 data\natures_spirit\tags\item\evergreen_leaves.json
+65542047bd6d525428508df1976007192bff9aa2 data\natures_spirit\tags\item\evergreen_leaves.json
 6bc417506b14e04e51569ac52612cb62eaf5bb79 data\minecraft\tags\item\stairs.json
 80bddc8f98a3a355142fb2d207787f3c4ad6de4d data\natures_spirit\tags\item\alluaudia_blocks.json
 f165010a0c3dc548d0de081238a1e4f2e39f6787 data\minecraft\tags\item\leaves.json
