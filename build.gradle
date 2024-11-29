@@ -14,8 +14,6 @@ repositories {
     // for more information about repositories.
     maven { url = 'https://maven.minecraftforge.net/' }
     maven { url = 'https://maven.parchmentmc.org' }
-    maven { url = "https://api.modrinth.com/maven"}
-    maven { url = "https://maven.terraformersmc.com/"}
 }
 
 dependencies {
@@ -27,7 +25,7 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    include modImplementation("com.terraformersmc:biolith-fabric:${project.biolith_version}")
+    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${project.terrablender_version}"
 }
 
 processResources {

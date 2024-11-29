@@ -4,5 +4,7 @@
   "ingredient": {
     "item": "natures_spirit:magenta_chalk"
   },
-  "result": {"id": "natures_spirit:magenta_chalk_slab"
-}}
+  "result": {"id": "natures_spirit:magenta_chalk_slab",
+    "count": 2
+  }
+}

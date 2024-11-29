@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/leaves",
-  "textures": {
-    "all": "natures_spirit:block/frosty_larch_leaves"
-  }
-}

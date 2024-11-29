@@ -15,16 +15,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(AxeItem.class)
 public class AxeItemMixin {
 
-	@Inject(method = "useOnBlock", at = @At("HEAD"))
-	private void isValid(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
-		ActionResult result = UseBlockCallback.EVENT.invoker().interact(context.getPlayer(),
-			context.getWorld(),
-			context.getHand(),
-			new BlockHitResult(context.getHitPos(), context.getSide(), context.getBlockPos(), context.hitsInsideBlock())
-		);
+  @Inject(method = "useOnBlock", at = @At("HEAD"))
+  private void isValid(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
+    ActionResult result = UseBlockCallback.EVENT.invoker().interact(context.getPlayer(),
+        context.getWorld(),
+        context.getHand(),
+        new BlockHitResult(context.getHitPos(), context.getSide(), context.getBlockPos(), context.hitsInsideBlock())
+    );
 
-		if (result == ActionResult.SUCCESS) {
-			cir.cancel();
-		}
-	}
+    if (result == ActionResult.SUCCESS) {
+      cir.cancel();
+    }
+  }
 }

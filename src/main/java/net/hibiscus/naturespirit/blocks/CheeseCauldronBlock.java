@@ -17,32 +17,32 @@ import net.minecraft.world.WorldView;
 
 public class CheeseCauldronBlock extends AbstractCauldronBlock {
 
-	public CheeseCauldronBlock(AbstractBlock.Settings settings) {
-		super(settings, NSCauldronBehavior.CHEESE_CAULDRON_BEHAVIOR);
-	}
+  public CheeseCauldronBlock(AbstractBlock.Settings settings) {
+    super(settings, NSCauldronBehavior.CHEESE_CAULDRON_BEHAVIOR);
+  }
 
-	@Override
-	protected MapCodec<? extends AbstractCauldronBlock> getCodec() {
-		return null;
-	}
+  @Override
+  protected MapCodec<? extends AbstractCauldronBlock> getCodec() {
+    return null;
+  }
 
-	@Override
-	public boolean isFull(BlockState state) {
-		return true;
-	}
+  @Override
+  public boolean isFull(BlockState state) {
+    return true;
+  }
 
-	@Override
-	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return VoxelShapes.fullCube();
-	}
+  @Override
+  public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    return VoxelShapes.fullCube();
+  }
 
-	@Override
-	public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
-		return new ItemStack(Blocks.CAULDRON);
-	}
+  @Override
+  public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+    return new ItemStack(Blocks.CAULDRON);
+  }
 
-	@Override
-	public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-		return 4;
-	}
+  @Override
+  public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+    return 4;
+  }
 }

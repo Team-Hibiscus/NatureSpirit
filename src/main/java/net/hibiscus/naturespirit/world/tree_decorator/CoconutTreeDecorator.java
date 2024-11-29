@@ -13,40 +13,41 @@ import net.minecraft.world.gen.treedecorator.TreeDecorator;
 import net.minecraft.world.gen.treedecorator.TreeDecoratorType;
 
 public class CoconutTreeDecorator extends TreeDecorator {
-	public static final MapCodec<CoconutTreeDecorator> CODEC = Codec.floatRange(0.0F, 1.0F).fieldOf("probability").xmap(CoconutTreeDecorator::new, (decorator) -> {
-		return decorator.probability;
-	});
-	private final float probability;
 
-	public CoconutTreeDecorator(float probability) {
-		this.probability = probability;
-	}
+  public static final MapCodec<CoconutTreeDecorator> CODEC = Codec.floatRange(0.0F, 1.0F).fieldOf("probability").xmap(CoconutTreeDecorator::new, (decorator) -> {
+    return decorator.probability;
+  });
+  private final float probability;
 
-	protected TreeDecoratorType<?> getType() {
-		return NSWorldGen.COCONUT_TREE_DECORATOR;
-	}
+  public CoconutTreeDecorator(float probability) {
+    this.probability = probability;
+  }
 
-	public void generate(TreeDecorator.Generator generator) {
-		Random random = generator.getRandom();
-		if (!(random.nextFloat() >= this.probability)) {
-			List<BlockPos> list = generator.getLogPositions();
-			list.stream().filter((pos) -> pos.getY() >= list.get(list.size() - 1).getY() - 2).forEach((pos) -> {
+  protected TreeDecoratorType<?> getType() {
+    return NSWorldGen.COCONUT_TREE_DECORATOR;
+  }
 
-				for (Direction direction : Direction.Type.HORIZONTAL) {
-					if (random.nextFloat() <= 0.5F) {
-						Direction direction2 = direction.getOpposite();
-						BlockPos blockPos = pos.add(direction2.getOffsetX(), 0, direction2.getOffsetZ());
-						if (generator.isAir(blockPos)) {
-							generator.replace(blockPos, NSWoods.COCONUT_BLOCK.getDefaultState().with(
-								CoconutBlock.FACING,
-								direction.getOpposite()
-							));
-						}
-					}
-				}
+  public void generate(TreeDecorator.Generator generator) {
+    Random random = generator.getRandom();
+    if (!(random.nextFloat() >= this.probability)) {
+      List<BlockPos> list = generator.getLogPositions();
+      list.stream().filter((pos) -> pos.getY() >= list.get(list.size() - 1).getY() - 2).forEach((pos) -> {
 
-			});
-		}
-	}
+        for (Direction direction : Direction.Type.HORIZONTAL) {
+          if (random.nextFloat() <= 0.5F) {
+            Direction direction2 = direction.getOpposite();
+            BlockPos blockPos = pos.add(direction2.getOffsetX(), 0, direction2.getOffsetZ());
+            if (generator.isAir(blockPos)) {
+              generator.replace(blockPos, NSWoods.COCONUT_BLOCK.getDefaultState().with(
+                  CoconutBlock.FACING,
+                  direction.getOpposite()
+              ));
+            }
+          }
+        }
+
+      });
+    }
+  }
 }
 

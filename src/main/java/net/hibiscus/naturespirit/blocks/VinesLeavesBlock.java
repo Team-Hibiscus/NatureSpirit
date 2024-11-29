@@ -15,35 +15,36 @@ import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.NotNull;
 
 public class VinesLeavesBlock extends LeavesBlock implements Fertilizable {
-	public Block vinePlantBlock;
-	public Block vineTipBlock;
 
-	public VinesLeavesBlock(Settings properties, Block vinePlantBlockInput, Block vineTipBlockInput) {
-		super(properties);
-		vinePlantBlock = vinePlantBlockInput;
-		vineTipBlock = vineTipBlockInput;
-	}
+  public Block vinePlantBlock;
+  public Block vineTipBlock;
 
-	@Override
-	public boolean isFertilizable(@NotNull WorldView levelReader, @NotNull BlockPos blockPos, BlockState state) {
-		Optional<BlockPos> optional = BlockLocating.findColumnEnd(levelReader, blockPos, vinePlantBlock, Direction.DOWN, vineTipBlock);
-		return (optional.isPresent() && levelReader.getBlockState(optional.get().offset(Direction.DOWN)).isAir()) || levelReader.getBlockState(blockPos.offset(Direction.DOWN)).isAir();
-	}
+  public VinesLeavesBlock(Settings properties, Block vinePlantBlockInput, Block vineTipBlockInput) {
+    super(properties);
+    vinePlantBlock = vinePlantBlockInput;
+    vineTipBlock = vineTipBlockInput;
+  }
 
-	@Override
-	public boolean canGrow(World level, Random randomSource, BlockPos blockPos, BlockState blockState) {
-		return true;
-	}
+  @Override
+  public boolean isFertilizable(@NotNull WorldView levelReader, @NotNull BlockPos blockPos, BlockState state) {
+    Optional<BlockPos> optional = BlockLocating.findColumnEnd(levelReader, blockPos, vinePlantBlock, Direction.DOWN, vineTipBlock);
+    return (optional.isPresent() && levelReader.getBlockState(optional.get().offset(Direction.DOWN)).isAir()) || levelReader.getBlockState(blockPos.offset(Direction.DOWN)).isAir();
+  }
 
-	@Override
-	public void grow(ServerWorld serverLevel, Random randomSource, BlockPos blockPos, BlockState blockState) {
-		Optional<BlockPos> optional = BlockLocating.findColumnEnd(serverLevel, blockPos, vinePlantBlock, Direction.DOWN, vineTipBlock);
-		if (optional.isPresent()) {
-			BlockState blockState2 = serverLevel.getBlockState(optional.get());
-			((DownwardVineBlock) blockState2.getBlock()).grow(serverLevel, randomSource, optional.get(), blockState2);
-		}
-		if (optional.isEmpty()) {
-			serverLevel.setBlockState(blockPos.down(), vineTipBlock.getDefaultState(), Block.NOTIFY_LISTENERS);
-		}
-	}
+  @Override
+  public boolean canGrow(World level, Random randomSource, BlockPos blockPos, BlockState blockState) {
+    return true;
+  }
+
+  @Override
+  public void grow(ServerWorld serverLevel, Random randomSource, BlockPos blockPos, BlockState blockState) {
+    Optional<BlockPos> optional = BlockLocating.findColumnEnd(serverLevel, blockPos, vinePlantBlock, Direction.DOWN, vineTipBlock);
+    if (optional.isPresent()) {
+      BlockState blockState2 = serverLevel.getBlockState(optional.get());
+      ((DownwardVineBlock) blockState2.getBlock()).grow(serverLevel, randomSource, optional.get(), blockState2);
+    }
+    if (optional.isEmpty()) {
+      serverLevel.setBlockState(blockPos.down(), vineTipBlock.getDefaultState(), Block.NOTIFY_LISTENERS);
+    }
+  }
 }

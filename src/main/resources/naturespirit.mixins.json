@@ -6,9 +6,11 @@
   "mixins": [
     "AnvilBlockMixin",
     "AxeItemMixin",
+    "BrushItemMixin",
     "CoralBlockBlockMixin",
     "StatsTypeAccessor",
     "SurfaceBuilderMixin",
+//    "entity.LivingEntityMixin",
     "entity.boat.BoatDropsMixin",
     "entity.boat.BoatTypeMixin",
     "entity.boat.ChestBoatDropsMixin"

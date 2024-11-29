@@ -4,5 +4,7 @@
   "ingredient": {
     "item": "natures_spirit:brown_kaolin"
   },
-  "result": {"id": "natures_spirit:brown_kaolin_slab"
-}}
+  "result": {"id": "natures_spirit:brown_kaolin_slab",
+    "count": 2
+  }
+}

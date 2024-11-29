@@ -1,6 +1,7 @@
 package net.hibiscus.naturespirit.registration;
 
 import static net.hibiscus.naturespirit.NatureSpirit.MOD_ID;
+
 import net.hibiscus.naturespirit.entity.CheeseArrowEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -10,17 +11,17 @@ import net.minecraft.util.Identifier;
 
 public class NSEntityTypes {
 
-	private static final EntityType.Builder<CheeseArrowEntity> CHEESE_ARROW_ENTITY_BUILDER = EntityType.Builder.create(CheeseArrowEntity::new, SpawnGroup.MISC);
-	public static EntityType<CheeseArrowEntity> CHEESE_ARROW = registerEntityType(
-		"cheese_arrow",
-		CHEESE_ARROW_ENTITY_BUILDER.dimensions(0.5F, 0.5F)
-			.maxTrackingRange(4)
-			.trackingTickInterval(20)
-			.build()
-	);
+  private static final EntityType.Builder<CheeseArrowEntity> CHEESE_ARROW_ENTITY_BUILDER = EntityType.Builder.create(CheeseArrowEntity::new, SpawnGroup.MISC);
+  public static final EntityType<CheeseArrowEntity> CHEESE_ARROW = registerEntityType(
+      "cheese_arrow",
+      CHEESE_ARROW_ENTITY_BUILDER.dimensions(0.5F, 0.5F)
+          .maxTrackingRange(4)
+          .trackingTickInterval(20)
+          .build()
+  );
 
-	public static void registerEntityTypes() {
-	}
+  public static void registerEntityTypes() {
+  }
 
    /* public static EntityType<BisonEntity> BISON = registerMobEntityType(
 	 "bison",
@@ -32,9 +33,9 @@ public class NSEntityTypes {
 	 .trackRangeChunks(10));
 	*/
 
-	public static <T extends EntityType<?>> T registerEntityType(String id, T type) {
-		return Registry.register(Registries.ENTITY_TYPE, Identifier.of(MOD_ID, id), type);
-	}
+  public static <T extends EntityType<?>> T registerEntityType(String id, T type) {
+    return Registry.register(Registries.ENTITY_TYPE, Identifier.of(MOD_ID, id), type);
+  }
 
 	/*
 	public static <T extends Entity> EntityType<T> registerMobEntityType(String id, FabricEntityTypeBuilder<T> type) {

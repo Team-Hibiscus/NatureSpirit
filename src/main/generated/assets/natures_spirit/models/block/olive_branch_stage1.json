@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "natures_spirit:block/olive_branch_stage1"
+  }
+}

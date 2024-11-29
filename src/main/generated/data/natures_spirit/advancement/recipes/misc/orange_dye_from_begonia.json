@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_begonia": {
+      "conditions": {
+        "items": [
+          {
+            "items": "natures_spirit:begonia"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "natures_spirit:orange_dye_from_begonia"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_begonia"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "natures_spirit:orange_dye_from_begonia"
+    ]
+  }
+}

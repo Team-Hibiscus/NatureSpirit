@@ -4,7 +4,7 @@
     "default": "natures_spirit:aspen_checked",
     "features": [
       {
-        "chance": 0.01,
+        "chance": 0.001,
         "feature": "natures_spirit:aspen_bees_checked"
       }
     ]

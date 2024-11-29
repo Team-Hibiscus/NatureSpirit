@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "natures_spirit:yellow_aspen_checked",
+    "features": [
+      {
+        "chance": 0.001,
+        "feature": "natures_spirit:yellow_aspen_bees_checked"
+      }
+    ]
+  }
+}

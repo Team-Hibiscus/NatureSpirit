@@ -1,0 +1,25 @@
+{
+  "feature": "natures_spirit:yellow_aspen_tree_spawn",
+  "placement": [
+    {
+      "type": "minecraft:noise_threshold_count",
+      "above_noise": 0,
+      "below_noise": 5,
+      "noise_level": 0.5
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:surface_water_depth_filter",
+      "max_water_depth": 0
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "OCEAN_FLOOR"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

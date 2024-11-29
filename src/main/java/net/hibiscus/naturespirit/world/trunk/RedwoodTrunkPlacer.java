@@ -16,51 +16,54 @@ import net.minecraft.world.gen.trunk.TrunkPlacer;
 import net.minecraft.world.gen.trunk.TrunkPlacerType;
 
 public class RedwoodTrunkPlacer extends TrunkPlacer {
-	public static final MapCodec<RedwoodTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> {
-		return fillTrunkPlacerFields(instance).apply(instance, RedwoodTrunkPlacer::new);
-	});
 
-	public RedwoodTrunkPlacer(int baseHeight, int firstRandomHeight, int secondRandomHeight) {
-		super(baseHeight, firstRandomHeight, secondRandomHeight);
-	}
+  public static final MapCodec<RedwoodTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec((instance) -> {
+    return fillTrunkPlacerFields(instance).apply(instance, RedwoodTrunkPlacer::new);
+  });
 
-	@Override
-	protected TrunkPlacerType<?> getType() {
-		return NSWorldGen.REDWOOD_TRUNK_PLACER;
-	}
+  public RedwoodTrunkPlacer(int baseHeight, int firstRandomHeight, int secondRandomHeight) {
+    super(baseHeight, firstRandomHeight, secondRandomHeight);
+  }
 
-	public List<FoliagePlacer.TreeNode> generate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config) {
-		BlockPos blockPos = startPos.down();
-		setToDirt(world, replacer, random, blockPos.north().east(), config);
-		setToDirt(world, replacer, random, blockPos.north().west(), config);
-		setToDirt(world, replacer, random, blockPos.north(), config);
-		setToDirt(world, replacer, random, blockPos.west(), config);
-		setToDirt(world, replacer, random, blockPos, config);
-		setToDirt(world, replacer, random, blockPos.east(), config);
-		setToDirt(world, replacer, random, blockPos.south(), config);
-		setToDirt(world, replacer, random, blockPos.south().east(), config);
-		setToDirt(world, replacer, random, blockPos.south().west(), config);
-		BlockPos.Mutable mutable = new BlockPos.Mutable();
+  @Override
+  protected TrunkPlacerType<?> getType() {
+    return NSWorldGen.REDWOOD_TRUNK_PLACER;
+  }
 
-		for (int i = 0; i < height; ++i) {
-			this.setLog(world, replacer, random, mutable, config, startPos, 0, i, 0);
-			if (i < height - 1) {
-				this.setLog(world, replacer, random, mutable, config, startPos, 1, i, 0);
-				this.setLog(world, replacer, random, mutable, config, startPos, 1, i, -1);
-				this.setLog(world, replacer, random, mutable, config, startPos, 1, i, 1);
-				this.setLog(world, replacer, random, mutable, config, startPos, 0, i, 1);
-				this.setLog(world, replacer, random, mutable, config, startPos, -1, i, 1);
-				this.setLog(world, replacer, random, mutable, config, startPos, -1, i, 0);
-				this.setLog(world, replacer, random, mutable, config, startPos, 0, i, -1);
-				this.setLog(world, replacer, random, mutable, config, startPos, -1, i, -1);
-			}
-		}
+  public List<FoliagePlacer.TreeNode> generate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos,
+      TreeFeatureConfig config) {
+    BlockPos blockPos = startPos.down();
+    setToDirt(world, replacer, random, blockPos.north().east(), config);
+    setToDirt(world, replacer, random, blockPos.north().west(), config);
+    setToDirt(world, replacer, random, blockPos.north(), config);
+    setToDirt(world, replacer, random, blockPos.west(), config);
+    setToDirt(world, replacer, random, blockPos, config);
+    setToDirt(world, replacer, random, blockPos.east(), config);
+    setToDirt(world, replacer, random, blockPos.south(), config);
+    setToDirt(world, replacer, random, blockPos.south().east(), config);
+    setToDirt(world, replacer, random, blockPos.south().west(), config);
+    BlockPos.Mutable mutable = new BlockPos.Mutable();
 
-		return ImmutableList.of(new FoliagePlacer.TreeNode(startPos.up(height), 0, false));
-	}
+    for (int i = 0; i < height; ++i) {
+      this.setLog(world, replacer, random, mutable, config, startPos, 0, i, 0);
+      if (i < height - 1) {
+        this.setLog(world, replacer, random, mutable, config, startPos, 1, i, 0);
+        this.setLog(world, replacer, random, mutable, config, startPos, 1, i, -1);
+        this.setLog(world, replacer, random, mutable, config, startPos, 1, i, 1);
+        this.setLog(world, replacer, random, mutable, config, startPos, 0, i, 1);
+        this.setLog(world, replacer, random, mutable, config, startPos, -1, i, 1);
+        this.setLog(world, replacer, random, mutable, config, startPos, -1, i, 0);
+        this.setLog(world, replacer, random, mutable, config, startPos, 0, i, -1);
+        this.setLog(world, replacer, random, mutable, config, startPos, -1, i, -1);
+      }
+    }
 
-	private void setLog(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, BlockPos.Mutable tmpPos, TreeFeatureConfig config, BlockPos startPos, int dx, int dy, int dz) {
-		tmpPos.set(startPos, dx, dy, dz);
-		this.trySetState(world, replacer, random, tmpPos, config);
-	}
+    return ImmutableList.of(new FoliagePlacer.TreeNode(startPos.up(height), 0, false));
+  }
+
+  private void setLog(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, BlockPos.Mutable tmpPos, TreeFeatureConfig config, BlockPos startPos, int dx,
+      int dy, int dz) {
+    tmpPos.set(startPos, dx, dy, dz);
+    this.trySetState(world, replacer, random, tmpPos, config);
+  }
 }

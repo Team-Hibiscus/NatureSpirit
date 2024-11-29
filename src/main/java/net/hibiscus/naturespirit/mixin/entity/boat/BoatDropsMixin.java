@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BoatEntity.class)
 public class BoatDropsMixin {
 
-	//CREDIT TO nyuppo/fabric-boat-example ON GITHUB
+  //CREDIT TO nyuppo/fabric-boat-example ON GITHUB
 
-	@Inject(method = "asItem", at = @At("RETURN"), cancellable = true)
-	public void getNaturesSpiritBoats(CallbackInfoReturnable<Item> info) {
-		NSBoatTypes.getBoatItem(BoatEntity.class.cast(this).getVariant()).ifPresent(info::setReturnValue);
-	}
+  @Inject(method = "asItem", at = @At("RETURN"), cancellable = true)
+  public void getNaturesSpiritBoats(CallbackInfoReturnable<Item> info) {
+    NSBoatTypes.getBoatItem(BoatEntity.class.cast(this).getVariant()).ifPresent(info::setReturnValue);
+  }
 
 }

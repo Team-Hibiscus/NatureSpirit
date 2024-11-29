@@ -27,33 +27,15 @@
       }
     },
     "foliage_provider": {
-      "type": "minecraft:noise_provider",
-      "noise": {
-        "amplitudes": [
-          1.0
-        ],
-        "firstOctave": 0
-      },
-      "scale": 0.006833334,
-      "seed": 2445,
-      "states": [
-        {
-          "Name": "natures_spirit:aspen_leaves",
-          "Properties": {
-            "distance": "7",
-            "persistent": "false",
-            "waterlogged": "false"
-          }
-        },
-        {
-          "Name": "natures_spirit:yellow_aspen_leaves",
-          "Properties": {
-            "distance": "7",
-            "persistent": "false",
-            "waterlogged": "false"
-          }
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "natures_spirit:aspen_leaves",
+        "Properties": {
+          "distance": "7",
+          "persistent": "false",
+          "waterlogged": "false"
         }
-      ]
+      }
     },
     "force_dirt": false,
     "ignore_vines": true,

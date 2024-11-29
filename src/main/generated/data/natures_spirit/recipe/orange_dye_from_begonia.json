@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "minecraft:orange_dye",
+  "ingredients": [
+    {
+      "item": "natures_spirit:begonia"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "minecraft:orange_dye"
+  }
+}

@@ -26,92 +26,93 @@ import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.NotNull;
 
 public class MilkCauldronBlock extends AbstractCauldronBlock {
-	public static BooleanProperty AGE_INTO_CHEESE = BooleanProperty.of("age_into_cheese");
 
-	public MilkCauldronBlock(Settings settings) {
-		super(settings, NSCauldronBehavior.MILK_CAULDRON_BEHAVIOR);
-		this.setDefaultState(this.stateManager.getDefaultState().with(AGE_INTO_CHEESE, false));
-	}
+  public static final BooleanProperty AGE_INTO_CHEESE = BooleanProperty.of("age_into_cheese");
 
-	@Override
-	protected MapCodec<? extends AbstractCauldronBlock> getCodec() {
-		return null;
-	}
+  public MilkCauldronBlock(Settings settings) {
+    super(settings, NSCauldronBehavior.MILK_CAULDRON_BEHAVIOR);
+    this.setDefaultState(this.stateManager.getDefaultState().with(AGE_INTO_CHEESE, false));
+  }
 
-	@Override
-	protected double getFluidHeight(BlockState state) {
-		return 0.9375D;
-	}
+  @Override
+  protected MapCodec<? extends AbstractCauldronBlock> getCodec() {
+    return null;
+  }
 
-	@Override
-	public boolean hasRandomTicks(@NotNull BlockState state) {
-		return state.get(AGE_INTO_CHEESE);
-	}
+  @Override
+  protected double getFluidHeight(BlockState state) {
+    return 0.9375D;
+  }
 
-	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, @NotNull PlayerEntity player, BlockHitResult hit) {
-		if (player.getStackInHand(player.getActiveHand()).isIn(NSTags.Items.CHEESE_MAKER) && !state.get(AGE_INTO_CHEESE)) {
-			world.setBlockState(pos, state.with(AGE_INTO_CHEESE, true), Block.NOTIFY_LISTENERS);
-			BlockState blockState = world.getBlockState(pos);
-			world.playSound(null, pos, SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, 1F, 1F);
-			double d = blockState.getOutlineShape(world, pos).getEndingCoord(Direction.Axis.Y, 0.5D, 0.5D) + 0.03125D;
-			Random random = world.getRandom();
+  @Override
+  public boolean hasRandomTicks(@NotNull BlockState state) {
+    return state.get(AGE_INTO_CHEESE);
+  }
 
-			for (int i = 0; i < 10; ++i) {
-				double g = random.nextGaussian() * 0.02D;
-				double h = random.nextGaussian() * 0.02D;
-				double j = random.nextGaussian() * 0.02D;
-				world.addParticle(
-					NSParticleTypes.MILK_PARTICLE,
-					(double) pos.getX() + 0.13124999403953552D + 0.737500011920929D * random.nextDouble(),
-					(double) pos.getY() + d + 1D + random.nextDouble() * (1D - d),
-					(double) pos.getZ() + 0.13124999403953552D + 0.737500011920929D * random.nextDouble(),
-					g,
-					h,
-					j
-				);
-			}
-			if (!player.isCreative() && !player.isSpectator()) {
-				ItemStack itemStack = player.getStackInHand(player.getActiveHand()).getRecipeRemainder();
-				player.getStackInHand(player.getActiveHand()).decrement(1);
-				if (player.getStackInHand(player.getActiveHand()).isEmpty()) {
-					player.setStackInHand(player.getActiveHand(), itemStack);
-				} else {
-					if (player.getInventory().insertStack(itemStack)) {
-						player.dropItem(itemStack, false);
-					}
-				}
-			}
-			return ActionResult.SUCCESS;
-		}
-		return super.onUse(state, world, pos, player, hit);
-	}
+  @Override
+  public ActionResult onUse(BlockState state, World world, BlockPos pos, @NotNull PlayerEntity player, BlockHitResult hit) {
+    if (player.getStackInHand(player.getActiveHand()).isIn(NSTags.Items.CHEESE_MAKER) && !state.get(AGE_INTO_CHEESE)) {
+      world.setBlockState(pos, state.with(AGE_INTO_CHEESE, true), Block.NOTIFY_LISTENERS);
+      BlockState blockState = world.getBlockState(pos);
+      world.playSound(null, pos, SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, 1F, 1F);
+      double d = blockState.getOutlineShape(world, pos).getEndingCoord(Direction.Axis.Y, 0.5D, 0.5D) + 0.03125D;
+      Random random = world.getRandom();
 
-	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, @NotNull Random random) {
-		if (random.nextInt(25) == 0) {
-			world.setBlockState(pos, NSMiscBlocks.CHEESE_CAULDRON.getDefaultState(), Block.NOTIFY_LISTENERS);
-		}
-		super.randomTick(state, world, pos, random);
-	}
+      for (int i = 0; i < 10; ++i) {
+        double g = random.nextGaussian() * 0.02D;
+        double h = random.nextGaussian() * 0.02D;
+        double j = random.nextGaussian() * 0.02D;
+        world.addParticle(
+            NSParticleTypes.MILK_PARTICLE,
+            (double) pos.getX() + 0.13124999403953552D + 0.737500011920929D * random.nextDouble(),
+            (double) pos.getY() + d + 1D + random.nextDouble() * (1D - d),
+            (double) pos.getZ() + 0.13124999403953552D + 0.737500011920929D * random.nextDouble(),
+            g,
+            h,
+            j
+        );
+      }
+      if (!player.isCreative() && !player.isSpectator()) {
+        ItemStack itemStack = player.getStackInHand(player.getActiveHand()).getRecipeRemainder();
+        player.getStackInHand(player.getActiveHand()).decrement(1);
+        if (player.getStackInHand(player.getActiveHand()).isEmpty()) {
+          player.setStackInHand(player.getActiveHand(), itemStack);
+        } else {
+          if (player.getInventory().insertStack(itemStack)) {
+            player.dropItem(itemStack, false);
+          }
+        }
+      }
+      return ActionResult.SUCCESS;
+    }
+    return super.onUse(state, world, pos, player, hit);
+  }
 
-	@Override
-	public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
-		return new ItemStack(Blocks.CAULDRON);
-	}
+  @Override
+  public void randomTick(BlockState state, ServerWorld world, BlockPos pos, @NotNull Random random) {
+    if (random.nextInt(25) == 0) {
+      world.setBlockState(pos, NSMiscBlocks.CHEESE_CAULDRON.getDefaultState(), Block.NOTIFY_LISTENERS);
+    }
+    super.randomTick(state, world, pos, random);
+  }
 
-	@Override
-	public boolean isFull(BlockState state) {
-		return true;
-	}
+  @Override
+  public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+    return new ItemStack(Blocks.CAULDRON);
+  }
 
-	@Override
-	public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-		return 3;
-	}
+  @Override
+  public boolean isFull(BlockState state) {
+    return true;
+  }
 
-	@Override
-	protected void appendProperties(StateManager.@NotNull Builder<Block, BlockState> builder) {
-		builder.add(AGE_INTO_CHEESE);
-	}
+  @Override
+  public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+    return 3;
+  }
+
+  @Override
+  protected void appendProperties(StateManager.@NotNull Builder<Block, BlockState> builder) {
+    builder.add(AGE_INTO_CHEESE);
+  }
 }
