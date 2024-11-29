@@ -12,12 +12,6 @@ import net.fabricmc.loader.api.FabricLoader;
 
 public class NSConfig {
 
-  public static int terra_ferax_weight;
-  public static int terra_solaris_weight;
-  public static int terra_flava_weight;
-  public static int terra_laeta_weight;
-  public static int terra_mater_weight;
-
   public static boolean cheese_arrow;
   public static boolean calcite_generator;
   public static boolean deepslate_generator;
@@ -34,6 +28,8 @@ public class NSConfig {
   public static boolean savanna_toggle;
   public static boolean dark_forest_toggle;
   public static boolean windswept_hills_toggle;
+  public static boolean improved_biome_sizes_toggle;
+  public static boolean cat_variants;
 
   public static boolean has_sugi_forest;
   public static boolean has_windswept_sugi_forest;
@@ -86,22 +82,6 @@ public class NSConfig {
   public static boolean has_blooming_highlands;
   public static boolean has_chaparral;
   public static boolean has_floral_ridges;
-
-	public static void main() throws IOException {
-		Path configPath = Path.of(FabricLoader.getInstance().getConfigDir().toString(), "natures_spirit_2.0.0-1.21.1.json");
-		try {
-			if (configPath.toFile().createNewFile()) {
-				JsonObject jsonObjects = getJsonObject();
-				PrintWriter pw = new PrintWriter(configPath.toString());
-				Gson gson = new GsonBuilder().setPrettyPrinting().create();
-				pw.print(gson.toJson(jsonObjects));
-				pw.flush();
-				pw.close();
-			}
-			JsonObject obj = (JsonObject) JsonParser.parseReader(new FileReader(configPath.toString()));
-			JsonObject biomes = (JsonObject) obj.get("biomes");
-			JsonObject misc_features = (JsonObject) obj.get("misc_features");
-			JsonObject datapack_toggles = (JsonObject) obj.get("datapack_toggles");
 
   public NSConfig() {}
 
@@ -174,19 +154,15 @@ public class NSConfig {
       has_chaparral = biomes.get("has_chaparral").getAsBoolean();
       has_floral_ridges = biomes.get("has_floral_ridges").getAsBoolean();
 
-      terra_ferax_weight = region_weights.get("terra_ferax_frequency").getAsInt();
-      terra_solaris_weight = region_weights.get("terra_solaris_frequency").getAsInt();
-      terra_flava_weight = region_weights.get("terra_flava_frequency").getAsInt();
-      terra_laeta_weight = region_weights.get("terra_laeta_frequency").getAsInt();
-      terra_mater_weight = region_weights.get("terra_mater_frequency").getAsInt();
-
       calcite_generator = misc_features.get("calcite_generator").getAsBoolean();
       deepslate_generator = misc_features.get("deepslate_generator").getAsBoolean();
       sugi_and_stratified_pillars = misc_features.get("sugi_and_stratified_pillars").getAsBoolean();
       cheese_arrow = misc_features.get("cheese_arrow").getAsBoolean();
+      cat_variants = misc_features.get("cat_variants").getAsBoolean();
       creative_tab = misc_features.get("creative_tab").getAsBoolean();
 
       vanilla_trees_toggle = datapack_toggles.get("vanilla_trees_toggle").getAsBoolean();
+      improved_biome_sizes_toggle = datapack_toggles.get("improved_biome_sizes_toggle").getAsBoolean();
       birch_forest_toggle = datapack_toggles.get("birch_forest_toggle").getAsBoolean();
       flower_forest_toggle = datapack_toggles.get("flower_forest_toggle").getAsBoolean();
       jungle_toggle = datapack_toggles.get("jungle_toggle").getAsBoolean();
@@ -211,14 +187,6 @@ public class NSConfig {
     JsonObject biomesObject = getBiomesObject();
     jsonObjects.add("biomes", biomesObject);
 
-    JsonObject regionsObject = new JsonObject();
-    regionsObject.addProperty("terra_ferax_frequency", 4);
-    regionsObject.addProperty("terra_solaris_frequency", 4);
-    regionsObject.addProperty("terra_flava_frequency", 4);
-    regionsObject.addProperty("terra_laeta_frequency", 4);
-    regionsObject.addProperty("terra_mater_frequency", 4);
-    jsonObjects.add("region_weights", regionsObject);
-
     JsonObject miscObject = new JsonObject();
     miscObject.addProperty("deepslate_generator", true);
     miscObject.addProperty("sugi_and_stratified_pillars", true);
@@ -229,6 +197,7 @@ public class NSConfig {
 
     JsonObject datapackTogglesObject = new JsonObject();
     datapackTogglesObject.addProperty("vanilla_trees_toggle", false);
+    datapackTogglesObject.addProperty("improved_biome_sizes_toggle", false);
     datapackTogglesObject.addProperty("birch_forest_toggle", true);
     datapackTogglesObject.addProperty("flower_forest_toggle", true);
     datapackTogglesObject.addProperty("jungle_toggle", true);
