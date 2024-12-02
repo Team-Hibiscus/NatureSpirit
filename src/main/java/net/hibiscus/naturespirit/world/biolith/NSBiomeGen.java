@@ -63,7 +63,7 @@ public class NSBiomeGen {
         // Sugi Forest Region
         if (NSConfig.has_sugi_forest) {
             BiomePlacement.replaceOverworld(BiomeKeys.DARK_FOREST, NSBiomes.SUGI_FOREST, 0.2D);
-            BiomePlacement.addSubOverworld(NSBiomes.SUGI_FOREST, NSBiomes.SUGI_FOREST, CriterionBuilder.neighbor(BiomeTags.IS_RIVER));
+            BiomePlacement.addSubOverworld(NSBiomes.SUGI_FOREST, NSBiomes.SUGI_FOREST, anyOf((CriterionBuilder.neighbor(BiomeTags.IS_RIVER)),(CriterionBuilder.neighbor(BiomeKeys.STONY_SHORE))));
         }
         if (NSConfig.has_blooming_sugi_forest) {
             BiomePlacement.addSubOverworld(NSBiomes.SUGI_FOREST, NSBiomes.BLOOMING_SUGI_FOREST, CriterionBuilder.ratioMax(RatioTargets.CENTER, 0.4F));
@@ -74,16 +74,26 @@ public class NSBiomeGen {
 
         // Cypress Fields Region
         if (NSConfig.has_cypress_fields) {
-            BiomePlacement.replaceOverworld(BiomeKeys.PLAINS, NSBiomes.CYPRESS_FIELDS, 0.1D);
+            //BiomePlacement.replaceOverworld(BiomeKeys.PLAINS, NSBiomes.CYPRESS_FIELDS, 0.1D);
+            BiomePlacement.addSubOverworld(BiomeKeys.PLAINS, NSBiomes.CYPRESS_FIELDS, allOf(CriterionBuilder.value(BiomeParameterTargets.TEMPERATURE, 0.2F, 0.55F),CriterionBuilder.value(BiomeParameterTargets.HUMIDITY, -0.1F, 0.3F)));
         }
         if (NSConfig.has_lavender_fields) {
-            BiomePlacement.addSubOverworld(NSBiomes.CYPRESS_FIELDS, NSBiomes.LAVENDER_FIELDS, anyOf(CriterionBuilder.neighbor(BiomeKeys.MEADOW),CriterionBuilder.neighbor(BiomeKeys.CHERRY_GROVE),CriterionBuilder.neighbor(BiomeKeys.FOREST)));
+            //BiomePlacement.addSubOverworld(NSBiomes.CYPRESS_FIELDS, NSBiomes.LAVENDER_FIELDS, anyOf(CriterionBuilder.neighbor(BiomeKeys.MEADOW),CriterionBuilder.neighbor(BiomeKeys.CHERRY_GROVE),CriterionBuilder.neighbor(BiomeKeys.FOREST)));
+            BiomePlacement.addSubOverworld(BiomeKeys.MEADOW, NSBiomes.LAVENDER_FIELDS, allOf(CriterionBuilder.value(BiomeParameterTargets.TEMPERATURE, 0.2F, 0.55F),CriterionBuilder.value(BiomeParameterTargets.HUMIDITY, -0.1F, 0.3F)));
+            BiomePlacement.addSubOverworld(BiomeKeys.CHERRY_GROVE, NSBiomes.LAVENDER_FIELDS, allOf(CriterionBuilder.value(BiomeParameterTargets.TEMPERATURE, 0.2F, 0.55F),CriterionBuilder.value(BiomeParameterTargets.HUMIDITY, -0.1F, 0.3F)));
+            BiomePlacement.addSubOverworld(NSBiomes.MAPLE_WOODLANDS, NSBiomes.LAVENDER_FIELDS, allOf(CriterionBuilder.value(BiomeParameterTargets.TEMPERATURE, 0.2F, 0.55F),CriterionBuilder.value(BiomeParameterTargets.HUMIDITY, -0.1F, 0.3F)));
         }
         if (NSConfig.has_carnation_fields) {
-            BiomePlacement.addSubOverworld(NSBiomes.CYPRESS_FIELDS, NSBiomes.CARNATION_FIELDS, anyOf(CriterionBuilder.neighbor(BiomeKeys.FLOWER_FOREST),CriterionBuilder.neighbor(BiomeKeys.SUNFLOWER_PLAINS)));
+            //BiomePlacement.addSubOverworld(NSBiomes.CYPRESS_FIELDS, NSBiomes.CARNATION_FIELDS, anyOf(CriterionBuilder.neighbor(BiomeKeys.FLOWER_FOREST),CriterionBuilder.neighbor(BiomeKeys.SUNFLOWER_PLAINS)));
+            BiomePlacement.addSubOverworld(BiomeKeys.FLOWER_FOREST, NSBiomes.CARNATION_FIELDS, allOf(CriterionBuilder.value(BiomeParameterTargets.TEMPERATURE, 0.2F, 0.55F),CriterionBuilder.value(BiomeParameterTargets.HUMIDITY, -0.1F, 0.3F)));
+            BiomePlacement.addSubOverworld(BiomeKeys.SUNFLOWER_PLAINS, NSBiomes.CARNATION_FIELDS, allOf(CriterionBuilder.value(BiomeParameterTargets.TEMPERATURE, 0.2F, 0.55F),CriterionBuilder.value(BiomeParameterTargets.HUMIDITY, -0.1F, 0.3F)));
+            BiomePlacement.addSubOverworld(BiomeKeys.FOREST, NSBiomes.CARNATION_FIELDS, allOf(CriterionBuilder.value(BiomeParameterTargets.TEMPERATURE, 0.2F, 0.55F),CriterionBuilder.value(BiomeParameterTargets.HUMIDITY, -0.1F, 0.3F)));
         }
         if (NSConfig.has_xeric_plains) {
-            BiomePlacement.addSubOverworld(NSBiomes.CYPRESS_FIELDS, NSBiomes.XERIC_PLAINS, anyOf(CriterionBuilder.neighbor(BiomeKeys.SAVANNA),CriterionBuilder.neighbor(BiomeKeys.SAVANNA_PLATEAU),CriterionBuilder.neighbor(BiomeKeys.WINDSWEPT_SAVANNA),CriterionBuilder.neighbor(BiomeKeys.DESERT)));
+            //BiomePlacement.addSubOverworld(NSBiomes.CYPRESS_FIELDS, NSBiomes.XERIC_PLAINS, anyOf(CriterionBuilder.neighbor(BiomeKeys.SAVANNA),CriterionBuilder.neighbor(BiomeKeys.SAVANNA_PLATEAU),CriterionBuilder.neighbor(BiomeKeys.WINDSWEPT_SAVANNA),CriterionBuilder.neighbor(BiomeKeys.DESERT)));
+            BiomePlacement.addSubOverworld(BiomeKeys.SAVANNA, NSBiomes.XERIC_PLAINS, allOf(CriterionBuilder.value(BiomeParameterTargets.TEMPERATURE, 0.2F, 0.55F),CriterionBuilder.value(BiomeParameterTargets.HUMIDITY, -0.1F, 0.3F)));
+            BiomePlacement.addSubOverworld(BiomeKeys.SAVANNA_PLATEAU, NSBiomes.XERIC_PLAINS, allOf(CriterionBuilder.value(BiomeParameterTargets.TEMPERATURE, 0.2F, 0.55F),CriterionBuilder.value(BiomeParameterTargets.HUMIDITY, -0.1F, 0.3F)));
+            BiomePlacement.addSubOverworld(BiomeKeys.WINDSWEPT_SAVANNA, NSBiomes.XERIC_PLAINS, allOf(CriterionBuilder.value(BiomeParameterTargets.TEMPERATURE, 0.2F, 0.55F),CriterionBuilder.value(BiomeParameterTargets.HUMIDITY, -0.1F, 0.3F)));
         }
 
         // Maple Woodlands Region
@@ -185,6 +195,11 @@ public class NSBiomeGen {
         // Red Peaks
         if (NSConfig.has_red_peaks) {
             BiomePlacement.addSubOverworld(BiomeKeys.BADLANDS, NSBiomes.RED_PEAKS, CriterionBuilder.neighbor(BiomeKeys.STONY_PEAKS));
+        }
+
+        // White Cliffs
+        if (NSConfig.has_white_cliffs) {
+            BiomePlacement.addSubOverworld(BiomeKeys.STONY_SHORE, NSBiomes.WHITE_CLIFFS, allOf(CriterionBuilder.value(BiomeParameterTargets.TEMPERATURE, 0.2F, 0.55F),CriterionBuilder.value(BiomeParameterTargets.HUMIDITY, -0.1F, 0.3F)));
         }
     }
 }

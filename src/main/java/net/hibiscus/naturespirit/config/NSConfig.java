@@ -8,7 +8,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
+
 import net.fabricmc.loader.api.FabricLoader;
+import org.jetbrains.annotations.NotNull;
 
 public class NSConfig {
 
@@ -83,8 +85,6 @@ public class NSConfig {
   public static boolean has_chaparral;
   public static boolean has_floral_ridges;
 
-  public NSConfig() {}
-
   public static void main() throws IOException {
     Path configPath = Path.of(FabricLoader.getInstance().getConfigDir().toString(), "natures_spirit_2.0.0-1.21.1.json");
     try {
@@ -98,7 +98,6 @@ public class NSConfig {
       }
       JsonObject obj = (JsonObject) JsonParser.parseReader(new FileReader(configPath.toString()));
       JsonObject biomes = (JsonObject) obj.get("biomes");
-      JsonObject region_weights = (JsonObject) obj.get("region_weights");
       JsonObject misc_features = (JsonObject) obj.get("misc_features");
       JsonObject datapack_toggles = (JsonObject) obj.get("datapack_toggles");
 
@@ -179,7 +178,7 @@ public class NSConfig {
     }
   }
 
-
+  @NotNull
   private static JsonObject getJsonObject() {
 
     JsonObject jsonObjects = new JsonObject();
@@ -187,11 +186,20 @@ public class NSConfig {
     JsonObject biomesObject = getBiomesObject();
     jsonObjects.add("biomes", biomesObject);
 
+    JsonObject regionsObject = new JsonObject();
+    regionsObject.addProperty("terra_ferax_frequency", 4);
+    regionsObject.addProperty("terra_solaris_frequency", 4);
+    regionsObject.addProperty("terra_flava_frequency", 4);
+    regionsObject.addProperty("terra_laeta_frequency", 4);
+    regionsObject.addProperty("terra_mater_frequency", 4);
+    jsonObjects.add("region_weights", regionsObject);
+
     JsonObject miscObject = new JsonObject();
     miscObject.addProperty("deepslate_generator", true);
     miscObject.addProperty("sugi_and_stratified_pillars", true);
     miscObject.addProperty("calcite_generator", true);
     miscObject.addProperty("cheese_arrow", true);
+    miscObject.addProperty("cat_variants", true);
     miscObject.addProperty("creative_tab", true);
     jsonObjects.add("misc_features", miscObject);
 
@@ -213,7 +221,7 @@ public class NSConfig {
     return jsonObjects;
   }
 
-
+  @NotNull
   private static JsonObject getBiomesObject() {
     JsonObject biomesObject = new JsonObject();
     biomesObject.addProperty("has_sugi_forest", true);

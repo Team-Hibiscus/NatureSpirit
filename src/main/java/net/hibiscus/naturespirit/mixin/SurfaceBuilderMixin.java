@@ -30,6 +30,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import static net.hibiscus.naturespirit.config.NSConfig.sugi_and_stratified_pillars;
+
 @Mixin(SurfaceBuilder.class)
 public class SurfaceBuilderMixin {
 
@@ -65,7 +67,7 @@ public class SurfaceBuilderMixin {
       CallbackInfo ci,
       @Local RegistryEntry<Biome> registryEntry, @Local(ordinal = 2) int k, @Local(ordinal = 3) int l, @Local(ordinal = 4) int m, @Local(ordinal = 5) int n,
       @Local BlockColumn blockColumn) {
-    if (NSConfig.sugi_and_stratified_pillars) {
+    if (sugi_and_stratified_pillars) {
       int o = chunk.sampleHeightmap(Heightmap.Type.OCEAN_FLOOR_WG, k, l) + 1;
       if (registryEntry.matchesKey(NSBiomes.SUGI_FOREST) || registryEntry.matchesKey(NSBiomes.BLOOMING_SUGI_FOREST)) {
         this.placeSugiPillar(blockColumn, m, n, o, chunk);

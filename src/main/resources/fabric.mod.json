@@ -18,9 +18,6 @@
     "main": [
       "net.hibiscus.naturespirit.NatureSpirit"
     ],
-    "terrablender": [
-      "net.hibiscus.naturespirit.terrablender.NSTerraBlender"
-    ],
     "fabric-datagen": [
       "net.hibiscus.naturespirit.datagen.NSDataGen"
     ]
@@ -33,7 +30,7 @@
     "fabricloader": ">=0.14.25",
     "fabric": "*",
     "minecraft": "1.21.*",
-    "terrablender": "*"
+    "biolith": "*"
   },
   "custom": {
     "modmenu": {

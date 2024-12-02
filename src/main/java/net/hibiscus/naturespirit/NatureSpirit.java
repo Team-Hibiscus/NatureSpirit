@@ -2,6 +2,8 @@ package net.hibiscus.naturespirit;
 
 import java.io.IOException;
 import java.util.Optional;
+
+import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -15,6 +17,8 @@ import net.hibiscus.naturespirit.registration.*;
 import net.hibiscus.naturespirit.util.NSCauldronBehavior;
 import net.hibiscus.naturespirit.util.NSEvents;
 import net.hibiscus.naturespirit.util.NSVillagers;
+import net.hibiscus.naturespirit.world.NSSurfaceRules;
+import net.hibiscus.naturespirit.world.biolith.NSBiomeGen;
 import net.minecraft.entity.passive.CatVariant;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -198,6 +202,7 @@ public class NatureSpirit implements ModInitializer {
 			NSWoods.registerWoods();
 			NSColoredBlocks.registerColoredBlocks();
 			NSMiscBlocks.registerMiscBlocks();
+			NSBiomeGen.createBiomePlacement();
 			NSEvents.registerEvents();
 			NSWorldGen.registerWorldGen();
 			NSItemGroups.registerItemGroup();
@@ -208,6 +213,12 @@ public class NatureSpirit implements ModInitializer {
 			if (NSConfig.cat_variants) {
 				Registry.register(Registries.CAT_VARIANT, "trans", new CatVariant(Identifier.of(MOD_ID, "textures/entity/cat/trans" + ".png")));
 			}
+
+			// SURFACE RULES
+
+			SurfaceGeneration.addOverworldSurfaceRules(
+					Identifier.of("natures_spirit", "rules/overworld"), NSSurfaceRules.makeRules()
+			);
 		}
 	}
 }
