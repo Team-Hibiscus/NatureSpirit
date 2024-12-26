@@ -57,6 +57,7 @@ public class StoneSet {
   private Block bricksWall;
   private Block chiseled;
   private Block crackedBricks;
+  private Block crackedTiles;
   private Block mossyBricks;
   private BlockFamily mossyBrickFamily;
   private Block mossyBricksStairs;
@@ -127,7 +128,12 @@ public class StoneSet {
       tilesStairs = createStairs(getName() + "_tile", polished);
       tilesSlab = createSlab(getName() + "_tile", polished);
       tilesWall = createWall(getName() + "_tile", polished);
-      tileFamily = register(tiles).slab(tilesSlab).stairs(tilesStairs).wall(tilesWall).build();
+      if (hasCracked()) {
+        crackedTiles = createBasic("cracked_" + getName() + "_tiles", Blocks.CRACKED_STONE_BRICKS);
+        tileFamily = register(tiles).slab(tilesSlab).stairs(tilesStairs).wall(tilesWall).cracked(crackedTiles).build();
+      } else {
+        tileFamily = register(tiles).slab(tilesSlab).stairs(tilesStairs).wall(tilesWall).build();
+      }
     }
 
     if (hasCobbled()) {
@@ -238,6 +244,9 @@ public class StoneSet {
       }
       if (stoneSet.hasTiles()) {
         entries.addAfter(stoneSet.getBricksWall(), stoneSet.getTiles(), stoneSet.getTilesStairs(), stoneSet.getTilesSlab(), stoneSet.getTilesWall());
+        if (stoneSet.hasCracked()) {
+          entries.addAfter(stoneSet.getTiles(), stoneSet.getCrackedTiles());
+        }
       }
       if (stoneSet.hasMossy()) {
         entries.addAfter(stoneSet.getBricksWall(), stoneSet.getMossyBricks(), stoneSet.getMossyBricksStairs(), stoneSet.getMossyBricksSlab(), stoneSet.getMossyBricksWall());
@@ -328,6 +337,10 @@ public class StoneSet {
 
   public Block getCrackedBricks() {
     return crackedBricks;
+  }
+
+  public Block getCrackedTiles() {
+    return crackedTiles;
   }
 
   public Block getMossyBricks() {

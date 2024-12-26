@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.IntStream;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.hibiscus.naturespirit.blocks.AzollaBlock;
 import net.hibiscus.naturespirit.blocks.WaterFlowerbedBlock;
 import net.hibiscus.naturespirit.registration.NSColoredBlocks;
 import net.hibiscus.naturespirit.registration.NSMiscBlocks;
@@ -93,6 +94,9 @@ class NSBlockLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(stoneSet.getTilesStairs());
         this.addDrop(stoneSet.getTilesSlab(), this::slabDrops);
         addDrop(stoneSet.getTilesWall());
+        if (stoneSet.hasCracked()) {
+          addDrop(stoneSet.getCrackedTiles());
+        }
       }
       if (stoneSet.hasMossy()) {
         addDrop(stoneSet.getMossyBricks());
@@ -161,7 +165,7 @@ class NSBlockLootTableProvider extends FabricBlockLootTableProvider {
     return LootTable.builder().pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1F)).with(this.applyExplosionDecay(flowerbed, ItemEntry.builder(flowerbed).apply(
         IntStream.rangeClosed(1, 4).boxed().toList(), (flowerAmount) -> SetCountLootFunction.builder(ConstantLootNumberProvider.create((float) flowerAmount)).conditionally(
                 BlockStatePropertyLootCondition
-                    .builder(flowerbed).properties(net.minecraft.predicate.StatePredicate.Builder.create().exactMatch(WaterFlowerbedBlock.FLOWER_AMOUNT, flowerAmount)))
+                    .builder(flowerbed).properties(net.minecraft.predicate.StatePredicate.Builder.create().exactMatch(AzollaBlock.FLOWER_AMOUNT, flowerAmount)))
             .conditionally(this.createWithShearsOrSilkTouchCondition())))));
   }
 

@@ -300,6 +300,9 @@ class NSModelGenerator extends FabricModelProvider {
         createSlab(stoneSet.getTiles(), stoneSet.getTilesSlab(), blockStateModelGenerator);
         createStairs(stoneSet.getTiles(), stoneSet.getTilesStairs(), blockStateModelGenerator);
         blockStateModelGenerator.registerSimpleCubeAll(stoneSet.getTiles());
+        if (stoneSet.hasCracked()) {
+          blockStateModelGenerator.registerSimpleCubeAll(stoneSet.getCrackedTiles());
+        }
       }
       if (stoneSet.hasCobbled()) {
         createWall(stoneSet.getCobbled(), stoneSet.getCobbledWall(), blockStateModelGenerator);

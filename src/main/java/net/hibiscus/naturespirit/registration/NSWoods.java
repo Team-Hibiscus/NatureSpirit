@@ -83,7 +83,7 @@ public class NSWoods {
       SUGI.getSapling(),
       () -> NSBoatTypes.WISTERIA,
       WoodSet.WoodPreset.WISTERIA,
-      false,
+      true,
       NSConfiguredFeatures.WHITE_WISTERIA_TREE
   );
 

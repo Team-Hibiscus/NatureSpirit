@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "natures_spirit:block/wisteria_mosaic"
+  }
+}

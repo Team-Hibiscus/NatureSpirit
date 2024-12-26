@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "natures_spirit:cracked_travertine_tiles"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_travertine_tiles": {
+      "conditions": {
+        "items": [
+          {
+            "items": "natures_spirit:travertine_tiles"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_travertine_tiles"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "natures_spirit:cracked_travertine_tiles"
+    ]
+  }
+}

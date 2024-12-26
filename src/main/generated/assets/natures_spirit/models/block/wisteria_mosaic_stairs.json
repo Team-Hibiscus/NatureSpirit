@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "natures_spirit:block/wisteria_mosaic",
+    "side": "natures_spirit:block/wisteria_mosaic",
+    "top": "natures_spirit:block/wisteria_mosaic"
+  }
+}

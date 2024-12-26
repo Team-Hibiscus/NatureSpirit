@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "natures_spirit:block/cracked_travertine_bricks"
+  }
+}

@@ -546,11 +546,11 @@ public class NSMiscBlocks {
       new AmethystClusterBlock(3, 4, AbstractBlock.Settings.copy(CALCITE_CLUSTER).sounds(BlockSoundGroup.CALCITE).solid().pistonBehavior(PistonBehavior.DESTROY)),
       LARGE_CALCITE_BUD, ItemGroups.NATURAL);
 
-  public static final StoneSet TRAVERTINE = new StoneSet(Identifier.of(MOD_ID, "travertine"), MapColor.LIGHT_GRAY, Items.POLISHED_ANDESITE_SLAB, Items.ANDESITE, 1.5F, true, false,
+  public static final StoneSet TRAVERTINE = new StoneSet(Identifier.of(MOD_ID, "travertine"), MapColor.LIGHT_GRAY, Items.POLISHED_ANDESITE_SLAB, Items.ANDESITE, 1.5F, true, true,
       true, true);
 
   public static final StoneSet CHERT = new StoneSet(Identifier.of(MOD_ID, "chert"), MapColor.OAK_TAN, TRAVERTINE.getTilesSlab().asItem(), TRAVERTINE.getBase().asItem(), .9F, false,
-      false, false, true, true);
+      true, false, true, true);
 
   public static final Block CHERT_GOLD_ORE = registerBlock("chert_gold_ore",
       new ExperienceDroppingBlock(ConstantIntProvider.create(0), AbstractBlock.Settings.copyShallow(Blocks.GOLD_ORE).mapColor(MapColor.OAK_TAN).strength(.9f)), Items.GOLD_ORE, ItemGroups.NATURAL);

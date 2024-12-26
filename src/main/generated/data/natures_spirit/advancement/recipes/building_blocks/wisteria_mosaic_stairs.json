@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "natures_spirit:wisteria_mosaic_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wisteria_mosaic": {
+      "conditions": {
+        "items": [
+          {
+            "items": "natures_spirit:wisteria_mosaic"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wisteria_mosaic"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "natures_spirit:wisteria_mosaic_stairs"
+    ]
+  }
+}
