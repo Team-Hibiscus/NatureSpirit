@@ -165,8 +165,7 @@ class NSBlockLootTableProvider extends FabricBlockLootTableProvider {
     return LootTable.builder().pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1F)).with(this.applyExplosionDecay(flowerbed, ItemEntry.builder(flowerbed).apply(
         IntStream.rangeClosed(1, 4).boxed().toList(), (flowerAmount) -> SetCountLootFunction.builder(ConstantLootNumberProvider.create((float) flowerAmount)).conditionally(
                 BlockStatePropertyLootCondition
-                    .builder(flowerbed).properties(net.minecraft.predicate.StatePredicate.Builder.create().exactMatch(AzollaBlock.FLOWER_AMOUNT, flowerAmount)))
-            .conditionally(this.createWithShearsOrSilkTouchCondition())))));
+                    .builder(flowerbed).properties(net.minecraft.predicate.StatePredicate.Builder.create().exactMatch(AzollaBlock.FLOWER_AMOUNT, flowerAmount)))))).conditionally(this.createWithShearsOrSilkTouchCondition()));
   }
 
   private void addTreeTable(HashMap<String, Block[]> saplings, HashMap<String, Block> leaves) {

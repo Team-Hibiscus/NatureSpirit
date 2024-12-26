@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-26T14:46:49.1504401	Nature's Spirit/Block Loot Tables
+// 1.21.1	2024-12-26T16:09:58.8655173	Nature's Spirit/Block Loot Tables
 e911ae8735d1a702e27e873549f6a74ebbffb648 data\natures_spirit\loot_table\blocks\white_kaolin_stairs.json
 fa7b8a58b31ef186e16991cbeca9b8894569b018 data\natures_spirit\loot_table\blocks\mossy_cobbled_travertine.json
 8f36a7915d62793e4f6c9dd4efbfdc7c1a1ed24f data\natures_spirit\loot_table\blocks\aspen_log.json
@@ -162,7 +162,7 @@ c0902a3284f8d14547f0effae684f4bf83d1573b data\natures_spirit\loot_table\blocks\m
 2b4e0f18fc45ce4ef0ade149728c905ab6ffe4ca data\natures_spirit\loot_table\blocks\yellow_aspen_leaves.json
 4e230e2ce515d06b18d3875dea8d309629ab6c69 data\natures_spirit\loot_table\blocks\potted_hibiscus.json
 8c5138642d1b26dc28637a19d156256bdb96eb26 data\natures_spirit\loot_table\blocks\gardenia.json
-ccc4310f68bc0d80f0ff67b7f1c579617f0edee1 data\natures_spirit\loot_table\blocks\azolla.json
+9b2d09ef72174087ff21dfa37d68443f3a6f95c5 data\natures_spirit\loot_table\blocks\azolla.json
 20dded0817e8cbbab09baf50f21f6a84971d8dfa data\natures_spirit\loot_table\blocks\sugi_stairs.json
 0e4edbf54126438a6443bea4baeec6c2060a7f20 data\natures_spirit\loot_table\blocks\part_purple_wisteria_leaves.json
 e0d6145938d89c733f7ec984690fa11cc8d64afd data\natures_spirit\loot_table\blocks\larch_trapdoor.json
@@ -571,8 +571,8 @@ f3d127538d1a53a21b4ec3e4f05bc6c72bf4b3dc data\natures_spirit\loot_table\blocks\l
 360598d7520b5b28899fc2f6b77efd538f7ca92d data\natures_spirit\loot_table\blocks\olive_fence.json
 b149d71db713a5ef88d1a3ee1a3358d0bfda51f5 data\natures_spirit\loot_table\blocks\coconut_door.json
 3a408af1b513bb1861e81551e440d9ab90e605ef data\natures_spirit\loot_table\blocks\potted_marigold.json
-027f4737434387ceb248f20a5fa6c414631c773d data\natures_spirit\loot_table\blocks\palo_verde_leaves.json
 b015e455da866b1e8fdb0279f268bb0add1796ed data\natures_spirit\loot_table\blocks\coconut_mosaic_stairs.json
+027f4737434387ceb248f20a5fa6c414631c773d data\natures_spirit\loot_table\blocks\palo_verde_leaves.json
 cb67ee32066d6c029ba33ea8cf150bda25773937 data\natures_spirit\loot_table\blocks\potted_willow_sapling.json
 0699b53ff857653d5c521d45c286918cf92050e1 data\natures_spirit\loot_table\blocks\ghaf_log.json
 5d720cc4e1e612cbdfe00d1ccfd529d68dffb3df data\natures_spirit\loot_table\blocks\chert_brick_wall.json
