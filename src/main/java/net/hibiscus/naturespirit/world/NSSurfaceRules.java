@@ -157,6 +157,7 @@ public class NSSurfaceRules {
                         MaterialRules.condition(MaterialRules.biome(NSBiomes.TROPICAL_SHORES, NSBiomes.DRYLANDS), pinkSandstoneOrPinkSand),
                         MaterialRules.condition(MaterialRules.biome(NSBiomes.SNOWY_FIR_FOREST, NSBiomes.TUNDRA), MaterialRules.condition(noiseCondition5, stoneOrSnow)),
                         MaterialRules.condition(MaterialRules.biome(NSBiomes.CHAPARRAL), SANDY_SOIL),
+                        MaterialRules.condition(MaterialRules.biome(NSBiomes.SLEETED_SLOPES, NSBiomes.SNOWCAPPED_RED_PEAKS), MaterialRules.condition(materialCondition7, SNOW_BLOCK)),
                         MaterialRules.condition(MaterialRules.biome(NSBiomes.SLEETED_SLOPES, NSBiomes.SNOWCAPPED_RED_PEAKS, NSBiomes.DUSTY_SLOPES, NSBiomes.RED_PEAKS),
                             MaterialRules.sequence(
                                 MaterialRules.condition(above256, CHERT),
@@ -168,14 +169,13 @@ public class NSSurfaceRules {
                 MaterialRules.condition(MaterialRules.stoneDepth(8, true, VerticalSurfaceType.FLOOR),
                     MaterialRules.sequence(
                         MaterialRules.condition(MaterialRules.biome(NSBiomes.LIVELY_DUNES, NSBiomes.BLOOMING_DUNES, NSBiomes.CHAPARRAL), MaterialRules.terracottaBands()),
+                        MaterialRules.condition(MaterialRules.biome(NSBiomes.DUSTY_SLOPES, NSBiomes.RED_PEAKS), MaterialRules.condition(MaterialRules.aboveY(YOffset.fixed(256), 1), SNOW_BLOCK)),
                         MaterialRules.condition(MaterialRules.biome(NSBiomes.SLEETED_SLOPES, NSBiomes.SNOWCAPPED_RED_PEAKS, NSBiomes.DUSTY_SLOPES, NSBiomes.RED_PEAKS),
                             MaterialRules.sequence(
                                 MaterialRules.condition(MaterialRules.steepSlope(), CHERT),
                                 MaterialRules.condition(belowWater, CHERT),
                                 MaterialRules.condition(MaterialRules.biome(NSBiomes.SLEETED_SLOPES), powderSnow)
-                            )),
-                        MaterialRules.condition(MaterialRules.biome(NSBiomes.DUSTY_SLOPES, NSBiomes.RED_PEAKS), MaterialRules.condition(MaterialRules.aboveY(YOffset.fixed(256), 1), SNOW_BLOCK)),
-                        MaterialRules.condition(MaterialRules.biome(NSBiomes.SLEETED_SLOPES, NSBiomes.SNOWCAPPED_RED_PEAKS), MaterialRules.condition(materialCondition7, SNOW_BLOCK))
+                            ))
                     )),
                 MaterialRules.condition(STONE_DEPTH_FLOOR_WITH_SURFACE_DEPTH_RANGE_6, MaterialRules.sequence(
                     MaterialRules.condition(MaterialRules.biome(NSBiomes.TROPICAL_SHORES), PINK_SANDSTONE),
