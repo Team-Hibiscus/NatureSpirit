@@ -37,13 +37,11 @@ public class NSBlockTagGenerator extends FabricTagProvider.BlockTagProvider {
       getOrCreateTagBuilder(BlockTags.WOODEN_FENCES).add(new Block[]{woodSet.getFence()});
       getOrCreateTagBuilder(woodSet.getBlockLogsTag()).add(woodSet.getStrippedLog(), woodSet.getLog());
       getOrCreateTagBuilder(NSTags.Blocks.STRIPPED_LOGS).add(woodSet.getStrippedLog());
+      getOrCreateTagBuilder(BlockTags.OVERWORLD_NATURAL_LOGS).add(new Block[]{woodSet.getLog()});
+      getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).addTag(woodSet.getBlockLogsTag());
       if (woodSet.getWoodPreset() == WoodPreset.JOSHUA) {
         getOrCreateTagBuilder(woodSet.getBlockLogsTag()).add(woodSet.getStrippedBundle(), woodSet.getBundle());
         getOrCreateTagBuilder(NSTags.Blocks.STRIPPED_LOGS).add(woodSet.getStrippedBundle());
-        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).addTag(woodSet.getBlockLogsTag());
-      } else {
-        getOrCreateTagBuilder(BlockTags.OVERWORLD_NATURAL_LOGS).add(new Block[]{woodSet.getLog()});
-        getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).addTag(woodSet.getBlockLogsTag());
       }
       if (woodSet.hasBark()) {
         getOrCreateTagBuilder(woodSet.getBlockLogsTag()).add(woodSet.getStrippedWood(), woodSet.getWood());
